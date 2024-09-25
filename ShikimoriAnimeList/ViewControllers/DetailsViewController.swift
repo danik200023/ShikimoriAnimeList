@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 class DetailsViewController: UIViewController {
     @IBOutlet var posterImageView: UIImageView!
@@ -20,14 +21,6 @@ class DetailsViewController: UIViewController {
         navigationItem.title = anime.russian
         
         let url = URL(string: "https://desu.shikimori.one\(anime.image.original)")!
-        networkManager.fetchImage(from: url, completion: { [weak self] result in
-            guard let self else { return }
-            switch result {
-            case .success(let poster):
-                self.posterImageView.image = UIImage(data: poster)
-            case .failure(let error):
-                print(error)
-            }
-        })
+        posterImageView.kf.setImage(with: url)
     }
 }

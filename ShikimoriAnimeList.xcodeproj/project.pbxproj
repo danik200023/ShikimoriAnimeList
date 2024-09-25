@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		830EE3202CA44E7300C309F0 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 830EE31F2CA44E7300C309F0 /* User.swift */; };
 		8323980C2C6B921C00EC4833 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8323980B2C6B921C00EC4833 /* AppDelegate.swift */; };
 		8323980E2C6B921C00EC4833 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8323980D2C6B921C00EC4833 /* SceneDelegate.swift */; };
 		832398102C6B921C00EC4833 /* CollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8323980F2C6B921C00EC4833 /* CollectionViewController.swift */; };
@@ -16,11 +17,15 @@
 		832398242C6B96E500EC4833 /* Anime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 832398232C6B96E500EC4833 /* Anime.swift */; };
 		832398272C6E3D7900EC4833 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 832398262C6E3D7800EC4833 /* NetworkManager.swift */; };
 		8323982A2C6E569600EC4833 /* AnimeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 832398292C6E569600EC4833 /* AnimeCell.swift */; };
+		836251BA2C73E30D004B9B71 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 836251B92C73E30D004B9B71 /* Alamofire */; };
+		836251BD2C73E465004B9B71 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 836251BC2C73E465004B9B71 /* Kingfisher */; };
+		8377675D2CA320BC00D2BA2B /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8377675C2CA320BC00D2BA2B /* LoginViewController.swift */; };
 		83BE51292C6F216F00CF0DB8 /* DetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83BE51282C6F216F00CF0DB8 /* DetailsViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		832398082C6B921C00EC4833 /* ShikimoriAnimeList.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ShikimoriAnimeList.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		830EE31F2CA44E7300C309F0 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		832398082C6B921C00EC4833 /* Shikimori.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Shikimori.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8323980B2C6B921C00EC4833 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8323980D2C6B921C00EC4833 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		8323980F2C6B921C00EC4833 /* CollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewController.swift; sourceTree = "<group>"; };
@@ -31,6 +36,7 @@
 		832398232C6B96E500EC4833 /* Anime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Anime.swift; sourceTree = "<group>"; };
 		832398262C6E3D7800EC4833 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		832398292C6E569600EC4833 /* AnimeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimeCell.swift; sourceTree = "<group>"; };
+		8377675C2CA320BC00D2BA2B /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		83BE51282C6F216F00CF0DB8 /* DetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -39,6 +45,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				836251BD2C73E465004B9B71 /* Kingfisher in Frameworks */,
+				836251BA2C73E30D004B9B71 /* Alamofire in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -56,7 +64,7 @@
 		832398092C6B921C00EC4833 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				832398082C6B921C00EC4833 /* ShikimoriAnimeList.app */,
+				832398082C6B921C00EC4833 /* Shikimori.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -89,6 +97,7 @@
 			isa = PBXGroup;
 			children = (
 				8323980F2C6B921C00EC4833 /* CollectionViewController.swift */,
+				8377675C2CA320BC00D2BA2B /* LoginViewController.swift */,
 				83BE51282C6F216F00CF0DB8 /* DetailsViewController.swift */,
 			);
 			path = ViewControllers;
@@ -107,6 +116,7 @@
 			isa = PBXGroup;
 			children = (
 				832398232C6B96E500EC4833 /* Anime.swift */,
+				830EE31F2CA44E7300C309F0 /* User.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -143,8 +153,12 @@
 			dependencies = (
 			);
 			name = ShikimoriAnimeList;
+			packageProductDependencies = (
+				836251B92C73E30D004B9B71 /* Alamofire */,
+				836251BC2C73E465004B9B71 /* Kingfisher */,
+			);
 			productName = ShikimoriAnimeList;
-			productReference = 832398082C6B921C00EC4833 /* ShikimoriAnimeList.app */;
+			productReference = 832398082C6B921C00EC4833 /* Shikimori.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -171,6 +185,10 @@
 				Base,
 			);
 			mainGroup = 832397FF2C6B921C00EC4833;
+			packageReferences = (
+				836251B82C73E30D004B9B71 /* XCRemoteSwiftPackageReference "Alamofire" */,
+				836251BB2C73E465004B9B71 /* XCRemoteSwiftPackageReference "Kingfisher" */,
+			);
 			productRefGroup = 832398092C6B921C00EC4833 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -202,6 +220,8 @@
 				832398102C6B921C00EC4833 /* CollectionViewController.swift in Sources */,
 				8323982A2C6E569600EC4833 /* AnimeCell.swift in Sources */,
 				832398272C6E3D7900EC4833 /* NetworkManager.swift in Sources */,
+				8377675D2CA320BC00D2BA2B /* LoginViewController.swift in Sources */,
+				830EE3202CA44E7300C309F0 /* User.swift in Sources */,
 				83BE51292C6F216F00CF0DB8 /* DetailsViewController.swift in Sources */,
 				8323980C2C6B921C00EC4833 /* AppDelegate.swift in Sources */,
 				8323980E2C6B921C00EC4833 /* SceneDelegate.swift in Sources */,
@@ -282,7 +302,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -339,7 +359,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
@@ -364,14 +384,14 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = umnov.ShikimoriAnimeList;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Shikimori;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
@@ -397,14 +417,14 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = umnov.ShikimoriAnimeList;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Shikimori;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
@@ -437,6 +457,38 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		836251B82C73E30D004B9B71 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.9.1;
+			};
+		};
+		836251BB2C73E465004B9B71 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.12.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		836251B92C73E30D004B9B71 /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 836251B82C73E30D004B9B71 /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
+		};
+		836251BC2C73E465004B9B71 /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 836251BB2C73E465004B9B71 /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 832398002C6B921C00EC4833 /* Project object */;
 }

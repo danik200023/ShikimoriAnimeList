@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="t1c-oG-EPx">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="23094" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="1Ue-qn-WSq">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22685"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23084"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -12,7 +11,7 @@
         <!--Топ 10 аниме-->
         <scene sceneID="kOm-MI-zPo">
             <objects>
-                <collectionViewController id="bpi-4w-XhU" customClass="CollectionViewController" customModule="ShikimoriAnimeList" customModuleProvider="target" sceneMemberID="viewController">
+                <collectionViewController id="bpi-4w-XhU" customClass="CollectionViewController" customModule="Shikimori" customModuleProvider="target" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="8NT-8U-Oyi" customClass="Collection">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -24,7 +23,7 @@
                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                         </collectionViewFlowLayout>
                         <cells>
-                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="animeCell" id="a6h-zV-jRX" customClass="AnimeCell" customModule="ShikimoriAnimeList" customModuleProvider="target">
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="animeCell" id="a6h-zV-jRX" customClass="AnimeCell" customModule="Shikimori" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="393" height="200"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
@@ -105,12 +104,12 @@
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="T1S-Zi-tKn" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="530.53435114503816" y="-49.295774647887328"/>
+            <point key="canvasLocation" x="1422" y="-349"/>
         </scene>
         <!--Details View Controller-->
         <scene sceneID="u0p-7n-aqN">
             <objects>
-                <viewController id="OgQ-in-HPM" customClass="DetailsViewController" customModule="ShikimoriAnimeList" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="OgQ-in-HPM" customClass="DetailsViewController" customModule="Shikimori" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Ypu-fE-g9q">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -137,12 +136,13 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="025-zV-4BM" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1321.3740458015266" y="-48.591549295774648"/>
+            <point key="canvasLocation" x="2390" y="-349"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Item-->
         <scene sceneID="Ub7-EV-jIe">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="t1c-oG-EPx" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="OzV-Lo-dB3"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="rtv-Zw-3LE">
                         <rect key="frame" x="0.0" y="59" width="393" height="96"/>
@@ -155,7 +155,79 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="prx-k3-l0r" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-396.18320610687022" y="-49.295774647887328"/>
+            <point key="canvasLocation" x="534" y="-349"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="089-BR-ByZ">
+            <objects>
+                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="1Ue-qn-WSq" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="B7z-P3-yri">
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <tabBarAppearance key="standardAppearance"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="t1c-oG-EPx" kind="relationship" relationship="viewControllers" id="axE-ao-QE6"/>
+                        <segue destination="WIh-KD-WwN" kind="relationship" relationship="viewControllers" id="b7Z-Mh-exg"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ja1-7Z-wgQ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-473" y="-47"/>
+        </scene>
+        <!--Item-->
+        <scene sceneID="QXt-U2-jj3">
+            <objects>
+                <viewController id="WIh-KD-WwN" customClass="LoginViewController" customModule="Shikimori" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="0zR-QR-Ksb">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wtD-rm-xyY">
+                                <rect key="frame" x="108" y="408.66666666666669" width="177" height="35"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Login with Shikimori"/>
+                                <connections>
+                                    <action selector="loginButtonAction" destination="WIh-KD-WwN" eventType="touchUpInside" id="pd1-PU-Bck"/>
+                                </connections>
+                            </button>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="username: " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BMC-Pu-MpU">
+                                <rect key="frame" x="154.33333333333334" y="415.66666666666669" width="84.666666666666657" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ahu-xP-0ns">
+                                <rect key="frame" x="76.666666666666686" y="133" width="240" height="240"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="ahu-xP-0ns" secondAttribute="height" multiplier="1:1" id="5im-Qp-lF0"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="fKb-ri-MVk"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="ahu-xP-0ns" firstAttribute="width" secondItem="0zR-QR-Ksb" secondAttribute="width" multiplier="0.610687" id="1a2-jX-8fK"/>
+                            <constraint firstItem="wtD-rm-xyY" firstAttribute="centerX" secondItem="0zR-QR-Ksb" secondAttribute="centerX" id="7QB-Mn-RAE"/>
+                            <constraint firstItem="ahu-xP-0ns" firstAttribute="centerX" secondItem="fKb-ri-MVk" secondAttribute="centerX" id="QWc-DN-Ew8"/>
+                            <constraint firstItem="BMC-Pu-MpU" firstAttribute="centerY" secondItem="0zR-QR-Ksb" secondAttribute="centerY" id="VuR-ye-4Ru"/>
+                            <constraint firstItem="wtD-rm-xyY" firstAttribute="centerY" secondItem="0zR-QR-Ksb" secondAttribute="centerY" id="bVM-rM-J44"/>
+                            <constraint firstItem="ahu-xP-0ns" firstAttribute="top" secondItem="fKb-ri-MVk" secondAttribute="top" constant="74" id="mhT-1d-eoN"/>
+                            <constraint firstItem="BMC-Pu-MpU" firstAttribute="centerX" secondItem="0zR-QR-Ksb" secondAttribute="centerX" id="qfB-DY-epG"/>
+                        </constraints>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Item" id="InP-Iq-CJr"/>
+                    <navigationItem key="navigationItem" id="pY3-8g-eQG"/>
+                    <connections>
+                        <outlet property="avatarImageView" destination="ahu-xP-0ns" id="kSw-S9-zcL"/>
+                        <outlet property="loginButton" destination="wtD-rm-xyY" id="jWz-SO-rBb"/>
+                        <outlet property="usernameLabel" destination="BMC-Pu-MpU" id="zvP-FW-2ff"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="MzM-c3-OTm" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="534" y="349"/>
         </scene>
     </scenes>
     <resources>

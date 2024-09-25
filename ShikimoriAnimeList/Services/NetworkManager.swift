@@ -6,54 +6,50 @@
 //
 
 import Foundation
+import Alamofire
 
 final class NetworkManager {
-    enum NetworkError: Error {
-        case invalidUrl
-        case noData
-        case decodingError
-    }
-    
-    static var shared = NetworkManager()
+    static let shared = NetworkManager()
     
     private init() {}
     
-    func fetchImage(
-        from url: URL,
-        completion: @escaping(Result<Data, NetworkError>) -> Void
-    ) {
-        DispatchQueue.global().async {
-            guard let imageData = try? Data(contentsOf: url) else {
-                completion(.failure(.noData))
-                return
+    func getAccessToken(completion: @escaping (Result<Any, AFError>) -> Void) {
+        let url = "https://shikimori.one/oauth/token"
+        let headers: HTTPHeaders = [
+                "User-Agent": "Shikimori iOS App"
+            ]
+        guard let authCode = UserDefaults.standard.string(forKey: "authCode") else { return }
+        let parameters: [String: String] = [
+                "grant_type": "authorization_code",
+                "client_id": "wfUWoNxEIwfseLQ5vGJfQjeVOAAELibJw5zbOmCVnrc",
+                "client_secret": "YagZ3xAhnrbC5uNgjxv2QeAeeoPRgEsatQYz8UIF5x4",
+                "code": authCode,
+                "redirect_uri": "shikimoriapp://callback"
+            ]
+        AF.request(url, method: .post, parameters: parameters, headers: headers)
+            .validate()
+            .responseJSON { response in
+                completion(response.result)
             }
-            DispatchQueue.main.async {
-                completion(.success(imageData))
-            }
-        }
     }
     
     func fetch<T: Decodable>(
         _ type: T.Type,
-        from url: URL,
-        completion: @escaping(Result<T, NetworkError>) -> Void
+        from url: URLConvertible,
+        completion: @escaping(Result<T, AFError>) -> Void
     ) {
-        URLSession.shared.dataTask(with: url) { data, _, error in
-            guard let data else {
-                print(error?.localizedDescription ?? "No error description")
-                return
+        let decoder = JSONDecoder()
+        decoder.keyDecodingStrategy = .convertFromSnakeCase
+        var headers: HTTPHeaders = [
+            "User-Agent": "Shikimori iOS App"
+        ]
+        if let accessToken = UserDefaults.standard.string(forKey: "accessToken") {
+            headers.add(HTTPHeader(name: "Authorization", value: "Bearer \(accessToken)"))
+        }
+        AF.request(url, headers: headers)
+            .validate()
+            .responseDecodable(of: type, decoder: decoder) { response in
+                completion(response.result)
             }
-            do {
-                let decoder = JSONDecoder()
-                decoder.keyDecodingStrategy = .convertFromSnakeCase
-                
-                let dataModel = try decoder.decode(type, from: data)
-                DispatchQueue.main.async {
-                    completion(.success(dataModel))
-                }
-            } catch {
-                completion(.failure(.noData))
-            }
-        }.resume()
     }
 }
