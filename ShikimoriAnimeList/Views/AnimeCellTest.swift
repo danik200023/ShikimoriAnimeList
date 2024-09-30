@@ -8,14 +8,10 @@
 import UIKit
 import Kingfisher
 
-class AnimeCell: UICollectionViewCell {
+class AnimeCellTest: UICollectionViewCell {
     @IBOutlet var animeImageView: UIImageView!
-    @IBOutlet var russianAnimeName: UILabel!
-    @IBOutlet var numberOfEpisodes: UILabel!
     
     func configure(with anime: Anime) {
-        russianAnimeName.text = anime.russian
-        numberOfEpisodes.text = "[\(anime.episodesAired) из \(anime.episodes == 0 ? "?" : "\(anime.episodes)")]"
         let imageUrl = URL(string: "https://desu.shikimori.one\(anime.image.original)")!
         animeImageView.kf.indicatorType = .activity
         animeImageView.kf.setImage(with: imageUrl)

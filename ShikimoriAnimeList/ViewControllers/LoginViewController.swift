@@ -32,7 +32,7 @@ final class LoginViewController: UIViewController {
     }
     
     func setupUI() {
-        if let accessToken = UserDefaults.standard.string(forKey: "accessToken") {
+        if UserDefaults.standard.getOAuthToken() != nil {
             configureUI(isLoggedIn: true)
             fetchUserProfile()
         } else if UserDefaults.standard.string(forKey: "authCode") != nil {
@@ -54,7 +54,7 @@ final class LoginViewController: UIViewController {
     }
     
     private func fetchUserProfile() {
-        networkManager.fetch(
+        networkManager.fetchWithAuthorization(
             User.self,
             from: "https://shikimori.one/api/users/whoami"
         ) { [weak self] result in
@@ -66,6 +66,7 @@ final class LoginViewController: UIViewController {
                 avatarImageView.kf.setImage(with: loadedUser.image.x160)
             case .failure(let error):
                 print(error)
+                print(400)
             }
         }
     }
@@ -75,16 +76,13 @@ final class LoginViewController: UIViewController {
             guard let self else { return }
             
             switch result {
-            case .success(let data):
-                if let data = data as? [String: Any] {
-                    UserDefaults.standard.setValue(data["access_token"] as? String, forKey: "accessToken")
-                    UserDefaults.standard.setValue(data["refresh_token"] as? String, forKey: "refreshToken")
-                    self.setupUI()
-                }
+            case .success(let token):
+                UserDefaults.standard.saveOAuthToken(token)
+                self.setupUI()
             case .failure(let error):
                 print(error.responseCode ?? "Unknown error")
                 if error.responseCode == 400 {
-                    UserDefaults.standard.removeObject(forKey: "authCode")
+                    print("error 400")
                 }
             }
         }

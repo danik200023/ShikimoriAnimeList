@@ -19,7 +19,7 @@ struct Anime: Decodable {
     let episodes: Int
     let episodesAired: Int
     let airedOn: String
-    let releasedOn: String
+    let releasedOn: String?
 }
 
 struct Image: Decodable {

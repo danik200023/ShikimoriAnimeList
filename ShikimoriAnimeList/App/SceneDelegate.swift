@@ -19,7 +19,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func scene(_ scene: UIScene, openURLContexts URLContexts: Set<UIOpenURLContext>) {
         guard let url = URLContexts.first?.url else { return }
         if url.scheme == "shikimoriapp" {
-            print("Correct scheme detected")
             let queryItems = URLComponents(url: url, resolvingAgainstBaseURL: false)?.queryItems
             let code = queryItems?.first(where: { $0.name == "code" })?.value
             if let code = code {
