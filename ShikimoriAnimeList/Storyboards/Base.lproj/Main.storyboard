@@ -12,7 +12,6 @@
         <!--Онгоинги-->
         <scene sceneID="kOm-MI-zPo">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="T1S-Zi-tKn" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <collectionViewController id="bpi-4w-XhU" customClass="OngoingCollectionViewController" customModule="Shikimori" customModuleProvider="target" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="8NT-8U-Oyi" customClass="Collection">
                         <rect key="frame" x="0.0" y="0.0" width="402" height="874"/>
@@ -99,6 +98,7 @@
                         <segue destination="OgQ-in-HPM" kind="show" identifier="showDetails" id="b6W-0u-HhA"/>
                     </connections>
                 </collectionViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="T1S-Zi-tKn" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1435.8208955223879" y="-375.51487414187642"/>
         </scene>

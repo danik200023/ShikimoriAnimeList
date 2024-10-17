@@ -19,7 +19,7 @@ final class NetworkManager {
                 "User-Agent": "Shikimori iOS App"
             ]
         guard let authCode = UserDefaults.standard.string(forKey: "authCode") else { return }
-        let parameters: [String: String] = [
+        let parameters: Parameters = [
                 "grant_type": "authorization_code",
                 "client_id": "wfUWoNxEIwfseLQ5vGJfQjeVOAAELibJw5zbOmCVnrc",
                 "client_secret": "YagZ3xAhnrbC5uNgjxv2QeAeeoPRgEsatQYz8UIF5x4",
@@ -45,14 +45,19 @@ final class NetworkManager {
     func fetchWithAuthorization<T: Decodable>(
         _ type: T.Type,
         from url: URLConvertible,
+        withParameters parameters: Parameters? = nil,
         completion: @escaping(Result<T, AFError>) -> Void
     ) {
+        let headers: HTTPHeaders = [
+                "User-Agent": "Shikimori iOS App"
+            ]
         let token = UserDefaults.standard.getOAuthToken()
         let interceptor = AuthenticationInterceptor(authenticator: OAuthAuthenticator(), credential: token)
+        
         let decoder = JSONDecoder()
         decoder.keyDecodingStrategy = .convertFromSnakeCase
         
-        AF.request(url, interceptor: interceptor)
+        AF.request(url, parameters: parameters, headers: headers, interceptor: interceptor)
             .validate()
             .responseDecodable(of: type, decoder: decoder) { response in
                 completion(response.result)
@@ -62,12 +67,16 @@ final class NetworkManager {
     func fetchWithoutAuthorization<T: Decodable>(
         _ type: T.Type,
         from url: URLConvertible,
+        withParameters parameters: Parameters? = nil,
         completion: @escaping(Result<T, AFError>) -> Void
     ) {
+        let headers: HTTPHeaders = [
+                "User-Agent": "Shikimori iOS App"
+            ]
         let decoder = JSONDecoder()
         decoder.keyDecodingStrategy = .convertFromSnakeCase
         
-        AF.request(url)
+        AF.request(url, parameters: parameters, headers: headers)
             .validate()
             .responseDecodable(of: type, decoder: decoder) { response in
                 completion(response.result)

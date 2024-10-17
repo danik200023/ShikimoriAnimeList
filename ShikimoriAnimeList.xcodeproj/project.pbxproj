@@ -25,7 +25,6 @@
 		836AC5432CA6B0EE00F786A2 /* UserDefaults+OAuthToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 836AC5422CA6B0ED00F786A2 /* UserDefaults+OAuthToken.swift */; };
 		8377675D2CA320BC00D2BA2B /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8377675C2CA320BC00D2BA2B /* LoginViewController.swift */; };
 		83BE51292C6F216F00CF0DB8 /* DetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83BE51282C6F216F00CF0DB8 /* DetailsViewController.swift */; };
-		83EFDEE12CA96BD3004C9DA3 /* AnimeCellTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83EFDEE02CA96BD3004C9DA3 /* AnimeCellTest.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -47,7 +46,6 @@
 		836AC5422CA6B0ED00F786A2 /* UserDefaults+OAuthToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+OAuthToken.swift"; sourceTree = "<group>"; };
 		8377675C2CA320BC00D2BA2B /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		83BE51282C6F216F00CF0DB8 /* DetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewController.swift; sourceTree = "<group>"; };
-		83EFDEE02CA96BD3004C9DA3 /* AnimeCellTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimeCellTest.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -147,7 +145,6 @@
 			isa = PBXGroup;
 			children = (
 				832398292C6E569600EC4833 /* AnimeCell.swift */,
-				83EFDEE02CA96BD3004C9DA3 /* AnimeCellTest.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -239,7 +236,6 @@
 				8377675D2CA320BC00D2BA2B /* LoginViewController.swift in Sources */,
 				830EE3202CA44E7300C309F0 /* User.swift in Sources */,
 				83BE51292C6F216F00CF0DB8 /* DetailsViewController.swift in Sources */,
-				83EFDEE12CA96BD3004C9DA3 /* AnimeCellTest.swift in Sources */,
 				831C33732CA6C91200E0F332 /* UserRate.swift in Sources */,
 				836928532CA69FEC00EE7B2A /* OAuthAuthenticator.swift in Sources */,
 				8323980C2C6B921C00EC4833 /* AppDelegate.swift in Sources */,

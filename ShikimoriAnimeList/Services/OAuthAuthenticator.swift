@@ -17,7 +17,7 @@ final class OAuthAuthenticator: Authenticator {
     
     func refresh(_ credential: OAuthToken, for session: Alamofire.Session, completion: @escaping (Result<OAuthToken, any Error>) -> Void) {
         let url = "https://shikimori.one/oauth/token"
-        let parameters: [String: String] = [
+        let parameters: Parameters = [
             "grant_type": "refresh_token",
             "client_id": "wfUWoNxEIwfseLQ5vGJfQjeVOAAELibJw5zbOmCVnrc",
             "client_secret": "YagZ3xAhnrbC5uNgjxv2QeAeeoPRgEsatQYz8UIF5x4",

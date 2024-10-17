@@ -7,14 +7,15 @@
 
 import UIKit
 
-class OngoingCollectionViewController: UICollectionViewController {
+final class OngoingCollectionViewController: UICollectionViewController {
     
     private var animes: [Anime] = []
     private var userProfile: User?
     
-    private let apiUrl = URL(
-        string: "https://shikimori.one/api/animes?status=ongoing&order=ranked&limit=50"
-    )!
+    private let initialPage = 1
+    private var currentPage = 1
+    private var isLoading = false
+    private var hasMorePages = true
     
     private let networkManager = NetworkManager.shared
     
@@ -50,15 +51,32 @@ class OngoingCollectionViewController: UICollectionViewController {
     }
     
     private func fetchAnime() {
+        guard !isLoading, hasMorePages else { return }
+        isLoading = true
+        
         NetworkManager.shared.fetchWithoutAuthorization(
             [Anime].self,
-            from: apiUrl
+            from: "https://shikimori.one/api/animes",
+            withParameters: [
+                "status": "ongoing",
+                "order":"ranked",
+                "limit": 50,
+                "page": currentPage
+            ]
         ) { [weak self] result in
             guard let self else { return }
+            self.isLoading = false
+            
             switch result {
-            case .success(let animes):
-                self.animes = animes
-                collectionView.reloadData()
+            case .success(let newAnimes):
+                if newAnimes.isEmpty {
+                    self.hasMorePages = false
+                } else {
+                    self.animes.append(contentsOf: newAnimes)
+                    self.currentPage += 1
+                    self.collectionView.reloadData()
+                    
+                }
             case .failure(let error):
                 print(error)
             }
@@ -91,6 +109,7 @@ extension OngoingCollectionViewController {
     }
 }
 
+// MARK: UICollectionViewDelegateFlowLayout
 extension OngoingCollectionViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(
         _ collectionView: UICollectionView,
@@ -101,3 +120,15 @@ extension OngoingCollectionViewController: UICollectionViewDelegateFlowLayout {
     }
 }
 
+// MARK: UIScrollViewDelegate
+extension OngoingCollectionViewController {
+    override func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let offsetY = scrollView.contentOffset.y
+        let contentHeight = scrollView.contentSize.height
+        let height = scrollView.bounds.height
+        
+        if offsetY > contentHeight - height - 100 {
+            fetchAnime()
+        }
+    }
+}

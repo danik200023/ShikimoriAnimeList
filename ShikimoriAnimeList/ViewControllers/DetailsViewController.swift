@@ -8,7 +8,7 @@
 import UIKit
 import Kingfisher
 
-class DetailsViewController: UIViewController {
+final class DetailsViewController: UIViewController {
     @IBOutlet var posterImageView: UIImageView!
     @IBOutlet var statusLabel: UILabel!
     
@@ -20,7 +20,7 @@ class DetailsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        navigationItem.title = anime.russian
+//        navigationItem.title = anime.russian
         
         let url = URL(string: "https://desu.shikimori.one\(anime.image.original)")!
         posterImageView.kf.setImage(with: url)
