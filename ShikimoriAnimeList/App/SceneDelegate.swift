@@ -27,9 +27,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                 if let loginVC = tabBarVC.viewControllers?.last as? LoginViewController {
                     if loginVC.presentedViewController == loginVC.oAuthVC {
                         loginVC.oAuthVC?.dismiss(animated: true) {
-                            loginVC.setupUI()
-                            loginVC.view.setNeedsLayout()
-                            loginVC.view.layoutIfNeeded()
+                            loginVC.refreshUI()
                         }
                     }
                 }

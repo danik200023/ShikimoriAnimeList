@@ -11,7 +11,7 @@ struct Anime: Decodable {
     let id: Int
     let name: String
     let russian: String
-    let image: Image
+    let image: AnimeImage
     let url: URL
     let kind: String
     let score: String
@@ -22,7 +22,7 @@ struct Anime: Decodable {
     let releasedOn: String?
 }
 
-struct Image: Decodable {
+struct AnimeImage: Decodable {
     let original: URL
     let preview: URL
     let x96: URL

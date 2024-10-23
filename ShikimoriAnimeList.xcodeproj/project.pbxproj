@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8309DD162CC9303100195D14 /* AnimeCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8309DD152CC9303100195D14 /* AnimeCellViewModel.swift */; };
+		8309DD192CC9633200195D14 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8309DD182CC9633200195D14 /* LoginViewModel.swift */; };
 		830EE3202CA44E7300C309F0 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 830EE31F2CA44E7300C309F0 /* User.swift */; };
 		831C33732CA6C91200E0F332 /* UserRate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 831C33722CA6C91200E0F332 /* UserRate.swift */; };
 		8323980C2C6B921C00EC4833 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8323980B2C6B921C00EC4833 /* AppDelegate.swift */; };
@@ -24,10 +26,15 @@
 		836928552CA6A10500EE7B2A /* OAuthToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 836928542CA6A10500EE7B2A /* OAuthToken.swift */; };
 		836AC5432CA6B0EE00F786A2 /* UserDefaults+OAuthToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 836AC5422CA6B0ED00F786A2 /* UserDefaults+OAuthToken.swift */; };
 		8377675D2CA320BC00D2BA2B /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8377675C2CA320BC00D2BA2B /* LoginViewController.swift */; };
-		83BE51292C6F216F00CF0DB8 /* DetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83BE51282C6F216F00CF0DB8 /* DetailsViewController.swift */; };
+		83BE51292C6F216F00CF0DB8 /* AnimeDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83BE51282C6F216F00CF0DB8 /* AnimeDetailsViewController.swift */; };
+		83F66ED52CC1AD8000F2F4E3 /* OngoingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83F66ED42CC1AD8000F2F4E3 /* OngoingsViewModel.swift */; };
+		83F66ED82CC1B0E900F2F4E3 /* AnimeDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83F66ED72CC1B0E900F2F4E3 /* AnimeDetailsViewModel.swift */; };
+		83F66EDA2CC2619100F2F4E3 /* AnimeDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83F66ED92CC2619100F2F4E3 /* AnimeDetails.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		8309DD152CC9303100195D14 /* AnimeCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimeCellViewModel.swift; sourceTree = "<group>"; };
+		8309DD182CC9633200195D14 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		830EE31F2CA44E7300C309F0 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		831C33722CA6C91200E0F332 /* UserRate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRate.swift; sourceTree = "<group>"; };
 		832398082C6B921C00EC4833 /* Shikimori.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Shikimori.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -45,7 +52,10 @@
 		836928542CA6A10500EE7B2A /* OAuthToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OAuthToken.swift; sourceTree = "<group>"; };
 		836AC5422CA6B0ED00F786A2 /* UserDefaults+OAuthToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+OAuthToken.swift"; sourceTree = "<group>"; };
 		8377675C2CA320BC00D2BA2B /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
-		83BE51282C6F216F00CF0DB8 /* DetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewController.swift; sourceTree = "<group>"; };
+		83BE51282C6F216F00CF0DB8 /* AnimeDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimeDetailsViewController.swift; sourceTree = "<group>"; };
+		83F66ED42CC1AD8000F2F4E3 /* OngoingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OngoingsViewModel.swift; sourceTree = "<group>"; };
+		83F66ED72CC1B0E900F2F4E3 /* AnimeDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimeDetailsViewModel.swift; sourceTree = "<group>"; };
+		83F66ED92CC2619100F2F4E3 /* AnimeDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimeDetails.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,6 +71,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8309DD132CC9300000195D14 /* AnimeCell */ = {
+			isa = PBXGroup;
+			children = (
+				832398292C6E569600EC4833 /* AnimeCell.swift */,
+				8309DD152CC9303100195D14 /* AnimeCellViewModel.swift */,
+			);
+			path = AnimeCell;
+			sourceTree = "<group>";
+		};
+		8309DD172CC9631100195D14 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				8377675C2CA320BC00D2BA2B /* LoginViewController.swift */,
+				8309DD182CC9633200195D14 /* LoginViewModel.swift */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
 		832397FF2C6B921C00EC4833 = {
 			isa = PBXGroup;
 			children = (
@@ -80,8 +108,10 @@
 		8323980A2C6B921C00EC4833 /* ShikimoriAnimeList */ = {
 			isa = PBXGroup;
 			children = (
-				832398202C6B925500EC4833 /* ViewControllers */,
-				832398282C6E565E00EC4833 /* Views */,
+				83F66ED32CC1ACC500F2F4E3 /* Ongoings */,
+				83F66ED62CC1B08600F2F4E3 /* AnimeDetails */,
+				8309DD132CC9300000195D14 /* AnimeCell */,
+				8309DD172CC9631100195D14 /* Login */,
 				832398212C6B926500EC4833 /* Storyboards */,
 				832398222C6B929000EC4833 /* Models */,
 				832398252C6E3D2400EC4833 /* Services */,
@@ -101,16 +131,6 @@
 			path = App;
 			sourceTree = "<group>";
 		};
-		832398202C6B925500EC4833 /* ViewControllers */ = {
-			isa = PBXGroup;
-			children = (
-				8323980F2C6B921C00EC4833 /* OngoingCollectionViewController.swift */,
-				8377675C2CA320BC00D2BA2B /* LoginViewController.swift */,
-				83BE51282C6F216F00CF0DB8 /* DetailsViewController.swift */,
-			);
-			path = ViewControllers;
-			sourceTree = "<group>";
-		};
 		832398212C6B926500EC4833 /* Storyboards */ = {
 			isa = PBXGroup;
 			children = (
@@ -124,6 +144,7 @@
 			isa = PBXGroup;
 			children = (
 				832398232C6B96E500EC4833 /* Anime.swift */,
+				83F66ED92CC2619100F2F4E3 /* AnimeDetails.swift */,
 				830EE31F2CA44E7300C309F0 /* User.swift */,
 				836928542CA6A10500EE7B2A /* OAuthToken.swift */,
 				836AC5422CA6B0ED00F786A2 /* UserDefaults+OAuthToken.swift */,
@@ -141,12 +162,22 @@
 			path = Services;
 			sourceTree = "<group>";
 		};
-		832398282C6E565E00EC4833 /* Views */ = {
+		83F66ED32CC1ACC500F2F4E3 /* Ongoings */ = {
 			isa = PBXGroup;
 			children = (
-				832398292C6E569600EC4833 /* AnimeCell.swift */,
+				8323980F2C6B921C00EC4833 /* OngoingCollectionViewController.swift */,
+				83F66ED42CC1AD8000F2F4E3 /* OngoingsViewModel.swift */,
 			);
-			path = Views;
+			path = Ongoings;
+			sourceTree = "<group>";
+		};
+		83F66ED62CC1B08600F2F4E3 /* AnimeDetails */ = {
+			isa = PBXGroup;
+			children = (
+				83BE51282C6F216F00CF0DB8 /* AnimeDetailsViewController.swift */,
+				83F66ED72CC1B0E900F2F4E3 /* AnimeDetailsViewModel.swift */,
+			);
+			path = AnimeDetails;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -228,17 +259,22 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				83F66ED52CC1AD8000F2F4E3 /* OngoingsViewModel.swift in Sources */,
 				832398242C6B96E500EC4833 /* Anime.swift in Sources */,
+				83F66ED82CC1B0E900F2F4E3 /* AnimeDetailsViewModel.swift in Sources */,
+				8309DD162CC9303100195D14 /* AnimeCellViewModel.swift in Sources */,
 				832398102C6B921C00EC4833 /* OngoingCollectionViewController.swift in Sources */,
 				8323982A2C6E569600EC4833 /* AnimeCell.swift in Sources */,
 				832398272C6E3D7900EC4833 /* NetworkManager.swift in Sources */,
 				836AC5432CA6B0EE00F786A2 /* UserDefaults+OAuthToken.swift in Sources */,
+				8309DD192CC9633200195D14 /* LoginViewModel.swift in Sources */,
 				8377675D2CA320BC00D2BA2B /* LoginViewController.swift in Sources */,
 				830EE3202CA44E7300C309F0 /* User.swift in Sources */,
-				83BE51292C6F216F00CF0DB8 /* DetailsViewController.swift in Sources */,
+				83BE51292C6F216F00CF0DB8 /* AnimeDetailsViewController.swift in Sources */,
 				831C33732CA6C91200E0F332 /* UserRate.swift in Sources */,
 				836928532CA69FEC00EE7B2A /* OAuthAuthenticator.swift in Sources */,
 				8323980C2C6B921C00EC4833 /* AppDelegate.swift in Sources */,
+				83F66EDA2CC2619100F2F4E3 /* AnimeDetails.swift in Sources */,
 				8323980E2C6B921C00EC4833 /* SceneDelegate.swift in Sources */,
 				836928552CA6A10500EE7B2A /* OAuthToken.swift in Sources */,
 			);

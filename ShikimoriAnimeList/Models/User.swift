@@ -16,7 +16,7 @@ struct User: Decodable {
     let url: URL
     let name: String?
     let sex: String?
-    let website: String
+    let website: String?
     let birthOn: String?
     let fullYears: Int?
     let locale: String
