@@ -28,6 +28,7 @@ final class LoginViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         viewModel = LoginViewModel()
+        setupUI()
     }
     
     @IBAction func loginButtonAction() {

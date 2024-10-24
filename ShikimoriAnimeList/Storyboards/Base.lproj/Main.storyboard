@@ -5,7 +5,6 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23084"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
-        <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -212,7 +211,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="025-zV-4BM" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2359.7014925373132" y="-375.51487414187642"/>
+            <point key="canvasLocation" x="3279.1044776119402" y="-375.51487414187642"/>
         </scene>
         <!--Онгоинги-->
         <scene sceneID="Ub7-EV-jIe">
@@ -246,7 +245,7 @@
                     </tabBar>
                     <connections>
                         <segue destination="t1c-oG-EPx" kind="relationship" relationship="viewControllers" id="axE-ao-QE6"/>
-                        <segue destination="ffN-uM-xVR" kind="relationship" relationship="viewControllers" id="RJW-N3-i6Z"/>
+                        <segue destination="cyh-aQ-60r" kind="relationship" relationship="viewControllers" id="RJW-N3-i6Z"/>
                         <segue destination="WIh-KD-WwN" kind="relationship" relationship="viewControllers" id="b7Z-Mh-exg"/>
                     </connections>
                 </tabBarController>
@@ -257,25 +256,80 @@
         <!--Поиск-->
         <scene sceneID="Tmk-Pr-bMu">
             <objects>
-                <collectionViewController id="ffN-uM-xVR" sceneMemberID="viewController">
+                <collectionViewController id="ffN-uM-xVR" customClass="SearchCollectionViewController" customModule="Shikimori" customModuleProvider="target" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="W8K-Ys-1De">
                         <rect key="frame" x="0.0" y="0.0" width="402" height="874"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="vuB-3N-3ro">
+                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" sectionInsetReference="layoutMargins" id="olO-fi-JqL">
                             <size key="itemSize" width="128" height="128"/>
                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                            <inset key="sectionInset" minX="32" minY="0.0" maxX="32" maxY="0.0"/>
                         </collectionViewFlowLayout>
                         <cells>
-                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ongoingCell" id="WYn-l4-Xkh">
-                                <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="searchCell" id="Iac-2b-Zne" customClass="AnimeCell" customModule="Shikimori" customModuleProvider="target">
+                                <rect key="frame" x="40" y="8" width="140" height="200"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="dfi-yc-PFf">
-                                    <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
+                                    <rect key="frame" x="0.0" y="0.0" width="140" height="200"/>
                                     <autoresizingMask key="autoresizingMask"/>
-                                </collectionViewCellContentView>
+                                    <subviews>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="92b-Dl-Zbi">
+                                            <rect key="frame" x="0.0" y="0.0" width="140" height="200"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" secondItem="92b-Dl-Zbi" secondAttribute="height" multiplier="7:10" id="tNU-Og-cwM"/>
+                                            </constraints>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                    <integer key="value" value="15"/>
+                                                </userDefinedRuntimeAttribute>
+                                            </userDefinedRuntimeAttributes>
+                                        </imageView>
+                                        <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DbH-Ux-UGZ">
+                                            <rect key="frame" x="0.0" y="120" width="140" height="80"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jCV-LJ-Hs5">
+                                                    <rect key="frame" x="8" y="4" width="124" height="50"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fTE-yp-ZXK">
+                                                    <rect key="frame" x="52.333333333333329" y="58" width="35.333333333333329" height="14"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.5" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <constraints>
+                                                <constraint firstItem="jCV-LJ-Hs5" firstAttribute="leading" secondItem="DbH-Ux-UGZ" secondAttribute="leading" constant="8" id="0v9-RH-9Wj"/>
+                                                <constraint firstItem="fTE-yp-ZXK" firstAttribute="centerX" secondItem="DbH-Ux-UGZ" secondAttribute="centerX" id="Q2Q-ML-wcu"/>
+                                                <constraint firstAttribute="bottom" secondItem="fTE-yp-ZXK" secondAttribute="bottom" constant="8" id="Qr4-cW-4q5"/>
+                                                <constraint firstItem="jCV-LJ-Hs5" firstAttribute="height" secondItem="DbH-Ux-UGZ" secondAttribute="height" multiplier="0.625" id="c4E-gi-t9a"/>
+                                                <constraint firstItem="fTE-yp-ZXK" firstAttribute="top" secondItem="jCV-LJ-Hs5" secondAttribute="bottom" constant="4" id="oRA-46-aJG"/>
+                                                <constraint firstAttribute="trailing" secondItem="jCV-LJ-Hs5" secondAttribute="trailing" constant="8" id="uly-v1-tra"/>
+                                                <constraint firstItem="jCV-LJ-Hs5" firstAttribute="top" secondItem="DbH-Ux-UGZ" secondAttribute="top" constant="4" id="xg2-zh-DN5"/>
+                                            </constraints>
+                                        </view>
+                                    </subviews>
+                                </view>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="DbH-Ux-UGZ" secondAttribute="trailing" id="7ja-fr-det"/>
+                                    <constraint firstItem="DbH-Ux-UGZ" firstAttribute="leading" secondItem="Iac-2b-Zne" secondAttribute="leading" id="99w-gS-JoP"/>
+                                    <constraint firstAttribute="bottom" secondItem="92b-Dl-Zbi" secondAttribute="bottom" id="Gbj-tC-2Pk"/>
+                                    <constraint firstItem="DbH-Ux-UGZ" firstAttribute="height" secondItem="92b-Dl-Zbi" secondAttribute="height" multiplier="0.4" id="HpH-wm-HFO"/>
+                                    <constraint firstItem="92b-Dl-Zbi" firstAttribute="leading" secondItem="Iac-2b-Zne" secondAttribute="leading" id="OEj-SC-5hO"/>
+                                    <constraint firstItem="92b-Dl-Zbi" firstAttribute="top" secondItem="Iac-2b-Zne" secondAttribute="top" id="ou6-24-0A1"/>
+                                    <constraint firstAttribute="bottom" secondItem="DbH-Ux-UGZ" secondAttribute="bottom" id="vrw-OO-8t9"/>
+                                </constraints>
+                                <size key="customSize" width="140" height="200"/>
+                                <connections>
+                                    <outlet property="animeImageView" destination="92b-Dl-Zbi" id="9XJ-lX-7dn"/>
+                                    <outlet property="animeNameLabel" destination="jCV-LJ-Hs5" id="LoX-uh-9Og"/>
+                                    <outlet property="numberOfEpisodesLabel" destination="fTE-yp-ZXK" id="ZFl-PT-Kzb"/>
+                                </connections>
                             </collectionViewCell>
                         </cells>
                         <connections>
@@ -283,12 +337,11 @@
                             <outlet property="delegate" destination="ffN-uM-xVR" id="nrs-rL-3O5"/>
                         </connections>
                     </collectionView>
-                    <tabBarItem key="tabBarItem" title="Поиск" image="magnifyingglass" catalog="system" id="C3b-ej-3rf"/>
-                    <navigationItem key="navigationItem" id="voR-ac-1PN"/>
+                    <navigationItem key="navigationItem" title="Поиск" id="voR-ac-1PN"/>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hHf-oK-2Ik" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="534" y="302"/>
+            <point key="canvasLocation" x="1452.2388059701491" y="301.37299771167045"/>
         </scene>
         <!--Логин-->
         <scene sceneID="QXt-U2-jj3">
@@ -341,6 +394,25 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MzM-c3-OTm" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="534" y="997"/>
+        </scene>
+        <!--Поиск-->
+        <scene sceneID="0Da-5x-dRi">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="cyh-aQ-60r" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Поиск" image="magnifyingglass" catalog="system" id="C3b-ej-3rf"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="JyZ-Hu-BUH">
+                        <rect key="frame" x="0.0" y="62" width="402" height="96"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="ffN-uM-xVR" kind="relationship" relationship="rootViewController" id="T0e-ia-r6C"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="d0T-GL-5gU" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="532.83582089552237" y="301.37299771167045"/>
         </scene>
     </scenes>
     <resources>

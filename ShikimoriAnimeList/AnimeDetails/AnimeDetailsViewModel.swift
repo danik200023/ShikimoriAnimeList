@@ -27,7 +27,7 @@ final class AnimeDetailsViewModel: AnimeDetailsViewModelProtocol {
     }
     
     var type: String {
-        "Тип: \(anime.kind)"
+        "Тип: \(anime.kind ?? "")"
     }
     
     var episodes: String {

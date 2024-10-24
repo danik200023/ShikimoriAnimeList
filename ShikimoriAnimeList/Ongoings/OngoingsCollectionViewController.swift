@@ -17,10 +17,6 @@ final class OngoingsCollectionViewController: UICollectionViewController {
         }
     }
     
-    private var userProfile: User?
-    
-    private let networkManager = NetworkManager.shared
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         viewModel = OngoingsViewModel()

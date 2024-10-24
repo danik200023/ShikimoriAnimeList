@@ -42,6 +42,48 @@ final class NetworkManager {
             }
     }
     
+    func post<T: Decodable>(
+            _ type: T.Type,
+            to url: URLConvertible,
+            withParameters parameters: Parameters? = nil,
+            completion: @escaping(Result<T, AFError>) -> Void
+    ) {
+        let headers: HTTPHeaders = [
+                "User-Agent": "Shikimori iOS App"
+            ]
+        let token = UserDefaults.standard.getOAuthToken()
+        let interceptor = AuthenticationInterceptor(authenticator: OAuthAuthenticator(), credential: token)
+        
+        let decoder = JSONDecoder()
+        decoder.keyDecodingStrategy = .convertFromSnakeCase
+        
+        AF.request(url, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers, interceptor: interceptor)
+            .validate()
+            .responseDecodable(of: type, decoder: decoder) { response in
+                completion(response.result)
+            }
+    }
+    
+//    func put<T: Encodable>(
+//        _ type: T.Type,
+//        to url: URLConvertible,
+//        withParameters parameters: Parameters? = nil,
+//        completion: @escaping(Result<T, AFError>) -> Void
+//    ) {
+//        let headers: HTTPHeaders = [
+//                "User-Agent": "Shikimori iOS App"
+//            ]
+//        let token = UserDefaults.standard.getOAuthToken()
+//        let interceptor = AuthenticationInterceptor(authenticator: OAuthAuthenticator(), credential: token)
+//        
+//        let encoder = JSONEncoder()
+//        encoder.keyEncodingStrategy = .convertToSnakeCase
+//        
+//        AF.request(url, parameters: parameters, headers: headers, interceptor: interceptor)
+//            .validate()
+//            .responseDecodable(completionHandler: )
+//    }
+//    
     func fetchWithAuthorization<T: Decodable>(
         _ type: T.Type,
         from url: URLConvertible,

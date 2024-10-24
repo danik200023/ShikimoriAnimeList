@@ -43,6 +43,7 @@ final class LoginViewModel: LoginViewModelProtocol {
             switch result {
             case .success(let loadedUser):
                 user = loadedUser
+                UserDefaults.standard.set(user?.id, forKey: "userId")
                 completion()
             case .failure(let error):
                 print(error)

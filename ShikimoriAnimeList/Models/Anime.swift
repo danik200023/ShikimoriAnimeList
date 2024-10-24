@@ -13,7 +13,7 @@ struct Anime: Decodable {
     let russian: String
     let image: AnimeImage
     let url: URL
-    let kind: String
+    let kind: String?
     let score: String
     let status: String
     let episodes: Int
