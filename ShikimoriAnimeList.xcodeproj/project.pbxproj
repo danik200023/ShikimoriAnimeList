@@ -29,6 +29,9 @@
 		83BE51292C6F216F00CF0DB8 /* AnimeDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83BE51282C6F216F00CF0DB8 /* AnimeDetailsViewController.swift */; };
 		83D3997C2CCA776000ADDB7A /* SearchCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83D3997B2CCA776000ADDB7A /* SearchCollectionViewController.swift */; };
 		83D3997E2CCA807F00ADDB7A /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83D3997D2CCA807F00ADDB7A /* SearchViewModel.swift */; };
+		83D399802CCBE0C400ADDB7A /* OngoingCalendar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83D3997F2CCBE0C400ADDB7A /* OngoingCalendar.swift */; };
+		83D399822CCBF85600ADDB7A /* OngoingCellHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83D399812CCBF85600ADDB7A /* OngoingCellHeader.swift */; };
+		83D399842CCBFB0C00ADDB7A /* OngoingCellHeaderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83D399832CCBFB0C00ADDB7A /* OngoingCellHeaderViewModel.swift */; };
 		83F66ED52CC1AD8000F2F4E3 /* OngoingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83F66ED42CC1AD8000F2F4E3 /* OngoingsViewModel.swift */; };
 		83F66ED82CC1B0E900F2F4E3 /* AnimeDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83F66ED72CC1B0E900F2F4E3 /* AnimeDetailsViewModel.swift */; };
 		83F66EDA2CC2619100F2F4E3 /* AnimeDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83F66ED92CC2619100F2F4E3 /* AnimeDetails.swift */; };
@@ -57,6 +60,9 @@
 		83BE51282C6F216F00CF0DB8 /* AnimeDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimeDetailsViewController.swift; sourceTree = "<group>"; };
 		83D3997B2CCA776000ADDB7A /* SearchCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCollectionViewController.swift; sourceTree = "<group>"; };
 		83D3997D2CCA807F00ADDB7A /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
+		83D3997F2CCBE0C400ADDB7A /* OngoingCalendar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OngoingCalendar.swift; sourceTree = "<group>"; };
+		83D399812CCBF85600ADDB7A /* OngoingCellHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OngoingCellHeader.swift; sourceTree = "<group>"; };
+		83D399832CCBFB0C00ADDB7A /* OngoingCellHeaderViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OngoingCellHeaderViewModel.swift; sourceTree = "<group>"; };
 		83F66ED42CC1AD8000F2F4E3 /* OngoingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OngoingsViewModel.swift; sourceTree = "<group>"; };
 		83F66ED72CC1B0E900F2F4E3 /* AnimeDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimeDetailsViewModel.swift; sourceTree = "<group>"; };
 		83F66ED92CC2619100F2F4E3 /* AnimeDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimeDetails.swift; sourceTree = "<group>"; };
@@ -154,6 +160,7 @@
 				836928542CA6A10500EE7B2A /* OAuthToken.swift */,
 				836AC5422CA6B0ED00F786A2 /* UserDefaults+OAuthToken.swift */,
 				831C33722CA6C91200E0F332 /* UserRate.swift */,
+				83D3997F2CCBE0C400ADDB7A /* OngoingCalendar.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -181,6 +188,8 @@
 			children = (
 				8323980F2C6B921C00EC4833 /* OngoingsCollectionViewController.swift */,
 				83F66ED42CC1AD8000F2F4E3 /* OngoingsViewModel.swift */,
+				83D399812CCBF85600ADDB7A /* OngoingCellHeader.swift */,
+				83D399832CCBFB0C00ADDB7A /* OngoingCellHeaderViewModel.swift */,
 			);
 			path = Ongoings;
 			sourceTree = "<group>";
@@ -276,14 +285,17 @@
 				83F66ED52CC1AD8000F2F4E3 /* OngoingsViewModel.swift in Sources */,
 				83D3997C2CCA776000ADDB7A /* SearchCollectionViewController.swift in Sources */,
 				832398242C6B96E500EC4833 /* Anime.swift in Sources */,
+				83D399802CCBE0C400ADDB7A /* OngoingCalendar.swift in Sources */,
 				83F66ED82CC1B0E900F2F4E3 /* AnimeDetailsViewModel.swift in Sources */,
 				8309DD162CC9303100195D14 /* AnimeCellViewModel.swift in Sources */,
 				832398102C6B921C00EC4833 /* OngoingsCollectionViewController.swift in Sources */,
 				83D3997E2CCA807F00ADDB7A /* SearchViewModel.swift in Sources */,
 				8323982A2C6E569600EC4833 /* AnimeCell.swift in Sources */,
 				832398272C6E3D7900EC4833 /* NetworkManager.swift in Sources */,
+				83D399842CCBFB0C00ADDB7A /* OngoingCellHeaderViewModel.swift in Sources */,
 				836AC5432CA6B0EE00F786A2 /* UserDefaults+OAuthToken.swift in Sources */,
 				8309DD192CC9633200195D14 /* LoginViewModel.swift in Sources */,
+				83D399822CCBF85600ADDB7A /* OngoingCellHeader.swift in Sources */,
 				8377675D2CA320BC00D2BA2B /* LoginViewController.swift in Sources */,
 				830EE3202CA44E7300C309F0 /* User.swift in Sources */,
 				83BE51292C6F216F00CF0DB8 /* AnimeDetailsViewController.swift in Sources */,

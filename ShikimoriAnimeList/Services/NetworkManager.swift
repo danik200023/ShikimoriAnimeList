@@ -106,7 +106,7 @@ final class NetworkManager {
             }
     }
     
-    func fetchWithoutAuthorization<T: Decodable>(
+    func fetch<T: Decodable>(
         _ type: T.Type,
         from url: URLConvertible,
         withParameters parameters: Parameters? = nil,

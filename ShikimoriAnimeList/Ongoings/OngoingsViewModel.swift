@@ -8,48 +8,76 @@
 import Foundation
 
 protocol OngoingsViewModelProtocol {
-    var numberOfItemsInSection: Int { get }
+    var numberOfSections: Int { get }
+    func numberOfItemsInSection(_ section: Int) -> Int
     func fetchAnimes(completion: @escaping() -> Void)
     func fetchUser()
     func getAnimeCellViewModel(at indexPath: IndexPath) -> AnimeCellViewModelProtocol
     func getAnimeDetailsViewModel(at indexPath: IndexPath) -> AnimeDetailsViewModelProtocol
+    func getOngoingCellHeaderViewModel(at indexPath: IndexPath) -> OngoingCellHeaderViewModelProtocol
    
 }
 
 final class OngoingsViewModel: OngoingsViewModelProtocol {
-    private var animes: [Anime] = []
+    private var calendar: [[OngoingCalendar]] = []
     private var user: User?
-    private var isLoading = false
-    private var hasMorePages = true
-    private var currentPage = 1
     
-    var numberOfItemsInSection: Int {
-        animes.count
+    func numberOfItemsInSection(_ section: Int) -> Int {
+        calendar[section].count
+    }
+    
+    var numberOfSections: Int {
+        calendar.count
+    }
+    
+    private func groupAnimesByDate(_ ongoingCalendar: [OngoingCalendar]) -> [[OngoingCalendar]] {
+        let calendar = Calendar.current
+        var groupedAnimes: [DateComponents: [OngoingCalendar]] = [:]
+        
+        for anime in ongoingCalendar {
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSXXX"
+            dateFormatter.locale = Locale(identifier: "en_US_POSIX")
+            let date = dateFormatter.date(from: anime.nextEpisodeAt)!
+            let dateComponents = calendar.dateComponents([.year, .month, .day], from: date)
+            
+            if groupedAnimes[dateComponents] != nil {
+                groupedAnimes[dateComponents]?.append(anime)
+            } else {
+                groupedAnimes[dateComponents] = [anime]
+            }
+        }
+        let sortedSections = groupedAnimes.keys.sorted { first, second in
+            let firstDate = calendar.date(from: first)!
+            let secondDate = calendar.date(from: second)!
+            return firstDate < secondDate
+        }
+#warning("remove force unwrap")
+        return sortedSections.map { groupedAnimes[$0]! }
+    }
+    
+    private func sectionTitle(from date: String) -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSXXX"
+        let date = dateFormatter.date(from: date)!
+        let calendar = Calendar.current
+        dateFormatter.locale = Locale(identifier: "ru_RU")
+        
+        if calendar.isDateInToday(date) {
+            dateFormatter.dateFormat = "d MMMM"
+            return "Сегодня, \(dateFormatter.string(from: date).capitalized)"
+        } else {
+            dateFormatter.dateFormat = "EEEE, d MMMM"
+            return dateFormatter.string(from: date).capitalized
+        }
     }
     
     func fetchAnimes(completion: @escaping () -> Void) {
-        guard !isLoading, hasMorePages else { return }
-        isLoading = true
-        NetworkManager.shared.fetchWithoutAuthorization(
-            [Anime].self,
-            from: "https://shikimori.one/api/animes",
-            withParameters: [
-                "status": "ongoing",
-                "order":"ranked",
-                "limit": 50,
-                "page": currentPage
-            ]
-        ) { [unowned self] result in
-            isLoading = false
+        NetworkManager.shared.fetch([OngoingCalendar].self,from: "https://shikimori.one/api/calendar") { [unowned self] result in
             switch result {
-            case .success(let newAnimes):
-                if newAnimes.isEmpty {
-                    hasMorePages = false
-                } else {
-                    animes.append(contentsOf: newAnimes)
-                    currentPage += 1
-                    completion()
-                }
+            case .success(let ongoings):
+                calendar = groupAnimesByDate(ongoings)
+                completion()
             case .failure(let error):
                 print(error)
             }
@@ -74,10 +102,14 @@ final class OngoingsViewModel: OngoingsViewModelProtocol {
     }
     
     func getAnimeDetailsViewModel(at indexPath: IndexPath) -> AnimeDetailsViewModelProtocol {
-        AnimeDetailsViewModel(animeId: animes[indexPath.item].id, user: user)
+        AnimeDetailsViewModel(animeId: calendar[indexPath.section][indexPath.item].anime.id, user: user)
     }
     
     func getAnimeCellViewModel(at indexPath: IndexPath) -> AnimeCellViewModelProtocol {
-        AnimeCellViewModel(anime: animes[indexPath.item])
+        AnimeCellViewModel(anime: calendar[indexPath.section][indexPath.item].anime)
+    }
+    
+    func getOngoingCellHeaderViewModel(at indexpath: IndexPath) -> OngoingCellHeaderViewModelProtocol {
+        OngoingCellHeaderViewModel(name: sectionTitle(from: calendar[indexpath.section][indexpath.item].nextEpisodeAt))
     }
 }

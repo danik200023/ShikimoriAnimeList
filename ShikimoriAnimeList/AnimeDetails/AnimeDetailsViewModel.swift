@@ -73,7 +73,7 @@ final class AnimeDetailsViewModel: AnimeDetailsViewModelProtocol {
                     completion: completion
                 )
             } else {
-                self.networkManager.fetchWithoutAuthorization(
+                self.networkManager.fetch(
                     AnimeDetails.self,
                     from: url,
                     withParameters: parameters,

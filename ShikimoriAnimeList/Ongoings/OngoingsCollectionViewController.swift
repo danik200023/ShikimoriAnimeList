@@ -32,7 +32,21 @@ final class OngoingsCollectionViewController: UICollectionViewController {
 // MARK: UICollectionViewDataSource
 extension OngoingsCollectionViewController {
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        viewModel.numberOfItemsInSection
+        viewModel.numberOfItemsInSection(section)
+    }
+    
+    override func numberOfSections(in collectionView: UICollectionView) -> Int {
+        viewModel.numberOfSections
+    }
+    
+    override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        guard let sectionHeader = collectionView.dequeueReusableSupplementaryView(
+            ofKind: kind,
+            withReuseIdentifier: "sectionHeader",
+            for: indexPath
+        ) as? OngoingCellHeader else { return UICollectionReusableView() }
+        sectionHeader.viewModel = viewModel.getOngoingCellHeaderViewModel(at: indexPath)
+        return sectionHeader
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {

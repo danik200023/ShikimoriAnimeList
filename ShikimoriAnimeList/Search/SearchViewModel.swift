@@ -68,7 +68,7 @@ final class SearchViewModel: SearchViewModelProtocol {
         if query == "" {
             return
         }
-        NetworkManager.shared.fetchWithoutAuthorization(
+        NetworkManager.shared.fetch(
             [Anime].self,
             from: "https://shikimori.one/api/animes",
             withParameters: [
