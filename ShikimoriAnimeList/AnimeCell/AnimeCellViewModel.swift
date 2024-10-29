@@ -12,7 +12,7 @@ protocol AnimeCellViewModelProtocol {
     var numberOfEpisodes: String { get }
     var posterUrl: URL { get }
     var animeId: Int { get }
-    init(anime: Anime)
+    init(anime: Anime, poster: String)
 }
 
 final class AnimeCellViewModel: AnimeCellViewModelProtocol {
@@ -30,7 +30,7 @@ final class AnimeCellViewModel: AnimeCellViewModelProtocol {
     }
     
     var posterUrl: URL {
-        URL(string: "https://desu.shikimori.one\(anime.image.original)")!
+        URL(string: poster)!
     }
     
     var animeId: Int {
@@ -38,8 +38,10 @@ final class AnimeCellViewModel: AnimeCellViewModelProtocol {
     }
     
     private let anime: Anime
+    private let poster: String
     
-    required init(anime: Anime) {
+    required init(anime: Anime, poster: String) {
         self.anime = anime
+        self.poster = poster
     }
 }

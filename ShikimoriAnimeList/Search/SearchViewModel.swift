@@ -116,6 +116,6 @@ final class SearchViewModel: SearchViewModelProtocol {
     }
     
     func getAnimeCellViewModel(at indexPath: IndexPath) -> AnimeCellViewModelProtocol {
-        AnimeCellViewModel(anime: animes[indexPath.item])
+        AnimeCellViewModel(anime: animes[indexPath.item], poster: "")
     }
 }

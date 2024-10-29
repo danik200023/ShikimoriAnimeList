@@ -21,6 +21,7 @@ protocol OngoingsViewModelProtocol {
 final class OngoingsViewModel: OngoingsViewModelProtocol {
     private var calendar: [[OngoingCalendar]] = []
     private var user: User?
+    private var posters: [String: String] = [:]
     
     func numberOfItemsInSection(_ section: Int) -> Int {
         calendar[section].count
@@ -72,12 +73,45 @@ final class OngoingsViewModel: OngoingsViewModelProtocol {
         }
     }
     
+    private func fetchPostersInChinks(_ chunks: [[Int]], completion: @escaping () -> Void) {
+        var remainingChunks = chunks
+        
+        func fetchNextChunk() {
+            guard let chunk = remainingChunks.first else {
+                completion()
+                return
+            }
+    
+            remainingChunks.removeFirst()
+            
+            NetworkManager.shared.fetchPosters(from: chunk) { result in
+                switch result {
+                case .success(let value):
+                    value.data?.animes.forEach { [weak self] anime in
+                        self?.posters[anime.id] = anime.poster?.mainUrl
+                    }
+                case .failure(let error):
+                    print(error)
+                }
+                fetchNextChunk()
+            }
+        }
+        fetchNextChunk()
+    }
+    
     func fetchAnimes(completion: @escaping () -> Void) {
         NetworkManager.shared.fetch([OngoingCalendar].self,from: "https://shikimori.one/api/calendar") { [unowned self] result in
             switch result {
             case .success(let ongoings):
+                let animeIds = ongoings.map({ $0.anime.id })
                 calendar = groupAnimesByDate(ongoings)
-                completion()
+                let chunkedIds = stride(from: 0, to: animeIds.count, by: 50).map {
+                    Array(animeIds[$0..<min($0 + 50, animeIds.count)])
+                }
+                
+                fetchPostersInChinks(chunkedIds) {
+                    completion()
+                }
             case .failure(let error):
                 print(error)
             }
@@ -106,7 +140,8 @@ final class OngoingsViewModel: OngoingsViewModelProtocol {
     }
     
     func getAnimeCellViewModel(at indexPath: IndexPath) -> AnimeCellViewModelProtocol {
-        AnimeCellViewModel(anime: calendar[indexPath.section][indexPath.item].anime)
+        let anime = calendar[indexPath.section][indexPath.item].anime
+        return AnimeCellViewModel(anime: anime, poster: posters[String(anime.id)] ?? "")
     }
     
     func getOngoingCellHeaderViewModel(at indexpath: IndexPath) -> OngoingCellHeaderViewModelProtocol {

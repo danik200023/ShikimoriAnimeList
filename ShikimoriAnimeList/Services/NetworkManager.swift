@@ -5,42 +5,17 @@
 //  Created by Данила Умнов on 15.08.2024.
 //
 
+import ShikimoriAPI
 import Foundation
+import Apollo
 import Alamofire
 
 final class NetworkManager {
     static let shared = NetworkManager()
     
-    private init() {}
+    private let  apollo = ApolloClient(url: URL(string: "https://shikimori.one/api/graphql")!)
     
-    func getAccessToken(completion: @escaping (Result<OAuthToken, AFError>) -> Void) {
-        let url = "https://shikimori.one/oauth/token"
-        let headers: HTTPHeaders = [
-                "User-Agent": "Shikimori iOS App"
-            ]
-        guard let authCode = UserDefaults.standard.string(forKey: "authCode") else { return }
-        let parameters: Parameters = [
-                "grant_type": "authorization_code",
-                "client_id": "wfUWoNxEIwfseLQ5vGJfQjeVOAAELibJw5zbOmCVnrc",
-                "client_secret": "YagZ3xAhnrbC5uNgjxv2QeAeeoPRgEsatQYz8UIF5x4",
-                "code": authCode,
-                "redirect_uri": "shikimoriapp://callback"
-            ]
-        
-        let decoder = JSONDecoder()
-        decoder.keyDecodingStrategy = .convertFromSnakeCase
-        
-        AF.request(url, method: .post, parameters: parameters, headers: headers)
-            .validate()
-            .responseDecodable(of: OAuthToken.self, decoder: decoder) { response in
-                switch response.result {
-                case .success(let token):
-                    completion(.success(token))
-                case .failure(let error):
-                    completion(.failure(error))
-                }
-            }
-    }
+    private init() {}
     
     func post<T: Decodable>(
             _ type: T.Type,
@@ -122,6 +97,48 @@ final class NetworkManager {
             .validate()
             .responseDecodable(of: type, decoder: decoder) { response in
                 completion(response.result)
+            }
+    }
+    
+    func fetchPosters(from ids: [Int], completion: @escaping (Result<GraphQLResult<AnimesQuery.Data>, any Error>) -> Void) {
+        let convertedIds = ids.map { String($0) }.joined(separator: ", ")
+        let query = AnimesQuery(ids: GraphQLNullable(stringLiteral: convertedIds))
+        apollo.fetch(query: query) { result in
+            switch result {
+            case .success(let value):
+                completion(.success(value))
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
+    }
+    
+    func getAccessToken(completion: @escaping (Result<OAuthToken, AFError>) -> Void) {
+        let url = "https://shikimori.one/oauth/token"
+        let headers: HTTPHeaders = [
+                "User-Agent": "Shikimori iOS App"
+            ]
+        guard let authCode = UserDefaults.standard.string(forKey: "authCode") else { return }
+        let parameters: Parameters = [
+                "grant_type": "authorization_code",
+                "client_id": "wfUWoNxEIwfseLQ5vGJfQjeVOAAELibJw5zbOmCVnrc",
+                "client_secret": "YagZ3xAhnrbC5uNgjxv2QeAeeoPRgEsatQYz8UIF5x4",
+                "code": authCode,
+                "redirect_uri": "shikimoriapp://callback"
+            ]
+        
+        let decoder = JSONDecoder()
+        decoder.keyDecodingStrategy = .convertFromSnakeCase
+        
+        AF.request(url, method: .post, parameters: parameters, headers: headers)
+            .validate()
+            .responseDecodable(of: OAuthToken.self, decoder: decoder) { response in
+                switch response.result {
+                case .success(let token):
+                    completion(.success(token))
+                case .failure(let error):
+                    completion(.failure(error))
+                }
             }
     }
 }

@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 56;
+	objectVersion = 60;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -20,8 +20,11 @@
 		832398242C6B96E500EC4833 /* Anime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 832398232C6B96E500EC4833 /* Anime.swift */; };
 		832398272C6E3D7900EC4833 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 832398262C6E3D7800EC4833 /* NetworkManager.swift */; };
 		8323982A2C6E569600EC4833 /* AnimeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 832398292C6E569600EC4833 /* AnimeCell.swift */; };
-		836251BA2C73E30D004B9B71 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 836251B92C73E30D004B9B71 /* Alamofire */; };
-		836251BD2C73E465004B9B71 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 836251BC2C73E465004B9B71 /* Kingfisher */; };
+		8326C30E2CCFEAC1008E9635 /* AnimePosterQuery.graphql in Resources */ = {isa = PBXBuildFile; fileRef = 8326C30D2CCFEAB2008E9635 /* AnimePosterQuery.graphql */; };
+		833418A62CD0295D007EDF63 /* Apollo in Frameworks */ = {isa = PBXBuildFile; productRef = 833418A52CD0295D007EDF63 /* Apollo */; };
+		833418A92CD029F4007EDF63 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 833418A82CD029F4007EDF63 /* Alamofire */; };
+		833418AB2CD02A5C007EDF63 /* ShikimoriAPI in Frameworks */ = {isa = PBXBuildFile; productRef = 833418AA2CD02A5C007EDF63 /* ShikimoriAPI */; };
+		833418AE2CD02A9B007EDF63 /* ShikimoriAPI in Frameworks */ = {isa = PBXBuildFile; productRef = 833418AD2CD02A9B007EDF63 /* ShikimoriAPI */; };
 		836928532CA69FEC00EE7B2A /* OAuthAuthenticator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 836928522CA69FEC00EE7B2A /* OAuthAuthenticator.swift */; };
 		836928552CA6A10500EE7B2A /* OAuthToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 836928542CA6A10500EE7B2A /* OAuthToken.swift */; };
 		836AC5432CA6B0EE00F786A2 /* UserDefaults+OAuthToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 836AC5422CA6B0ED00F786A2 /* UserDefaults+OAuthToken.swift */; };
@@ -32,6 +35,7 @@
 		83D399802CCBE0C400ADDB7A /* OngoingCalendar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83D3997F2CCBE0C400ADDB7A /* OngoingCalendar.swift */; };
 		83D399822CCBF85600ADDB7A /* OngoingCellHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83D399812CCBF85600ADDB7A /* OngoingCellHeader.swift */; };
 		83D399842CCBFB0C00ADDB7A /* OngoingCellHeaderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83D399832CCBFB0C00ADDB7A /* OngoingCellHeaderViewModel.swift */; };
+		83EE3BDB2CD01AB30082B692 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 83EE3BDA2CD01AB30082B692 /* Kingfisher */; };
 		83F66ED52CC1AD8000F2F4E3 /* OngoingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83F66ED42CC1AD8000F2F4E3 /* OngoingsViewModel.swift */; };
 		83F66ED82CC1B0E900F2F4E3 /* AnimeDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83F66ED72CC1B0E900F2F4E3 /* AnimeDetailsViewModel.swift */; };
 		83F66EDA2CC2619100F2F4E3 /* AnimeDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83F66ED92CC2619100F2F4E3 /* AnimeDetails.swift */; };
@@ -53,6 +57,7 @@
 		832398232C6B96E500EC4833 /* Anime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Anime.swift; sourceTree = "<group>"; };
 		832398262C6E3D7800EC4833 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		832398292C6E569600EC4833 /* AnimeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimeCell.swift; sourceTree = "<group>"; };
+		8326C30D2CCFEAB2008E9635 /* AnimePosterQuery.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = AnimePosterQuery.graphql; sourceTree = "<group>"; };
 		836928522CA69FEC00EE7B2A /* OAuthAuthenticator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OAuthAuthenticator.swift; sourceTree = "<group>"; };
 		836928542CA6A10500EE7B2A /* OAuthToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OAuthToken.swift; sourceTree = "<group>"; };
 		836AC5422CA6B0ED00F786A2 /* UserDefaults+OAuthToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+OAuthToken.swift"; sourceTree = "<group>"; };
@@ -73,8 +78,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				836251BD2C73E465004B9B71 /* Kingfisher in Frameworks */,
-				836251BA2C73E30D004B9B71 /* Alamofire in Frameworks */,
+				833418A92CD029F4007EDF63 /* Alamofire in Frameworks */,
+				833418AB2CD02A5C007EDF63 /* ShikimoriAPI in Frameworks */,
+				833418AE2CD02A9B007EDF63 /* ShikimoriAPI in Frameworks */,
+				83EE3BDB2CD01AB30082B692 /* Kingfisher in Frameworks */,
+				833418A62CD0295D007EDF63 /* Apollo in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -97,6 +105,14 @@
 				8309DD182CC9633200195D14 /* LoginViewModel.swift */,
 			);
 			path = Login;
+			sourceTree = "<group>";
+		};
+		8319668F2CCFE46C000F7529 /* GraphQL */ = {
+			isa = PBXGroup;
+			children = (
+				8326C30D2CCFEAB2008E9635 /* AnimePosterQuery.graphql */,
+			);
+			path = GraphQL;
 			sourceTree = "<group>";
 		};
 		832397FF2C6B921C00EC4833 = {
@@ -168,6 +184,7 @@
 		832398252C6E3D2400EC4833 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				8319668F2CCFE46C000F7529 /* GraphQL */,
 				832398262C6E3D7800EC4833 /* NetworkManager.swift */,
 				836928522CA69FEC00EE7B2A /* OAuthAuthenticator.swift */,
 			);
@@ -220,8 +237,11 @@
 			);
 			name = ShikimoriAnimeList;
 			packageProductDependencies = (
-				836251B92C73E30D004B9B71 /* Alamofire */,
-				836251BC2C73E465004B9B71 /* Kingfisher */,
+				83EE3BDA2CD01AB30082B692 /* Kingfisher */,
+				833418A52CD0295D007EDF63 /* Apollo */,
+				833418A82CD029F4007EDF63 /* Alamofire */,
+				833418AA2CD02A5C007EDF63 /* ShikimoriAPI */,
+				833418AD2CD02A9B007EDF63 /* ShikimoriAPI */,
 			);
 			productName = ShikimoriAnimeList;
 			productReference = 832398082C6B921C00EC4833 /* Shikimori.app */;
@@ -252,8 +272,10 @@
 			);
 			mainGroup = 832397FF2C6B921C00EC4833;
 			packageReferences = (
-				836251B82C73E30D004B9B71 /* XCRemoteSwiftPackageReference "Alamofire" */,
-				836251BB2C73E465004B9B71 /* XCRemoteSwiftPackageReference "Kingfisher" */,
+				83EE3BD92CD01AB30082B692 /* XCRemoteSwiftPackageReference "Kingfisher" */,
+				833418A42CD0295D007EDF63 /* XCRemoteSwiftPackageReference "apollo-ios" */,
+				833418A72CD029F4007EDF63 /* XCRemoteSwiftPackageReference "Alamofire" */,
+				833418AC2CD02A9B007EDF63 /* XCLocalSwiftPackageReference "ShikimoriAPI" */,
 			);
 			productRefGroup = 832398092C6B921C00EC4833 /* Products */;
 			projectDirPath = "";
@@ -269,6 +291,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8326C30E2CCFEAC1008E9635 /* AnimePosterQuery.graphql in Resources */,
 				832398152C6B921E00EC4833 /* Assets.xcassets in Resources */,
 				832398182C6B921E00EC4833 /* Base in Resources */,
 				832398132C6B921C00EC4833 /* Base in Resources */,
@@ -464,7 +487,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -497,7 +520,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -538,34 +561,63 @@
 		};
 /* End XCConfigurationList section */
 
+/* Begin XCLocalSwiftPackageReference section */
+		833418AC2CD02A9B007EDF63 /* XCLocalSwiftPackageReference "ShikimoriAPI" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = ShikimoriAPI;
+		};
+/* End XCLocalSwiftPackageReference section */
+
 /* Begin XCRemoteSwiftPackageReference section */
-		836251B82C73E30D004B9B71 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+		833418A42CD0295D007EDF63 /* XCRemoteSwiftPackageReference "apollo-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/apollographql/apollo-ios.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.15.2;
+			};
+		};
+		833418A72CD029F4007EDF63 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 5.9.1;
+				minimumVersion = 5.10.1;
 			};
 		};
-		836251BB2C73E465004B9B71 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+		83EE3BD92CD01AB30082B692 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 7.12.0;
+				minimumVersion = 8.1.0;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		836251B92C73E30D004B9B71 /* Alamofire */ = {
+		833418A52CD0295D007EDF63 /* Apollo */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 836251B82C73E30D004B9B71 /* XCRemoteSwiftPackageReference "Alamofire" */;
+			package = 833418A42CD0295D007EDF63 /* XCRemoteSwiftPackageReference "apollo-ios" */;
+			productName = Apollo;
+		};
+		833418A82CD029F4007EDF63 /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 833418A72CD029F4007EDF63 /* XCRemoteSwiftPackageReference "Alamofire" */;
 			productName = Alamofire;
 		};
-		836251BC2C73E465004B9B71 /* Kingfisher */ = {
+		833418AA2CD02A5C007EDF63 /* ShikimoriAPI */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 836251BB2C73E465004B9B71 /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			package = 833418A72CD029F4007EDF63 /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = ShikimoriAPI;
+		};
+		833418AD2CD02A9B007EDF63 /* ShikimoriAPI */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = ShikimoriAPI;
+		};
+		83EE3BDA2CD01AB30082B692 /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 83EE3BD92CD01AB30082B692 /* XCRemoteSwiftPackageReference "Kingfisher" */;
 			productName = Kingfisher;
 		};
 /* End XCSwiftPackageProductDependency section */

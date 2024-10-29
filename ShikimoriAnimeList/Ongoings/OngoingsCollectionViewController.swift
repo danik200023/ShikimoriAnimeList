@@ -77,18 +77,3 @@ extension OngoingsCollectionViewController: UICollectionViewDelegateFlowLayout {
         CGSize(width: view.bounds.width / 2 - 48, height: (view.bounds.width / 2 - 48) / 7 * 10)
     }
 }
-
-// MARK: UIScrollViewDelegate
-extension OngoingsCollectionViewController {
-    override func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        let offsetY = scrollView.contentOffset.y
-        let contentHeight = scrollView.contentSize.height
-        let height = scrollView.bounds.height
-        
-        if offsetY > contentHeight - height - 200 {
-            viewModel.fetchAnimes { [unowned self] in
-                collectionView.reloadData()
-            }
-        }
-    }
-}

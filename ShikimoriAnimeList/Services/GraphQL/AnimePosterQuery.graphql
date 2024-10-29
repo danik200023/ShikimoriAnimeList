@@ -1,0 +1,8 @@
+query Animes($ids: String) {
+    animes(ids: $ids limit: 50) {
+        poster {
+            mainUrl
+        }
+        id
+    }
+}
