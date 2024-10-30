@@ -73,7 +73,7 @@ extension SearchCollectionViewController: UICollectionViewDelegateFlowLayout {
 //        let height = scrollView.bounds.height
 //        
 //        if offsetY > contentHeight - height - 200 {
-//            viewModel.fetchAnimes(query: "bb") { [unowned self] in
+//            viewModel.fetchAnimes(name: "bb") { [unowned self] in
 //                collectionView.reloadData()
 //            }
 //        }
@@ -106,7 +106,7 @@ extension SearchCollectionViewController: UIContextMenuInteractionDelegate {
 extension SearchCollectionViewController: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
         guard let query = searchController.searchBar.text else { return }
-        viewModel.fetchAnimes(query: query) { [unowned self] in
+        viewModel.fetchAnimes(name: query) { [unowned self] in
             collectionView.reloadData()
         }
     }

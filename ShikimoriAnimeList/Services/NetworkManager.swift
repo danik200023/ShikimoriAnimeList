@@ -100,9 +100,9 @@ final class NetworkManager {
             }
     }
     
-    func fetchPosters(from ids: [Int], completion: @escaping (Result<GraphQLResult<AnimesQuery.Data>, any Error>) -> Void) {
+    func fetchPosters(from ids: [Int], completion: @escaping (Result<GraphQLResult<AnimePostersQuery.Data>, any Error>) -> Void) {
         let convertedIds = ids.map { String($0) }.joined(separator: ", ")
-        let query = AnimesQuery(ids: GraphQLNullable(stringLiteral: convertedIds))
+        let query = AnimePostersQuery(ids: GraphQLNullable(stringLiteral: convertedIds))
         apollo.fetch(query: query) { result in
             switch result {
             case .success(let value):
@@ -113,6 +113,17 @@ final class NetworkManager {
         }
     }
     
+    func search(_ name: String, completion: @escaping (Result<GraphQLResult<AnimeSearchQuery.Data>, any Error>) -> Void) {
+        let query = AnimeSearchQuery(name: GraphQLNullable(stringLiteral: name))
+        apollo.fetch(query: query, cachePolicy: .fetchIgnoringCacheCompletely) { result in
+            switch result {
+            case .success(let value):
+                completion(.success(value))
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
+    }
     func getAccessToken(completion: @escaping (Result<OAuthToken, AFError>) -> Void) {
         let url = "https://shikimori.one/oauth/token"
         let headers: HTTPHeaders = [

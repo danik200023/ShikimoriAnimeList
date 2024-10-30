@@ -12,7 +12,7 @@ protocol OngoingsViewModelProtocol {
     func numberOfItemsInSection(_ section: Int) -> Int
     func fetchAnimes(completion: @escaping() -> Void)
     func fetchUser()
-    func getAnimeCellViewModel(at indexPath: IndexPath) -> AnimeCellViewModelProtocol
+    func getAnimeCellViewModel(at indexPath: IndexPath) -> OngoingAnimeCellViewModelProtocol
     func getAnimeDetailsViewModel(at indexPath: IndexPath) -> AnimeDetailsViewModelProtocol
     func getOngoingCellHeaderViewModel(at indexPath: IndexPath) -> OngoingCellHeaderViewModelProtocol
    
@@ -139,9 +139,9 @@ final class OngoingsViewModel: OngoingsViewModelProtocol {
         AnimeDetailsViewModel(animeId: calendar[indexPath.section][indexPath.item].anime.id, user: user)
     }
     
-    func getAnimeCellViewModel(at indexPath: IndexPath) -> AnimeCellViewModelProtocol {
+    func getAnimeCellViewModel(at indexPath: IndexPath) -> OngoingAnimeCellViewModelProtocol {
         let anime = calendar[indexPath.section][indexPath.item].anime
-        return AnimeCellViewModel(anime: anime, poster: posters[String(anime.id)] ?? "")
+        return OngoingAnimeCellViewModel(anime: anime, poster: posters[String(anime.id)] ?? "")
     }
     
     func getOngoingCellHeaderViewModel(at indexpath: IndexPath) -> OngoingCellHeaderViewModelProtocol {

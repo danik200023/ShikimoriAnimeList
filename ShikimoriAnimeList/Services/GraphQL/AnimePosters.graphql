@@ -1,4 +1,4 @@
-query Animes($ids: String) {
+query AnimePosters($ids: String) {
     animes(ids: $ids limit: 50) {
         poster {
             mainUrl

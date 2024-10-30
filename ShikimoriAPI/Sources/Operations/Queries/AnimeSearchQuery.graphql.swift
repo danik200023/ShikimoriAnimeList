@@ -3,20 +3,20 @@
 
 @_exported import ApolloAPI
 
-public class AnimesQuery: GraphQLQuery {
-  public static let operationName: String = "Animes"
+public class AnimeSearchQuery: GraphQLQuery {
+  public static let operationName: String = "AnimeSearch"
   public static let operationDocument: ApolloAPI.OperationDocument = .init(
     definition: .init(
-      #"query Animes($ids: String) { animes(ids: $ids, limit: 50) { __typename poster { __typename mainUrl } id } }"#
+      #"query AnimeSearch($name: String) { animes(limit: 50, search: $name) { __typename poster { __typename mainUrl } id name russian episodes episodesAired status } }"#
     ))
 
-  public var ids: GraphQLNullable<String>
+  public var name: GraphQLNullable<String>
 
-  public init(ids: GraphQLNullable<String>) {
-    self.ids = ids
+  public init(name: GraphQLNullable<String>) {
+    self.name = name
   }
 
-  public var __variables: Variables? { ["ids": ids] }
+  public var __variables: Variables? { ["name": name] }
 
   public struct Data: ShikimoriAPI.SelectionSet {
     public let __data: DataDict
@@ -25,8 +25,8 @@ public class AnimesQuery: GraphQLQuery {
     public static var __parentType: any ApolloAPI.ParentType { ShikimoriAPI.Objects.Query }
     public static var __selections: [ApolloAPI.Selection] { [
       .field("animes", [Anime].self, arguments: [
-        "ids": .variable("ids"),
-        "limit": 50
+        "limit": 50,
+        "search": .variable("name")
       ]),
     ] }
 
@@ -44,10 +44,20 @@ public class AnimesQuery: GraphQLQuery {
         .field("__typename", String.self),
         .field("poster", Poster?.self),
         .field("id", ShikimoriAPI.ID.self),
+        .field("name", String.self),
+        .field("russian", String?.self),
+        .field("episodes", Int.self),
+        .field("episodesAired", Int.self),
+        .field("status", GraphQLEnum<ShikimoriAPI.AnimeStatusEnum>?.self),
       ] }
 
       public var poster: Poster? { __data["poster"] }
       public var id: ShikimoriAPI.ID { __data["id"] }
+      public var name: String { __data["name"] }
+      public var russian: String? { __data["russian"] }
+      public var episodes: Int { __data["episodes"] }
+      public var episodesAired: Int { __data["episodesAired"] }
+      public var status: GraphQLEnum<ShikimoriAPI.AnimeStatusEnum>? { __data["status"] }
 
       /// Anime.Poster
       ///

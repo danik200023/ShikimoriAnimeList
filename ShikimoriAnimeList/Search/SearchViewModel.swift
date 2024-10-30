@@ -5,26 +5,24 @@
 //  Created by Данила Умнов on 24.10.2024.
 //
 
+import ShikimoriAPI
 import Foundation
 
 protocol SearchViewModelProtocol {
     var numberOfItemsInSection: Int { get }
     func isInUserRates(id: Int) -> Bool
-    func fetchAnimes(query: String, completion: @escaping() -> Void)
+    func fetchAnimes(name: String, completion: @escaping() -> Void)
     func fetchUserRates()
     func addToList(_ animeId: Int)
     func getAnimeCellViewModel(at indexPath: IndexPath) -> AnimeCellViewModelProtocol
     func getAnimeDetailsViewModel(at indexPath: IndexPath) -> AnimeDetailsViewModelProtocol
-   
 }
 
 final class SearchViewModel: SearchViewModelProtocol {
-    private var animes: [Anime] = []
+    private var animes: [AnimeSearchQuery.Data.Anime] = []
+//    private var animes: [Anime] = []
     private var userRates: [UserRate] = []
     private var searchName: String = ""
-    private var isLoading = false
-    private var hasMorePages = true
-    private var currentPage = 1
     
     var numberOfItemsInSection: Int {
         animes.count
@@ -64,25 +62,14 @@ final class SearchViewModel: SearchViewModelProtocol {
         }
     }
     
-    func fetchAnimes(query: String, completion: @escaping () -> Void) {
-        if query == "" {
+    func fetchAnimes(name: String, completion: @escaping () -> Void) {
+        if name == "" {
             return
         }
-        NetworkManager.shared.fetch(
-            [Anime].self,
-            from: "https://shikimori.one/api/animes",
-            withParameters: [
-                "censored": "true",
-                "search": query,
-                "limit": 50,
-                "page": currentPage
-            ]
-        ) { [unowned self] result in
+        NetworkManager.shared.search(name) { [unowned self] result in
             switch result {
-            case .success(let newAnimes):
-                animes = newAnimes
-                currentPage = 1
-                searchName = query
+            case .success(let animes):
+                self.animes = animes.data?.animes ?? []
                 completion()
             case .failure(let error):
                 print(error)
@@ -112,10 +99,10 @@ final class SearchViewModel: SearchViewModelProtocol {
     }
     
     func getAnimeDetailsViewModel(at indexPath: IndexPath) -> AnimeDetailsViewModelProtocol {
-        AnimeDetailsViewModel(animeId: animes[indexPath.item].id)
+        AnimeDetailsViewModel(animeId: Int(animes[indexPath.item].id) ?? 0)
     }
     
     func getAnimeCellViewModel(at indexPath: IndexPath) -> AnimeCellViewModelProtocol {
-        AnimeCellViewModel(anime: animes[indexPath.item], poster: "")
+        AnimeCellViewModel(anime: animes[indexPath.item])
     }
 }

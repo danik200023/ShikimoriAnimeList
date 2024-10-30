@@ -1,0 +1,13 @@
+query AnimeSearch($name: String) {
+    animes(limit: 50, search: $name) {
+        poster {
+            mainUrl
+        }
+        id
+        name
+        russian
+        episodes
+        episodesAired
+        status
+    }
+}

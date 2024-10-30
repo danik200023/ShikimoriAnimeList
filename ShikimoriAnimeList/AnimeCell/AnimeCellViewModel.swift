@@ -6,22 +6,23 @@
 //
 
 import Foundation
+import ShikimoriAPI
 
 protocol AnimeCellViewModelProtocol {
     var animeName: String { get }
     var numberOfEpisodes: String { get }
-    var posterUrl: URL { get }
     var animeId: Int { get }
-    init(anime: Anime, poster: String)
+    var posterUrl: URL { get }
+    init(anime: AnimeSearchQuery.Data.Anime)
 }
 
 final class AnimeCellViewModel: AnimeCellViewModelProtocol {
     var animeName: String {
-        anime.russian != "" ? anime.russian : anime.name
+        anime.russian ?? anime.name
     }
     
     var numberOfEpisodes: String {
-        if anime.status == "released" {
+        if anime.status == .released {
             return "\(anime.episodes)"
         } else {
             return "[\(anime.episodesAired) из \(anime.episodes == 0 ? "?" : "\(anime.episodes)")]"
@@ -29,19 +30,17 @@ final class AnimeCellViewModel: AnimeCellViewModelProtocol {
         
     }
     
-    var posterUrl: URL {
-        URL(string: poster)!
-    }
-    
     var animeId: Int {
-        anime.id
+        Int(anime.id) ?? 0
     }
     
-    private let anime: Anime
-    private let poster: String
+    var posterUrl: URL {
+        return URL(string: anime.poster?.mainUrl ?? "https://shikimori.one/assets/globals/missing/main@2x.png")!
+    }
     
-    required init(anime: Anime, poster: String) {
+    private let anime: AnimeSearchQuery.Data.Anime
+    
+    required init(anime: AnimeSearchQuery.Data.Anime) {
         self.anime = anime
-        self.poster = poster
     }
 }

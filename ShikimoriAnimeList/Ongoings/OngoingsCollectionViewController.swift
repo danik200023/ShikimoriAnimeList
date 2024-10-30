@@ -51,10 +51,10 @@ extension OngoingsCollectionViewController {
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(
-            withReuseIdentifier:"animeCell",
+            withReuseIdentifier:"ongoingAnimeCell",
             for: indexPath
         )
-        guard let cell = cell as? AnimeCell else { return UICollectionViewCell() }
+        guard let cell = cell as? OngoingAnimeCell else { return UICollectionViewCell() }
         cell.viewModel = viewModel.getAnimeCellViewModel(at: indexPath)
         return cell
     }
