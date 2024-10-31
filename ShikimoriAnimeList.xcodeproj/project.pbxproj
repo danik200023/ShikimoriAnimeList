@@ -30,6 +30,7 @@
 		83BE51292C6F216F00CF0DB8 /* AnimeDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83BE51282C6F216F00CF0DB8 /* AnimeDetailsViewController.swift */; };
 		83C6A03F2CD2A10700BBBFF3 /* AnimeSearch.graphql in Resources */ = {isa = PBXBuildFile; fileRef = 83C6A03E2CD2A0FB00BBBFF3 /* AnimeSearch.graphql */; };
 		83C6A0422CD2A35C00BBBFF3 /* ShikimoriAPI in Frameworks */ = {isa = PBXBuildFile; productRef = 83C6A0412CD2A35C00BBBFF3 /* ShikimoriAPI */; };
+		83C6A04A2CD4017800BBBFF3 /* GraphQLAuthorizationInterceptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83C6A0492CD4017800BBBFF3 /* GraphQLAuthorizationInterceptor.swift */; };
 		83D3997C2CCA776000ADDB7A /* SearchCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83D3997B2CCA776000ADDB7A /* SearchCollectionViewController.swift */; };
 		83D3997E2CCA807F00ADDB7A /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83D3997D2CCA807F00ADDB7A /* SearchViewModel.swift */; };
 		83D399802CCBE0C400ADDB7A /* OngoingCalendar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83D3997F2CCBE0C400ADDB7A /* OngoingCalendar.swift */; };
@@ -66,6 +67,7 @@
 		8377675C2CA320BC00D2BA2B /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		83BE51282C6F216F00CF0DB8 /* AnimeDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimeDetailsViewController.swift; sourceTree = "<group>"; };
 		83C6A03E2CD2A0FB00BBBFF3 /* AnimeSearch.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = AnimeSearch.graphql; sourceTree = "<group>"; };
+		83C6A0492CD4017800BBBFF3 /* GraphQLAuthorizationInterceptor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphQLAuthorizationInterceptor.swift; sourceTree = "<group>"; };
 		83D3997B2CCA776000ADDB7A /* SearchCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCollectionViewController.swift; sourceTree = "<group>"; };
 		83D3997D2CCA807F00ADDB7A /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
 		83D3997F2CCBE0C400ADDB7A /* OngoingCalendar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OngoingCalendar.swift; sourceTree = "<group>"; };
@@ -192,6 +194,7 @@
 				8319668F2CCFE46C000F7529 /* GraphQL */,
 				832398262C6E3D7800EC4833 /* NetworkManager.swift */,
 				836928522CA69FEC00EE7B2A /* OAuthAuthenticator.swift */,
+				83C6A0492CD4017800BBBFF3 /* GraphQLAuthorizationInterceptor.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -337,6 +340,7 @@
 				8323980E2C6B921C00EC4833 /* SceneDelegate.swift in Sources */,
 				836928552CA6A10500EE7B2A /* OAuthToken.swift in Sources */,
 				83F7431D2CD291D70070B098 /* OngoingAnimeCellViewModel.swift in Sources */,
+				83C6A04A2CD4017800BBBFF3 /* GraphQLAuthorizationInterceptor.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

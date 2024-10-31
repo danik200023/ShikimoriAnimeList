@@ -13,7 +13,16 @@ import Alamofire
 final class NetworkManager {
     static let shared = NetworkManager()
     
-    private let  apollo = ApolloClient(url: URL(string: "https://shikimori.one/api/graphql")!)
+    private let apollo: ApolloClient = {
+        let client = URLSessionClient()
+        let cache = InMemoryNormalizedCache()
+        let store = ApolloStore(cache: cache)
+        let provider = NetworkInterceptorProvider(client: client, store: store)
+        let url = URL(string: "https://shikimori.one/api/graphql")!
+        let transport = RequestChainNetworkTransport(interceptorProvider: provider, endpointURL: url)
+        
+        return ApolloClient(networkTransport: transport, store: store)
+    }()
     
     private init() {}
     
