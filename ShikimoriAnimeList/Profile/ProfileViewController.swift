@@ -1,5 +1,5 @@
 //
-//  LoginViewController.swift
+//  ProfileViewController.swift
 //  ShikimoriAnimeList
 //
 //  Created by Данила Умнов on 24.09.2024.
@@ -9,13 +9,13 @@ import UIKit
 import SafariServices
 import Kingfisher
 
-final class LoginViewController: UIViewController {
+final class ProfileViewController: UIViewController {
     
     @IBOutlet var avatarImageView: UIImageView!
     @IBOutlet var usernameLabel: UILabel!
     @IBOutlet var loginButton: UIButton!
     
-    var viewModel: LoginViewModelProtocol! {
+    var viewModel: ProfileViewModelProtocol! {
         didSet {
             viewModel.loadData { [unowned self] in
                 setupUI()
@@ -27,7 +27,7 @@ final class LoginViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        viewModel = LoginViewModel()
+        viewModel = ProfileViewModel()
         setupUI()
     }
     
@@ -54,3 +54,4 @@ final class LoginViewController: UIViewController {
         }
     }
 }
+

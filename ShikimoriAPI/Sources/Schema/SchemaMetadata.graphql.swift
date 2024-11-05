@@ -21,7 +21,9 @@ public enum SchemaMetadata: ApolloAPI.SchemaMetadata {
   public static func objectType(forTypename typename: String) -> ApolloAPI.Object? {
     switch typename {
     case "Query": return ShikimoriAPI.Objects.Query
+    case "UserRate": return ShikimoriAPI.Objects.UserRate
     case "Anime": return ShikimoriAPI.Objects.Anime
+    case "IncompleteDate": return ShikimoriAPI.Objects.IncompleteDate
     case "Poster": return ShikimoriAPI.Objects.Poster
     default: return nil
     }

@@ -1,0 +1,26 @@
+query UserRates {
+    userRates(targetType: Anime, limit: 50) {
+        episodes
+        id
+        rewatches
+        status
+        anime {
+            english
+            episodes
+            id
+            russian
+            score
+            season
+            status
+            airedOn {
+                year
+            }
+            kind
+            poster {
+                mainUrl
+            }
+            name
+        }
+        score
+    }
+}

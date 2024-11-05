@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		8309DD162CC9303100195D14 /* AnimeCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8309DD152CC9303100195D14 /* AnimeCellViewModel.swift */; };
-		8309DD192CC9633200195D14 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8309DD182CC9633200195D14 /* LoginViewModel.swift */; };
 		830EE3202CA44E7300C309F0 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 830EE31F2CA44E7300C309F0 /* User.swift */; };
 		831C33732CA6C91200E0F332 /* UserRate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 831C33722CA6C91200E0F332 /* UserRate.swift */; };
 		8323980C2C6B921C00EC4833 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8323980B2C6B921C00EC4833 /* AppDelegate.swift */; };
@@ -26,7 +25,14 @@
 		836928532CA69FEC00EE7B2A /* OAuthAuthenticator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 836928522CA69FEC00EE7B2A /* OAuthAuthenticator.swift */; };
 		836928552CA6A10500EE7B2A /* OAuthToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 836928542CA6A10500EE7B2A /* OAuthToken.swift */; };
 		836AC5432CA6B0EE00F786A2 /* UserDefaults+OAuthToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 836AC5422CA6B0ED00F786A2 /* UserDefaults+OAuthToken.swift */; };
-		8377675D2CA320BC00D2BA2B /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8377675C2CA320BC00D2BA2B /* LoginViewController.swift */; };
+		83B76A462CD6302800F6639B /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83B76A432CD6302800F6639B /* ProfileViewController.swift */; };
+		83B76A472CD6302800F6639B /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83B76A442CD6302800F6639B /* ProfileViewModel.swift */; };
+		83B76A4D2CD6422100F6639B /* AuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83B76A4C2CD6422100F6639B /* AuthManager.swift */; };
+		83B76A542CD6459A00F6639B /* UserRatesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83B76A532CD6459A00F6639B /* UserRatesViewController.swift */; };
+		83B76A562CD645B000F6639B /* UserRatesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83B76A552CD645B000F6639B /* UserRatesViewModel.swift */; };
+		83B76A582CD651D800F6639B /* UserRatesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83B76A572CD651D800F6639B /* UserRatesCell.swift */; };
+		83B76A5A2CD6538A00F6639B /* UserRatesCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83B76A592CD6538A00F6639B /* UserRatesCellViewModel.swift */; };
+		83B76A5C2CD67B0400F6639B /* UserRates.graphql in Resources */ = {isa = PBXBuildFile; fileRef = 83B76A5B2CD67ADD00F6639B /* UserRates.graphql */; };
 		83BE51292C6F216F00CF0DB8 /* AnimeDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83BE51282C6F216F00CF0DB8 /* AnimeDetailsViewController.swift */; };
 		83C6A03F2CD2A10700BBBFF3 /* AnimeSearch.graphql in Resources */ = {isa = PBXBuildFile; fileRef = 83C6A03E2CD2A0FB00BBBFF3 /* AnimeSearch.graphql */; };
 		83C6A0422CD2A35C00BBBFF3 /* ShikimoriAPI in Frameworks */ = {isa = PBXBuildFile; productRef = 83C6A0412CD2A35C00BBBFF3 /* ShikimoriAPI */; };
@@ -46,7 +52,6 @@
 
 /* Begin PBXFileReference section */
 		8309DD152CC9303100195D14 /* AnimeCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimeCellViewModel.swift; sourceTree = "<group>"; };
-		8309DD182CC9633200195D14 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		830EE31F2CA44E7300C309F0 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		831C33722CA6C91200E0F332 /* UserRate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRate.swift; sourceTree = "<group>"; };
 		832398082C6B921C00EC4833 /* Shikimori.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Shikimori.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -64,7 +69,14 @@
 		836928522CA69FEC00EE7B2A /* OAuthAuthenticator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OAuthAuthenticator.swift; sourceTree = "<group>"; };
 		836928542CA6A10500EE7B2A /* OAuthToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OAuthToken.swift; sourceTree = "<group>"; };
 		836AC5422CA6B0ED00F786A2 /* UserDefaults+OAuthToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+OAuthToken.swift"; sourceTree = "<group>"; };
-		8377675C2CA320BC00D2BA2B /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		83B76A432CD6302800F6639B /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		83B76A442CD6302800F6639B /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
+		83B76A4C2CD6422100F6639B /* AuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthManager.swift; sourceTree = "<group>"; };
+		83B76A532CD6459A00F6639B /* UserRatesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRatesViewController.swift; sourceTree = "<group>"; };
+		83B76A552CD645B000F6639B /* UserRatesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRatesViewModel.swift; sourceTree = "<group>"; };
+		83B76A572CD651D800F6639B /* UserRatesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRatesCell.swift; sourceTree = "<group>"; };
+		83B76A592CD6538A00F6639B /* UserRatesCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRatesCellViewModel.swift; sourceTree = "<group>"; };
+		83B76A5B2CD67ADD00F6639B /* UserRates.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = UserRates.graphql; sourceTree = "<group>"; };
 		83BE51282C6F216F00CF0DB8 /* AnimeDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimeDetailsViewController.swift; sourceTree = "<group>"; };
 		83C6A03E2CD2A0FB00BBBFF3 /* AnimeSearch.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = AnimeSearch.graphql; sourceTree = "<group>"; };
 		83C6A0492CD4017800BBBFF3 /* GraphQLAuthorizationInterceptor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphQLAuthorizationInterceptor.swift; sourceTree = "<group>"; };
@@ -104,18 +116,10 @@
 			path = AnimeCell;
 			sourceTree = "<group>";
 		};
-		8309DD172CC9631100195D14 /* Login */ = {
-			isa = PBXGroup;
-			children = (
-				8377675C2CA320BC00D2BA2B /* LoginViewController.swift */,
-				8309DD182CC9633200195D14 /* LoginViewModel.swift */,
-			);
-			path = Login;
-			sourceTree = "<group>";
-		};
 		8319668F2CCFE46C000F7529 /* GraphQL */ = {
 			isa = PBXGroup;
 			children = (
+				83B76A5B2CD67ADD00F6639B /* UserRates.graphql */,
 				83C6A03E2CD2A0FB00BBBFF3 /* AnimeSearch.graphql */,
 				8326C30D2CCFEAB2008E9635 /* AnimePosters.graphql */,
 			);
@@ -141,11 +145,12 @@
 		8323980A2C6B921C00EC4833 /* ShikimoriAnimeList */ = {
 			isa = PBXGroup;
 			children = (
+				83B76A4E2CD6450000F6639B /* UserRates */,
 				83D3997A2CCA723400ADDB7A /* Search */,
 				83F66ED32CC1ACC500F2F4E3 /* Ongoings */,
 				83F66ED62CC1B08600F2F4E3 /* AnimeDetails */,
 				8309DD132CC9300000195D14 /* AnimeCell */,
-				8309DD172CC9631100195D14 /* Login */,
+				83B76A452CD6302800F6639B /* Profile */,
 				832398212C6B926500EC4833 /* Storyboards */,
 				832398222C6B929000EC4833 /* Models */,
 				832398252C6E3D2400EC4833 /* Services */,
@@ -195,8 +200,29 @@
 				832398262C6E3D7800EC4833 /* NetworkManager.swift */,
 				836928522CA69FEC00EE7B2A /* OAuthAuthenticator.swift */,
 				83C6A0492CD4017800BBBFF3 /* GraphQLAuthorizationInterceptor.swift */,
+				83B76A4C2CD6422100F6639B /* AuthManager.swift */,
 			);
 			path = Services;
+			sourceTree = "<group>";
+		};
+		83B76A452CD6302800F6639B /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				83B76A432CD6302800F6639B /* ProfileViewController.swift */,
+				83B76A442CD6302800F6639B /* ProfileViewModel.swift */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
+		83B76A4E2CD6450000F6639B /* UserRates */ = {
+			isa = PBXGroup;
+			children = (
+				83B76A532CD6459A00F6639B /* UserRatesViewController.swift */,
+				83B76A552CD645B000F6639B /* UserRatesViewModel.swift */,
+				83B76A572CD651D800F6639B /* UserRatesCell.swift */,
+				83B76A592CD6538A00F6639B /* UserRatesCellViewModel.swift */,
+			);
+			path = UserRates;
 			sourceTree = "<group>";
 		};
 		83D3997A2CCA723400ADDB7A /* Search */ = {
@@ -300,6 +326,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				83B76A5C2CD67B0400F6639B /* UserRates.graphql in Resources */,
 				8326C30E2CCFEAC1008E9635 /* AnimePosters.graphql in Resources */,
 				832398152C6B921E00EC4833 /* Assets.xcassets in Resources */,
 				83C6A03F2CD2A10700BBBFF3 /* AnimeSearch.graphql in Resources */,
@@ -315,6 +342,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				83B76A5A2CD6538A00F6639B /* UserRatesCellViewModel.swift in Sources */,
 				83F66ED52CC1AD8000F2F4E3 /* OngoingsViewModel.swift in Sources */,
 				83D3997C2CCA776000ADDB7A /* SearchCollectionViewController.swift in Sources */,
 				832398242C6B96E500EC4833 /* Anime.swift in Sources */,
@@ -325,22 +353,26 @@
 				83D3997E2CCA807F00ADDB7A /* SearchViewModel.swift in Sources */,
 				8323982A2C6E569600EC4833 /* AnimeCell.swift in Sources */,
 				832398272C6E3D7900EC4833 /* NetworkManager.swift in Sources */,
+				83B76A4D2CD6422100F6639B /* AuthManager.swift in Sources */,
 				83D399842CCBFB0C00ADDB7A /* OngoingCellHeaderViewModel.swift in Sources */,
 				836AC5432CA6B0EE00F786A2 /* UserDefaults+OAuthToken.swift in Sources */,
-				8309DD192CC9633200195D14 /* LoginViewModel.swift in Sources */,
 				83D399822CCBF85600ADDB7A /* OngoingCellHeader.swift in Sources */,
-				8377675D2CA320BC00D2BA2B /* LoginViewController.swift in Sources */,
 				830EE3202CA44E7300C309F0 /* User.swift in Sources */,
 				83BE51292C6F216F00CF0DB8 /* AnimeDetailsViewController.swift in Sources */,
 				831C33732CA6C91200E0F332 /* UserRate.swift in Sources */,
+				83B76A542CD6459A00F6639B /* UserRatesViewController.swift in Sources */,
 				836928532CA69FEC00EE7B2A /* OAuthAuthenticator.swift in Sources */,
 				8323980C2C6B921C00EC4833 /* AppDelegate.swift in Sources */,
 				83F7431B2CD291B30070B098 /* OngoingAnimeCell.swift in Sources */,
+				83B76A462CD6302800F6639B /* ProfileViewController.swift in Sources */,
+				83B76A472CD6302800F6639B /* ProfileViewModel.swift in Sources */,
 				83F66EDA2CC2619100F2F4E3 /* AnimeDetails.swift in Sources */,
 				8323980E2C6B921C00EC4833 /* SceneDelegate.swift in Sources */,
 				836928552CA6A10500EE7B2A /* OAuthToken.swift in Sources */,
+				83B76A582CD651D800F6639B /* UserRatesCell.swift in Sources */,
 				83F7431D2CD291D70070B098 /* OngoingAnimeCellViewModel.swift in Sources */,
 				83C6A04A2CD4017800BBBFF3 /* GraphQLAuthorizationInterceptor.swift in Sources */,
+				83B76A562CD645B000F6639B /* UserRatesViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

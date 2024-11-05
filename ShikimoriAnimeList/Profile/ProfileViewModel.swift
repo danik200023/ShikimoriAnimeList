@@ -1,5 +1,5 @@
 //
-//  LoginViewModel.swift
+//  ProfileViewModel.swift
 //  ShikimoriAnimeList
 //
 //  Created by Данила Умнов on 23.10.2024.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-protocol LoginViewModelProtocol {
+protocol ProfileViewModelProtocol {
     var username: String { get }
     var url: URL { get }
     var avatarUrl: URL? { get }
@@ -16,7 +16,7 @@ protocol LoginViewModelProtocol {
     func loadData(completion: @escaping () -> Void)
 }
 
-final class LoginViewModel: LoginViewModelProtocol {
+final class ProfileViewModel: ProfileViewModelProtocol {
     var username: String {
         "username: \(user?.nickname ?? "")"
     }
@@ -47,7 +47,6 @@ final class LoginViewModel: LoginViewModelProtocol {
                 completion()
             case .failure(let error):
                 print(error)
-                print(400)
             }
         }
     }
@@ -55,8 +54,7 @@ final class LoginViewModel: LoginViewModelProtocol {
     private func getAccessToken(completion: @escaping () -> Void) {
         NetworkManager.shared.getAccessToken() { [unowned self] result in
             switch result {
-            case .success(let token):
-                UserDefaults.standard.saveOAuthToken(token)
+            case .success(_):
                 fetchUserProfile(completion: completion)
             case .failure(let error):
                 print(error.responseCode ?? "Unknown error")

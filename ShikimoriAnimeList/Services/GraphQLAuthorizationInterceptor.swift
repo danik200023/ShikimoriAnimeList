@@ -19,7 +19,7 @@ final class GraphQLAuthorizationInterceptor: ApolloInterceptor {
         completion: @escaping (Result<GraphQLResult<Operation.Data>, any Error>) -> Void
     ) where Operation : GraphQLOperation {
         if let token = UserDefaults.standard.getOAuthToken() {
-            request.addHeader(name: "Authorization", value: token.accessToken)
+            request.addHeader(name: "Authorization", value: "Bearer \(token.accessToken)")
         }
         
         chain.proceedAsync(
