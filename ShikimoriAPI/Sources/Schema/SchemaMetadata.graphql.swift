@@ -5,7 +5,7 @@ import ApolloAPI
 
 public protocol SelectionSet: ApolloAPI.SelectionSet & ApolloAPI.RootSelectionSet
 where Schema == ShikimoriAPI.SchemaMetadata {}
-
+ 
 public protocol InlineFragment: ApolloAPI.SelectionSet & ApolloAPI.InlineFragment
 where Schema == ShikimoriAPI.SchemaMetadata {}
 

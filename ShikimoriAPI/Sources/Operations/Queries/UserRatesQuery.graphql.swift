@@ -7,10 +7,16 @@ public class UserRatesQuery: GraphQLQuery {
   public static let operationName: String = "UserRates"
   public static let operationDocument: ApolloAPI.OperationDocument = .init(
     definition: .init(
-      #"query UserRates { userRates(targetType: Anime, limit: 50) { __typename episodes id rewatches status anime { __typename english episodes id russian score season status airedOn { __typename year } kind poster { __typename mainUrl } name } score } }"#
+      #"query UserRates($page: PositiveInt) { userRates(targetType: Anime, limit: 50, page: $page) { __typename episodes id rewatches status anime { __typename english episodes id russian score season status airedOn { __typename year } kind poster { __typename mainUrl } name } score } }"#
     ))
 
-  public init() {}
+  public var page: GraphQLNullable<PositiveInt>
+
+  public init(page: GraphQLNullable<PositiveInt>) {
+    self.page = page
+  }
+
+  public var __variables: Variables? { ["page": page] }
 
   public struct Data: ShikimoriAPI.SelectionSet {
     public let __data: DataDict
@@ -20,7 +26,8 @@ public class UserRatesQuery: GraphQLQuery {
     public static var __selections: [ApolloAPI.Selection] { [
       .field("userRates", [UserRate].self, arguments: [
         "targetType": "Anime",
-        "limit": 50
+        "limit": 50,
+        "page": .variable("page")
       ]),
     ] }
 

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		830785992CE529AF0099CE4C /* NotificationCenter+Name.swift in Sources */ = {isa = PBXBuildFile; fileRef = 830785982CE529AF0099CE4C /* NotificationCenter+Name.swift */; };
 		8309DD162CC9303100195D14 /* AnimeCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8309DD152CC9303100195D14 /* AnimeCellViewModel.swift */; };
 		830EE3202CA44E7300C309F0 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 830EE31F2CA44E7300C309F0 /* User.swift */; };
 		831C33732CA6C91200E0F332 /* UserRate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 831C33722CA6C91200E0F332 /* UserRate.swift */; };
@@ -22,6 +23,8 @@
 		8326C30E2CCFEAC1008E9635 /* AnimePosters.graphql in Resources */ = {isa = PBXBuildFile; fileRef = 8326C30D2CCFEAB2008E9635 /* AnimePosters.graphql */; };
 		833418A62CD0295D007EDF63 /* Apollo in Frameworks */ = {isa = PBXBuildFile; productRef = 833418A52CD0295D007EDF63 /* Apollo */; };
 		833418A92CD029F4007EDF63 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 833418A82CD029F4007EDF63 /* Alamofire */; };
+		8353B8052CDCDCEB007CE683 /* UserRateDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8353B8042CDCDCEB007CE683 /* UserRateDetailsViewController.swift */; };
+		8353B8072CDCE257007CE683 /* UserRateDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8353B8062CDCE24C007CE683 /* UserRateDetailsViewModel.swift */; };
 		836928532CA69FEC00EE7B2A /* OAuthAuthenticator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 836928522CA69FEC00EE7B2A /* OAuthAuthenticator.swift */; };
 		836928552CA6A10500EE7B2A /* OAuthToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 836928542CA6A10500EE7B2A /* OAuthToken.swift */; };
 		836AC5432CA6B0EE00F786A2 /* UserDefaults+OAuthToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 836AC5422CA6B0ED00F786A2 /* UserDefaults+OAuthToken.swift */; };
@@ -51,6 +54,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		830785982CE529AF0099CE4C /* NotificationCenter+Name.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NotificationCenter+Name.swift"; sourceTree = "<group>"; };
 		8309DD152CC9303100195D14 /* AnimeCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimeCellViewModel.swift; sourceTree = "<group>"; };
 		830EE31F2CA44E7300C309F0 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		831C33722CA6C91200E0F332 /* UserRate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRate.swift; sourceTree = "<group>"; };
@@ -66,6 +70,8 @@
 		832398262C6E3D7800EC4833 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		832398292C6E569600EC4833 /* AnimeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimeCell.swift; sourceTree = "<group>"; };
 		8326C30D2CCFEAB2008E9635 /* AnimePosters.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = AnimePosters.graphql; sourceTree = "<group>"; };
+		8353B8042CDCDCEB007CE683 /* UserRateDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRateDetailsViewController.swift; sourceTree = "<group>"; };
+		8353B8062CDCE24C007CE683 /* UserRateDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRateDetailsViewModel.swift; sourceTree = "<group>"; };
 		836928522CA69FEC00EE7B2A /* OAuthAuthenticator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OAuthAuthenticator.swift; sourceTree = "<group>"; };
 		836928542CA6A10500EE7B2A /* OAuthToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OAuthToken.swift; sourceTree = "<group>"; };
 		836AC5422CA6B0ED00F786A2 /* UserDefaults+OAuthToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+OAuthToken.swift"; sourceTree = "<group>"; };
@@ -146,6 +152,7 @@
 			isa = PBXGroup;
 			children = (
 				83B76A4E2CD6450000F6639B /* UserRates */,
+				8353B8032CDCDC5C007CE683 /* UserRateDetails */,
 				83D3997A2CCA723400ADDB7A /* Search */,
 				83F66ED32CC1ACC500F2F4E3 /* Ongoings */,
 				83F66ED62CC1B08600F2F4E3 /* AnimeDetails */,
@@ -165,6 +172,8 @@
 			children = (
 				8323980B2C6B921C00EC4833 /* AppDelegate.swift */,
 				8323980D2C6B921C00EC4833 /* SceneDelegate.swift */,
+				836AC5422CA6B0ED00F786A2 /* UserDefaults+OAuthToken.swift */,
+				830785982CE529AF0099CE4C /* NotificationCenter+Name.swift */,
 				832398192C6B921E00EC4833 /* Info.plist */,
 			);
 			path = App;
@@ -186,7 +195,6 @@
 				83F66ED92CC2619100F2F4E3 /* AnimeDetails.swift */,
 				830EE31F2CA44E7300C309F0 /* User.swift */,
 				836928542CA6A10500EE7B2A /* OAuthToken.swift */,
-				836AC5422CA6B0ED00F786A2 /* UserDefaults+OAuthToken.swift */,
 				831C33722CA6C91200E0F332 /* UserRate.swift */,
 				83D3997F2CCBE0C400ADDB7A /* OngoingCalendar.swift */,
 			);
@@ -203,6 +211,15 @@
 				83B76A4C2CD6422100F6639B /* AuthManager.swift */,
 			);
 			path = Services;
+			sourceTree = "<group>";
+		};
+		8353B8032CDCDC5C007CE683 /* UserRateDetails */ = {
+			isa = PBXGroup;
+			children = (
+				8353B8042CDCDCEB007CE683 /* UserRateDetailsViewController.swift */,
+				8353B8062CDCE24C007CE683 /* UserRateDetailsViewModel.swift */,
+			);
+			path = UserRateDetails;
 			sourceTree = "<group>";
 		};
 		83B76A452CD6302800F6639B /* Profile */ = {
@@ -360,6 +377,7 @@
 				830EE3202CA44E7300C309F0 /* User.swift in Sources */,
 				83BE51292C6F216F00CF0DB8 /* AnimeDetailsViewController.swift in Sources */,
 				831C33732CA6C91200E0F332 /* UserRate.swift in Sources */,
+				8353B8072CDCE257007CE683 /* UserRateDetailsViewModel.swift in Sources */,
 				83B76A542CD6459A00F6639B /* UserRatesViewController.swift in Sources */,
 				836928532CA69FEC00EE7B2A /* OAuthAuthenticator.swift in Sources */,
 				8323980C2C6B921C00EC4833 /* AppDelegate.swift in Sources */,
@@ -372,6 +390,8 @@
 				83B76A582CD651D800F6639B /* UserRatesCell.swift in Sources */,
 				83F7431D2CD291D70070B098 /* OngoingAnimeCellViewModel.swift in Sources */,
 				83C6A04A2CD4017800BBBFF3 /* GraphQLAuthorizationInterceptor.swift in Sources */,
+				8353B8052CDCDCEB007CE683 /* UserRateDetailsViewController.swift in Sources */,
+				830785992CE529AF0099CE4C /* NotificationCenter+Name.swift in Sources */,
 				83B76A562CD645B000F6639B /* UserRatesViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

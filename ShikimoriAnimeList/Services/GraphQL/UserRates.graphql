@@ -1,5 +1,5 @@
-query UserRates {
-    userRates(targetType: Anime, limit: 50) {
+query UserRates($page: PositiveInt) {
+    userRates(targetType: Anime, limit: 50, page: $page) {
         episodes
         id
         rewatches

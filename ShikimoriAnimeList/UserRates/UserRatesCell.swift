@@ -8,12 +8,17 @@
 import UIKit
 import Kingfisher
 
+protocol UserRatesCellDelegate: AnyObject {
+    func editButtonButtonTapped(in cell: UserRatesCell)
+}
+
 final class UserRatesCell: UITableViewCell {
     @IBOutlet var animeImageView: UIImageView!
     @IBOutlet var animeNameLabel: UILabel!
     @IBOutlet var detailsLabel: UILabel!
     @IBOutlet var watchedEpisodesLabel: UILabel!
     
+    weak var delegate: UserRatesCellDelegate?
     
     var viewModel: UserRatesCellViewModelProtocol! {
         didSet {
@@ -26,5 +31,10 @@ final class UserRatesCell: UITableViewCell {
             animeImageView.kf.setImage(with: viewModel.posterUrl)
         }
     }
-
+    
+    @IBAction func editButtonAction() {
+        delegate?.editButtonButtonTapped(in: self)
+    }
 }
+
+

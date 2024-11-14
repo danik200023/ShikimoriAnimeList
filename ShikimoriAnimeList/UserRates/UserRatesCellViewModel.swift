@@ -14,6 +14,7 @@ protocol UserRatesCellViewModelProtocol {
     var watchedEpisodes: String { get }
     var posterUrl: URL { get }
     init(userRate: UserRatesQuery.Data.UserRate)
+    func getUserRateDetailsViewModel() -> UserRateDetailsViewModelProtocol
 }
 
 final class UserRatesCellViewModel: UserRatesCellViewModelProtocol {
@@ -37,11 +38,13 @@ final class UserRatesCellViewModel: UserRatesCellViewModelProtocol {
         URL(string: userRate.anime?.poster?.mainUrl ?? "https://shikimori.one/assets/globals/missing/main@2x.png")!
     }
     
-    private let userRate: ShikimoriAPI.UserRatesQuery.Data.UserRate
+    private let userRate: UserRatesQuery.Data.UserRate
     
-    init(userRate: ShikimoriAPI.UserRatesQuery.Data.UserRate) {
+    init(userRate: UserRatesQuery.Data.UserRate) {
         self.userRate = userRate
     }
     
-    
+    func getUserRateDetailsViewModel() -> UserRateDetailsViewModelProtocol {
+        UserRateDetailsViewModel(userRate: userRate)
+    }
 }

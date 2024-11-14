@@ -54,7 +54,3 @@ extension AuthManager: ASWebAuthenticationPresentationContextProviding {
         return ASPresentationAnchor()
     }
 }
-
-extension Notification.Name {
-    static let authStatusChanged = Notification.Name("authStatusChanged")
-}

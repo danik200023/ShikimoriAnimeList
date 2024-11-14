@@ -20,6 +20,7 @@ final class GraphQLAuthorizationInterceptor: ApolloInterceptor {
     ) where Operation : GraphQLOperation {
         if let token = UserDefaults.standard.getOAuthToken() {
             request.addHeader(name: "Authorization", value: "Bearer \(token.accessToken)")
+            request.addHeader(name: "User-Agent", value: "Shikimori iOS App")
         }
         
         chain.proceedAsync(

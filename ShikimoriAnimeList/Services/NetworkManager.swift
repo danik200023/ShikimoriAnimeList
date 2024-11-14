@@ -27,14 +27,14 @@ final class NetworkManager {
     private init() {}
     
     func post<T: Decodable>(
-            _ type: T.Type,
-            to url: URLConvertible,
-            withParameters parameters: Parameters? = nil,
-            completion: @escaping(Result<T, AFError>) -> Void
+        _ type: T.Type,
+        to url: URLConvertible,
+        withParameters parameters: Parameters? = nil,
+        completion: @escaping(Result<T, AFError>) -> Void
     ) {
         let headers: HTTPHeaders = [
-                "User-Agent": "Shikimori iOS App"
-            ]
+            "User-Agent": "Shikimori iOS App"
+        ]
         let token = UserDefaults.standard.getOAuthToken()
         let interceptor = AuthenticationInterceptor(authenticator: OAuthAuthenticator(), credential: token)
         
@@ -48,26 +48,28 @@ final class NetworkManager {
             }
     }
     
-//    func put<T: Encodable>(
-//        _ type: T.Type,
-//        to url: URLConvertible,
-//        withParameters parameters: Parameters? = nil,
-//        completion: @escaping(Result<T, AFError>) -> Void
-//    ) {
-//        let headers: HTTPHeaders = [
-//                "User-Agent": "Shikimori iOS App"
-//            ]
-//        let token = UserDefaults.standard.getOAuthToken()
-//        let interceptor = AuthenticationInterceptor(authenticator: OAuthAuthenticator(), credential: token)
-//        
-//        let encoder = JSONEncoder()
-//        encoder.keyEncodingStrategy = .convertToSnakeCase
-//        
-//        AF.request(url, parameters: parameters, headers: headers, interceptor: interceptor)
-//            .validate()
-//            .responseDecodable(completionHandler: )
-//    }
-//    
+    func patch<T: Decodable>(
+        _ type: T.Type,
+        to url: URLConvertible,
+        withParameters parameters: Parameters? = nil,
+        completion: @escaping(Result<T, AFError>) -> Void
+    ) {
+        let headers: HTTPHeaders = [
+            "User-Agent": "Shikimori iOS App"
+        ]
+        let token = UserDefaults.standard.getOAuthToken()
+        let interceptor = AuthenticationInterceptor(authenticator: OAuthAuthenticator(), credential: token)
+        
+        let decoder = JSONDecoder()
+        decoder.keyDecodingStrategy = .convertFromSnakeCase
+        
+        AF.request(url, method: .patch, parameters: parameters, encoding: JSONEncoding.default, headers: headers, interceptor: interceptor)
+            .validate()
+            .responseDecodable(of: type, decoder: decoder) { response in
+                completion(response.result)
+            }
+    }
+    
     func fetchWithAuthorization<T: Decodable>(
         _ type: T.Type,
         from url: URLConvertible,
@@ -75,8 +77,8 @@ final class NetworkManager {
         completion: @escaping(Result<T, AFError>) -> Void
     ) {
         let headers: HTTPHeaders = [
-                "User-Agent": "Shikimori iOS App"
-            ]
+            "User-Agent": "Shikimori iOS App"
+        ]
         let token = UserDefaults.standard.getOAuthToken()
         let interceptor = AuthenticationInterceptor(authenticator: OAuthAuthenticator(), credential: token)
         
@@ -97,8 +99,8 @@ final class NetworkManager {
         completion: @escaping(Result<T, AFError>) -> Void
     ) {
         let headers: HTTPHeaders = [
-                "User-Agent": "Shikimori iOS App"
-            ]
+            "User-Agent": "Shikimori iOS App"
+        ]
         let decoder = JSONDecoder()
         decoder.keyDecodingStrategy = .convertFromSnakeCase
         
@@ -122,9 +124,9 @@ final class NetworkManager {
         }
     }
     
-    func fetchUserRates(completion: @escaping (Result<GraphQLResult<UserRatesQuery.Data>, any Error>) -> Void) {
-        let query = UserRatesQuery()
-        apollo.fetch(query: query) { result in
+    func fetchUserRates(page: Int, completion: @escaping (Result<GraphQLResult<UserRatesQuery.Data>, any Error>) -> Void) {
+        let query = UserRatesQuery(page: GraphQLNullable<PositiveInt>(integerLiteral: page))
+        apollo.fetch(query: query, cachePolicy: .fetchIgnoringCacheCompletely) { result in
             switch result {
             case .success(let value):
                 completion(.success(value))
@@ -149,16 +151,16 @@ final class NetworkManager {
     func getAccessToken(completion: @escaping (Result<OAuthToken, AFError>) -> Void) {
         let url = "https://shikimori.one/oauth/token"
         let headers: HTTPHeaders = [
-                "User-Agent": "Shikimori iOS App"
-            ]
+            "User-Agent": "Shikimori iOS App"
+        ]
         guard let authCode = UserDefaults.standard.string(forKey: "authCode") else { return }
         let parameters: Parameters = [
-                "grant_type": "authorization_code",
-                "client_id": "wfUWoNxEIwfseLQ5vGJfQjeVOAAELibJw5zbOmCVnrc",
-                "client_secret": "YagZ3xAhnrbC5uNgjxv2QeAeeoPRgEsatQYz8UIF5x4",
-                "code": authCode,
-                "redirect_uri": "shikimoriapp://callback"
-            ]
+            "grant_type": "authorization_code",
+            "client_id": "wfUWoNxEIwfseLQ5vGJfQjeVOAAELibJw5zbOmCVnrc",
+            "client_secret": "YagZ3xAhnrbC5uNgjxv2QeAeeoPRgEsatQYz8UIF5x4",
+            "code": authCode,
+            "redirect_uri": "shikimoriapp://callback"
+        ]
         
         let decoder = JSONDecoder()
         decoder.keyDecodingStrategy = .convertFromSnakeCase

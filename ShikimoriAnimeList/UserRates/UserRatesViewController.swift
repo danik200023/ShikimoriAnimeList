@@ -7,6 +7,7 @@
 
 import UIKit
 import AuthenticationServices
+import Combine
 
 class UserRatesViewController: UIViewController {
 
@@ -14,20 +15,38 @@ class UserRatesViewController: UIViewController {
     @IBOutlet var loginStackView: UIStackView!
     @IBOutlet var animeListTableView: UITableView!
     
-    var viewModel: UserRatesViewModelProtocol! {
-        didSet {
-        }
-    }
+    var viewModel: UserRatesViewModelProtocol!
+    
+    private var cancellables = Set<AnyCancellable>()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         viewModel = UserRatesViewModel()
-        NotificationCenter.default.addObserver(self, selector: #selector(refreshUI), name: .authStatusChanged, object: nil)
+        
+        NotificationCenter.default.publisher(for: .authStatusChanged)
+            .sink { [unowned self] _ in
+                refreshUI()
+            }
+            .store(in: &cancellables)
+        NotificationCenter.default.publisher(for: .userStatusChanged)
+            .sink { [unowned self] _ in
+                viewModel.moveCell { [unowned self] in
+                    animeListTableView.reloadData()
+                }
+            }
+            .store(in: &cancellables)
         
         animeListTableView.dataSource = self
         animeListTableView.delegate = self
-        animeListTableView.rowHeight = 174
+        animeListTableView.rowHeight = view.bounds.height / 5
         refreshUI()
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard let cell = sender as? UserRatesCell else { return }
+        if let detailsVC = segue.destination as? UserRateDetailsViewController {
+            detailsVC.viewModel = cell.viewModel.getUserRateDetailsViewModel()
+        }
     }
     
     @IBAction func loginButtonAction() {
@@ -37,6 +56,7 @@ class UserRatesViewController: UIViewController {
     @IBAction func segmentChanged() {
         animeListTableView.reloadData()
     }
+    
     @objc private func refreshUI() {
         animeListTableView.isHidden = !viewModel.isLoggedIn
         tableTabSegmentedControl.isHidden = !viewModel.isLoggedIn
@@ -74,8 +94,13 @@ extension UserRatesViewController: UITableViewDataSource {
         
         guard let cell = cell as? UserRatesCell else { return UITableViewCell() }
         cell.viewModel = viewModel.getUserRateCellViewModel(at: indexPath, andSegment: tableTabSegmentedControl.selectedSegmentIndex)
+        cell.delegate = self
         return cell
     }
-    
-    
+}
+
+extension UserRatesViewController: UserRatesCellDelegate {
+    func editButtonButtonTapped(in cell: UserRatesCell) {
+        performSegue(withIdentifier: "showRateDetails", sender: cell)
+    }
 }

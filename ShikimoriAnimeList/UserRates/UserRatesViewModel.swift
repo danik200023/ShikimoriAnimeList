@@ -14,6 +14,7 @@ protocol UserRatesViewModelProtocol {
     func loginButtonAction() -> Void
     func numberOfRowsInSection(_ section: Int, andTab tab: Int) -> Int
     func fetchUserRates(completion: @escaping () -> Void)
+    func moveCell(completion: @escaping () -> Void) -> Void
     func getUserRateCellViewModel(at indexPath: IndexPath, andSegment segment: Int) -> UserRatesCellViewModelProtocol
 }
 
@@ -33,7 +34,17 @@ final class UserRatesViewModel: UserRatesViewModelProtocol {
     }
     
     func fetchUserRates(completion: @escaping () -> Void) {
-        NetworkManager.shared.fetchUserRates { [unowned self] result in
+        fetchUserRates(page: 1, completion: completion)
+    }
+    
+    // TODO: - Сделать нормальную реализацию, когда будет доступен метод на api
+    func moveCell(completion: @escaping () -> Void) {
+        userRates = [[],[],[],[]]
+        fetchUserRates(completion: completion)
+    }
+    
+    private func fetchUserRates(page: Int, completion: @escaping () -> Void) {
+        NetworkManager.shared.fetchUserRates(page: page) { [unowned self] result in
             switch result {
             case .success(let value):
                 value.data?.userRates.forEach({ userRate in
@@ -53,11 +64,15 @@ final class UserRatesViewModel: UserRatesViewModelProtocol {
                         break
                     }
                 })
-//                userRates = value.data?.userRates ?? []
-//                print(userRates)
-                completion()
+                if value.data?.userRates.count == 50 {
+                    fetchUserRates(page: page + 1, completion: completion)
+                } else {
+                    completion()
+                    print(userRates)
+                }
             case .failure(let error):
                 print(error)
+                completion()
             }
         }
     }
