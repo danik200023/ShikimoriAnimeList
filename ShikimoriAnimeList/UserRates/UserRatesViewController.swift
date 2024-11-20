@@ -28,6 +28,7 @@ class UserRatesViewController: UIViewController {
                 refreshUI()
             }
             .store(in: &cancellables)
+        
         NotificationCenter.default.publisher(for: .userStatusChanged)
             .sink { [unowned self] _ in
                 viewModel.moveCell { [unowned self] in

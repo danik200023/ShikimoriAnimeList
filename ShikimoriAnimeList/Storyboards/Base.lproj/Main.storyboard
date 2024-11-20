@@ -609,10 +609,34 @@
             </objects>
             <point key="canvasLocation" x="534" y="-375"/>
         </scene>
+        <!--View Controller-->
+        <scene sceneID="s5g-gS-QVc">
+            <objects>
+                <viewController storyboardIdentifier="LoadingViewController" id="7AA-NK-tml" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="xj7-IR-BFE">
+                        <rect key="frame" x="0.0" y="0.0" width="402" height="874"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="ez3-SP-zMC">
+                                <rect key="frame" x="182.66666666666666" y="418.66666666666669" width="37" height="37"/>
+                            </activityIndicatorView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="fPO-rb-rlF"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="ez3-SP-zMC" firstAttribute="centerY" secondItem="xj7-IR-BFE" secondAttribute="centerY" id="o4U-V1-fgc"/>
+                            <constraint firstItem="ez3-SP-zMC" firstAttribute="centerX" secondItem="xj7-IR-BFE" secondAttribute="centerX" id="xUl-c2-pxM"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Az4-4B-NaU" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1675" y="-540"/>
+        </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="089-BR-ByZ">
             <objects>
-                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="1Ue-qn-WSq" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="MainTabBarController" automaticallyAdjustsScrollViewInsets="NO" id="1Ue-qn-WSq" sceneMemberID="viewController">
                     <toolbarItems/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="B7z-P3-yri">
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>

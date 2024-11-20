@@ -20,7 +20,6 @@ protocol SearchViewModelProtocol {
 
 final class SearchViewModel: SearchViewModelProtocol {
     private var animes: [AnimeSearchQuery.Data.Anime] = []
-//    private var animes: [Anime] = []
     private var userRates: [UserRate] = []
     private var searchName: String = ""
     
