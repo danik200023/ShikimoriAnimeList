@@ -70,6 +70,23 @@ final class NetworkManager {
             }
     }
     
+    func delete(
+        at url: URLConvertible,
+        completion: @escaping(Result<Data?, AFError>) -> Void
+    ) {
+        let headers: HTTPHeaders = [
+            "User-Agent": "Shikimori iOS App"
+        ]
+        let token = UserDefaults.standard.getOAuthToken()
+        let interceptor = AuthenticationInterceptor(authenticator: OAuthAuthenticator(), credential: token)
+        
+        AF.request(url, method: .delete, headers: headers, interceptor: interceptor)
+            .validate()
+            .response { response in
+                completion(response.result)
+            }
+    }
+    
     func fetchWithAuthorization<T: Decodable>(
         _ type: T.Type,
         from url: URLConvertible,

@@ -29,7 +29,7 @@ class UserRatesViewController: UIViewController {
             }
             .store(in: &cancellables)
         
-        NotificationCenter.default.publisher(for: .userStatusChanged)
+        NotificationCenter.default.publisher(for: .userRateChanged)
             .sink { [unowned self] _ in
                 viewModel.moveCell { [unowned self] in
                     animeListTableView.reloadData()

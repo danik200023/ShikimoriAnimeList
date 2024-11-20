@@ -9,5 +9,5 @@ import Foundation
 
 extension Notification.Name {
     static let authStatusChanged = Notification.Name("authStatusChanged")
-    static let userStatusChanged = Notification.Name("userStatusChanged")
+    static let userRateChanged = Notification.Name("userRateChanged")
 }

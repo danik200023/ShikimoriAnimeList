@@ -10,23 +10,33 @@ import Combine
 
 class UserRateDetailsViewController: UIViewController {
     
+    @IBOutlet var animeNameLabel: UILabel!
     @IBOutlet var watchingButton: UIButton!
     @IBOutlet var plannedButton: UIButton!
     @IBOutlet var completedButton: UIButton!
     @IBOutlet var rewatchingButton: UIButton!
     @IBOutlet var onHoldButton: UIButton!
     @IBOutlet var droppedButton: UIButton!
+    @IBOutlet var episodesWatchedTextField: UITextField!
+    @IBOutlet var rewatchesTextField: UITextField!
     
     var viewModel: UserRateDetailsViewModelProtocol!
     private var cancellables = Set<AnyCancellable>()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupUI()
         setupBindings()
         updateButtonStyles()
     }
     
-    private func setupBindings() { 
+    private func setupUI() {
+        animeNameLabel.text = viewModel.animeName
+        episodesWatchedTextField.text = viewModel.episodesWatched
+        rewatchesTextField.text = viewModel.rewatches
+    }
+    
+    private func setupBindings() {
         viewModel.statusPublisher
             .receive(on: RunLoop.main)
             .sink { [unowned self] _ in
@@ -90,6 +100,22 @@ class UserRateDetailsViewController: UIViewController {
         }
     }
     
+    @IBAction func deleteButtonAction() {
+        let alert = UIAlertController(
+            title: "Удалить",
+            message: "Вы действительно хотите удалить аниме из списка?",
+            preferredStyle: .alert
+        )
+        let okAction = UIAlertAction(title: "Удалить", style: .destructive) { [unowned self] _ in
+            viewModel.deleteRate { [unowned self] in
+                dismiss(animated: true)
+            }
+        }
+        let cancelAction = UIAlertAction(title: "Отмена", style: .cancel)
+        alert.addAction(okAction)
+        alert.addAction(cancelAction)
+        present(alert, animated: true)
+    }
     @IBAction func closeButtonAction() {
         dismiss(animated: true)
     }

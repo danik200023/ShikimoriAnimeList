@@ -54,7 +54,7 @@ final class SearchViewModel: SearchViewModelProtocol {
                 switch result {
                 case .success(let userRate):
                     userRates.append(userRate)
-                    NotificationCenter.default.post(name: .userStatusChanged, object: nil)
+                    NotificationCenter.default.post(name: .userRateChanged, object: nil)
                 case .failure(let error):
                     print(error)
                 }
