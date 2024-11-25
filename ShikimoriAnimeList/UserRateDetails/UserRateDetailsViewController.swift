@@ -5,11 +5,11 @@
 //  Created by Данила Умнов on 07.11.2024.
 //
 
-import UIKit
 import Combine
+import UIKit
 
 class UserRateDetailsViewController: UIViewController {
-    
+
     @IBOutlet var animeNameLabel: UILabel!
     @IBOutlet var watchingButton: UIButton!
     @IBOutlet var plannedButton: UIButton!
@@ -17,25 +17,52 @@ class UserRateDetailsViewController: UIViewController {
     @IBOutlet var rewatchingButton: UIButton!
     @IBOutlet var onHoldButton: UIButton!
     @IBOutlet var droppedButton: UIButton!
-    @IBOutlet var episodesWatchedTextField: UITextField!
+    @IBOutlet var watchedEpisodesTextField: UITextField!
     @IBOutlet var rewatchesTextField: UITextField!
-    
+
     var viewModel: UserRateDetailsViewModelProtocol!
     private var cancellables = Set<AnyCancellable>()
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
         setupBindings()
         updateButtonStyles()
     }
-    
+
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesBegan(touches, with: event)
+        view.endEditing(true)
+    }
+
     private func setupUI() {
         animeNameLabel.text = viewModel.animeName
-        episodesWatchedTextField.text = viewModel.episodesWatched
         rewatchesTextField.text = viewModel.rewatches
+
+        let toolbar = UIToolbar()
+        toolbar.sizeToFit()
+
+        let doneButton = UIBarButtonItem(
+            title: "Готово",
+            style: .done,
+            target: self,
+            action: #selector(doneButtonAction)
+        )
+
+        toolbar.items = [.flexibleSpace(), doneButton]
+
+        watchedEpisodesTextField.inputAccessoryView = toolbar
+        watchedEpisodesTextField.delegate = self
+        rewatchesTextField.inputAccessoryView = toolbar
+        rewatchesTextField.delegate = self
+
     }
-    
+
+    @objc
+    private func doneButtonAction() {
+        view.endEditing(true)
+    }
+
     private func setupBindings() {
         viewModel.statusPublisher
             .receive(on: RunLoop.main)
@@ -43,17 +70,27 @@ class UserRateDetailsViewController: UIViewController {
                 updateButtonStyles()
             }
             .store(in: &cancellables)
-    }
-    
-    private func updateButtonStyles() {
-        let buttons = [watchingButton, plannedButton, completedButton, rewatchingButton, onHoldButton, droppedButton]
-            buttons.forEach { button in
-                var configuration = UIButton.Configuration.gray()
-                configuration.image = button?.configuration?.image
-                button?.configuration = configuration
-                button?.isUserInteractionEnabled = true
+
+        viewModel.numberOfWatchedEpisodesPublisher
+            .receive(on: RunLoop.main)
+            .sink { [unowned self] numberOfWatchedEpisodes in
+                watchedEpisodesTextField.text = numberOfWatchedEpisodes
             }
-        
+            .store(in: &cancellables)
+    }
+
+    private func updateButtonStyles() {
+        let buttons = [
+            watchingButton, plannedButton, completedButton, rewatchingButton,
+            onHoldButton, droppedButton,
+        ]
+        buttons.forEach { button in
+            var configuration = UIButton.Configuration.gray()
+            configuration.image = button?.configuration?.image
+            button?.configuration = configuration
+            button?.isUserInteractionEnabled = true
+        }
+
         var configuration = UIButton.Configuration.filled()
         switch viewModel.status {
         case .planned:
@@ -83,6 +120,19 @@ class UserRateDetailsViewController: UIViewController {
         }
     }
 
+    private func showAlert(
+        withTitle title: String,
+        andMessage message: String,
+        actions: [UIAlertAction] = [UIAlertAction(title: "OK", style: .default)]
+    ) {
+        let alert = UIAlertController(
+            title: title, message: message, preferredStyle: .alert)
+        for action in actions {
+            alert.addAction(action)
+        }
+        present(alert, animated: true)
+    }
+
     @IBAction func statusButtonAction(_ sender: UIButton) {
         switch sender {
         case plannedButton:
@@ -99,14 +149,15 @@ class UserRateDetailsViewController: UIViewController {
             viewModel.setStatus(.dropped)
         }
     }
-    
+
     @IBAction func deleteButtonAction() {
         let alert = UIAlertController(
             title: "Удалить",
             message: "Вы действительно хотите удалить аниме из списка?",
             preferredStyle: .alert
         )
-        let okAction = UIAlertAction(title: "Удалить", style: .destructive) { [unowned self] _ in
+        let okAction = UIAlertAction(title: "Удалить", style: .destructive) {
+            [unowned self] _ in
             viewModel.deleteRate { [unowned self] in
                 dismiss(animated: true)
             }
@@ -116,7 +167,78 @@ class UserRateDetailsViewController: UIViewController {
         alert.addAction(cancelAction)
         present(alert, animated: true)
     }
+
     @IBAction func closeButtonAction() {
         dismiss(animated: true)
+    }
+
+    @IBAction func incrementButtonAction() {
+        viewModel.incrementWatchedEpisodes()
+    }
+
+    @IBAction func decrementButtonAction() {
+        viewModel.decrementWatchedEpisodes()
+    }
+}
+
+extension UserRateDetailsViewController: UITextFieldDelegate {
+    func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
+        guard let text = textField.text, let intValue = Int(text) else {
+            let alert = UIAlertController(
+                title: "Ошибка",
+                message: "Введите число",
+                preferredStyle: .alert
+            )
+            let okAction = UIAlertAction(title: "OK", style: .default) { _ in
+                textField.text = "1"
+                textField.becomeFirstResponder()
+            }
+            alert.addAction(okAction)
+            present(alert, animated: true)
+            return false
+        }
+        switch textField {
+        case watchedEpisodesTextField:
+            if viewModel.isValidWatchedEpisodesCount(intValue) {
+                return true
+            } else {
+                showAlert(
+                    withTitle: "Ошибка",
+                    andMessage: "Неправильное количество серий",
+                    actions: [
+                        UIAlertAction(title: "OK", style: .default) { _ in
+                            textField.text = "1"
+                            textField.becomeFirstResponder()
+                        }
+                    ])
+                return false
+            }
+        default:
+            if viewModel.isValidRewatchesCount(intValue) {
+                return true
+            } else {
+                showAlert(
+                    withTitle: "Ошибка",
+                    andMessage: "Неправильное количество пересмотров",
+                    actions: [
+                        UIAlertAction(title: "OK", style: .default) { _ in
+                            textField.text = "0"
+                            textField.becomeFirstResponder()
+                        }
+                    ])
+                return false
+            }
+        }
+    }
+
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        switch textField {
+        case watchedEpisodesTextField:
+            guard let text = textField.text else { return }
+            viewModel.setNumberOfWatchedEpisodes(Int(text) ?? 0)
+        default:
+            guard let text = textField.text else { return }
+            viewModel.setNumberOfRewatches(Int(text) ?? 0)
+        }
     }
 }

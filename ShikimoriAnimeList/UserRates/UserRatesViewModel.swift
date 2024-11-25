@@ -48,19 +48,16 @@ final class UserRatesViewModel: UserRatesViewModelProtocol {
             switch result {
             case .success(let value):
                 value.data?.userRates.forEach({ userRate in
-                    switch userRate.status {
-                    case .case(let status):
-                        switch status {
-                        case .watching, .rewatching:
-                            userRates[0].append(userRate)
-                        case .planned:
-                            userRates[1].append(userRate)
-                        case .completed:
-                            userRates[2].append(userRate)
-                        case .onHold, .dropped:
-                            userRates[3].append(userRate)
-                        }
-                    case .unknown(_):
+                    switch userRate.status.value {
+                    case .watching, .rewatching:
+                        userRates[0].append(userRate)
+                    case .planned:
+                        userRates[1].append(userRate)
+                    case .completed:
+                        userRates[2].append(userRate)
+                    case .onHold, .dropped:
+                        userRates[3].append(userRate)
+                    case .none:
                         break
                     }
                 })
@@ -68,7 +65,7 @@ final class UserRatesViewModel: UserRatesViewModelProtocol {
                     fetchUserRates(page: page + 1, completion: completion)
                 } else {
                     completion()
-                    print(userRates)
+                    dump(userRates)
                 }
             case .failure(let error):
                 print(error)

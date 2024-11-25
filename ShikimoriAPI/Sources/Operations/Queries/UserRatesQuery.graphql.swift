@@ -7,7 +7,7 @@ public class UserRatesQuery: GraphQLQuery {
   public static let operationName: String = "UserRates"
   public static let operationDocument: ApolloAPI.OperationDocument = .init(
     definition: .init(
-      #"query UserRates($page: PositiveInt) { userRates(targetType: Anime, limit: 50, page: $page) { __typename episodes id rewatches status anime { __typename english episodes id russian score season status airedOn { __typename year } kind poster { __typename mainUrl } name } score } }"#
+      #"query UserRates($page: PositiveInt) { userRates(targetType: Anime, limit: 50, page: $page) { __typename episodes id rewatches status anime { __typename english episodesAired episodes id russian score season status airedOn { __typename year } kind poster { __typename mainUrl } name } score } }"#
     ))
 
   public var page: GraphQLNullable<PositiveInt>
@@ -69,6 +69,7 @@ public class UserRatesQuery: GraphQLQuery {
         public static var __selections: [ApolloAPI.Selection] { [
           .field("__typename", String.self),
           .field("english", String?.self),
+          .field("episodesAired", Int.self),
           .field("episodes", Int.self),
           .field("id", ShikimoriAPI.ID.self),
           .field("russian", String?.self),
@@ -82,6 +83,7 @@ public class UserRatesQuery: GraphQLQuery {
         ] }
 
         public var english: String? { __data["english"] }
+        public var episodesAired: Int { __data["episodesAired"] }
         public var episodes: Int { __data["episodes"] }
         public var id: ShikimoriAPI.ID { __data["id"] }
         public var russian: String? { __data["russian"] }
