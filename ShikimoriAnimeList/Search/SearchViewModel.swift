@@ -22,6 +22,7 @@ final class SearchViewModel: SearchViewModelProtocol {
     private var animes: [AnimeSearchQuery.Data.Anime] = []
     private var userRates: [UserRate] = []
     private var searchName: String = ""
+    private var debounceTimer: Timer?
     
     var numberOfItemsInSection: Int {
         animes.count
@@ -63,19 +64,19 @@ final class SearchViewModel: SearchViewModelProtocol {
     }
     
     func fetchAnimes(name: String, completion: @escaping () -> Void) {
-        if name == "" {
-            return
-        }
-        NetworkManager.shared.search(name) { [unowned self] result in
-            switch result {
-            case .success(let animes):
-                self.animes = animes.data?.animes ?? []
-                completion()
-            case .failure(let error):
-                print(error)
+        debounceTimer?.invalidate()
+        
+        debounceTimer = Timer.scheduledTimer(withTimeInterval: 2.0, repeats: false, block: { _ in
+            NetworkManager.shared.search(name) { [unowned self] result in
+                switch result {
+                case .success(let animes):
+                    self.animes = animes.data?.animes ?? []
+                    completion()
+                case .failure(let error):
+                    print(error)
+                }
             }
-            
-        }
+        })
     }
     
     func fetchUserRates() {

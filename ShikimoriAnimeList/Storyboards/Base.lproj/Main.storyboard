@@ -859,28 +859,33 @@
                                     <action selector="loginButtonAction" destination="WIh-KD-WwN" eventType="touchUpInside" id="Jq6-RU-rqP"/>
                                 </connections>
                             </button>
-                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="username: " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BMC-Pu-MpU">
-                                <rect key="frame" x="158.66666666666666" y="426.66666666666669" width="85" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ahu-xP-0ns">
-                                <rect key="frame" x="78.333333333333329" y="136" width="245.33333333333337" height="245.33333333333337"/>
+                                <rect key="frame" x="138.66666666666666" y="82" width="124.66666666666666" height="125"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="ahu-xP-0ns" secondAttribute="height" multiplier="1:1" id="5im-Qp-lF0"/>
                                 </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <integer key="value" value="15"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                             </imageView>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="username: " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BMC-Pu-MpU">
+                                <rect key="frame" x="155.66666666666666" y="227" width="91" height="21"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="fKb-ri-MVk"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="ahu-xP-0ns" firstAttribute="width" secondItem="0zR-QR-Ksb" secondAttribute="width" multiplier="0.610687" id="1a2-jX-8fK"/>
+                            <constraint firstItem="ahu-xP-0ns" firstAttribute="width" secondItem="0zR-QR-Ksb" secondAttribute="width" multiplier="0.310687" id="1a2-jX-8fK"/>
                             <constraint firstItem="wtD-rm-xyY" firstAttribute="centerX" secondItem="0zR-QR-Ksb" secondAttribute="centerX" id="7QB-Mn-RAE"/>
                             <constraint firstItem="ahu-xP-0ns" firstAttribute="centerX" secondItem="fKb-ri-MVk" secondAttribute="centerX" id="QWc-DN-Ew8"/>
-                            <constraint firstItem="BMC-Pu-MpU" firstAttribute="centerY" secondItem="0zR-QR-Ksb" secondAttribute="centerY" id="VuR-ye-4Ru"/>
+                            <constraint firstItem="BMC-Pu-MpU" firstAttribute="top" secondItem="ahu-xP-0ns" secondAttribute="bottom" constant="20" id="Ui3-2U-g8J"/>
                             <constraint firstItem="wtD-rm-xyY" firstAttribute="centerY" secondItem="0zR-QR-Ksb" secondAttribute="centerY" id="bVM-rM-J44"/>
-                            <constraint firstItem="ahu-xP-0ns" firstAttribute="top" secondItem="fKb-ri-MVk" secondAttribute="top" constant="74" id="mhT-1d-eoN"/>
+                            <constraint firstItem="ahu-xP-0ns" firstAttribute="top" secondItem="fKb-ri-MVk" secondAttribute="top" constant="20" id="mhT-1d-eoN"/>
                             <constraint firstItem="BMC-Pu-MpU" firstAttribute="centerX" secondItem="0zR-QR-Ksb" secondAttribute="centerX" id="qfB-DY-epG"/>
                         </constraints>
                     </view>

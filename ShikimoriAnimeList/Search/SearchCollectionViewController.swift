@@ -8,23 +8,53 @@
 import UIKit
 
 final class SearchCollectionViewController: UICollectionViewController {
-    
-    private let searchController = UISearchController(searchResultsController: nil)
+//    private let activityIndicator = UIActivityIndicatorView(style: .large)
+    private let loadingView: UIView = {
+        let view = UIView()
+        view.backgroundColor = UIColor.black.withAlphaComponent(0.5)
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.isHidden = true
+        return view
+    }()
     
     var viewModel: SearchViewModelProtocol!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupSearchController()
+        setupLoadingView()
         viewModel = SearchViewModel()
     }
     
     private func setupSearchController() {
+        let searchController = UISearchController(searchResultsController: nil)
         searchController.searchResultsUpdater = self
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.searchBar.placeholder = "Поиск"
         navigationItem.searchController = searchController
         definesPresentationContext = true
+    }
+    
+    private func setupLoadingView() {
+        view.addSubview(loadingView)
+        NSLayoutConstraint.activate([
+            loadingView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            loadingView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            loadingView.topAnchor.constraint(equalTo: view.topAnchor),
+            loadingView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+        ])
+        
+        let activityIndicator = UIActivityIndicatorView(style: .large)
+        activityIndicator.hidesWhenStopped = true
+        activityIndicator.translatesAutoresizingMaskIntoConstraints = false
+        loadingView.addSubview(activityIndicator)
+        
+        NSLayoutConstraint.activate([
+            activityIndicator.centerXAnchor.constraint(equalTo: loadingView.centerXAnchor),
+            activityIndicator.centerYAnchor.constraint(equalTo: loadingView.centerYAnchor)
+        ])
+        
+        activityIndicator.startAnimating()
     }
 }
 
@@ -106,8 +136,12 @@ extension SearchCollectionViewController: UIContextMenuInteractionDelegate {
 extension SearchCollectionViewController: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
         guard let query = searchController.searchBar.text else { return }
-        viewModel.fetchAnimes(name: query) { [unowned self] in
-            collectionView.reloadData()
+        if query != "" {
+            loadingView.isHidden = false
+            viewModel.fetchAnimes(name: query) { [unowned self] in
+                loadingView.isHidden = true
+                collectionView.reloadData()
+            }
         }
     }
 }

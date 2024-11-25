@@ -8,7 +8,7 @@
 import Foundation
 
 protocol ProfileViewModelProtocol {
-    var username: String { get }
+    var username: String? { get }
     var url: URL { get }
     var avatarUrl: URL? { get }
     var isLoggedIn: Bool { get }
@@ -17,8 +17,8 @@ protocol ProfileViewModelProtocol {
 }
 
 final class ProfileViewModel: ProfileViewModelProtocol {
-    var username: String {
-        "username: \(user?.nickname ?? "")"
+    var username: String? {
+        user?.nickname
     }
     
     var avatarUrl: URL? {
