@@ -13,6 +13,7 @@ protocol UserRateDetailsViewModelProtocol {
     var animeName: String? { get }
     var episodesWatched: String { get }
     var rewatches: String { get }
+    var totalEpisodes: String { get }
     var status: UserRateStatusEnum { get }
     var statusPublisher: Published<UserRateStatusEnum>.Publisher { get }
     var numberOfWatchedEpisodesPublisher: Published<String>.Publisher { get }
@@ -42,6 +43,14 @@ final class UserRateDetailsViewModel: UserRateDetailsViewModelProtocol {
 
     var rewatches: String {
         "\(userRate.rewatches)"
+    }
+    
+    var totalEpisodes: String {
+        if let episodesAired = userRate.anime?.episodesAired, episodesAired != 0 {
+            return "/\(episodesAired)"
+        } else {
+            return "/\(userRate.anime?.episodes ?? 0)"
+        }
     }
 
     var statusPublisher: Published<UserRateStatusEnum>.Publisher {

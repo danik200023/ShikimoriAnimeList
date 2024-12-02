@@ -23,19 +23,58 @@ final class UserRatesCellViewModel: UserRatesCellViewModelProtocol {
     }
     
     var details: String {
-        if let year = userRate.anime?.airedOn?.year {
-            return "\(year) • \(userRate.anime?.kind?.rawValue ?? "") • \(userRate.anime?.episodes ?? 0)"
-        } else {
-            return "\(userRate.anime?.status?.rawValue ?? "") • \(userRate.anime?.kind?.rawValue ?? "") • \(userRate.anime?.episodes ?? 0)"
-        }
+        "\(yearOrStatus) • \(kind)"
     }
     
     var watchedEpisodes: String {
-        "\(userRate.episodes)"
+        let episodesAired = userRate.anime?.episodesAired ?? 0
+        return "\(userRate.episodes)/\(episodesAired != 0 ? episodesAired : userRate.anime?.episodes ?? 0)"
     }
     
     var posterUrl: URL {
         URL(string: userRate.anime?.poster?.mainUrl ?? "https://shikimori.one/assets/globals/missing/main@2x.png")!
+    }
+    
+    private var kind: String {
+        switch userRate.anime?.kind?.value {
+        case .tv:
+            return "TV"
+        case .movie:
+            return "Фильм"
+        case .ova:
+            return "OVA"
+        case .ona:
+            return "ONA"
+        case .special:
+            return "Спецвыпуск"
+        case .tvSpecial:
+            return "TV спецвыпуск"
+        case .music:
+            return "Клип"
+        case .pv:
+            return "Проморолик"
+        case .cm:
+            return "Реклама"
+        case .none:
+            return ""
+        }
+    }
+    
+    private var yearOrStatus: String {
+        if let year = userRate.anime?.airedOn?.year {
+            return "\(year)"
+        } else {
+            switch userRate.anime?.status?.value {
+            case .anons:
+                return "Анонс"
+            case .ongoing:
+                return "Онгоинг"
+            case .released:
+                return "Релиз"
+            case .none:
+                return ""
+            }
+        }
     }
     
     private let userRate: UserRatesQuery.Data.UserRate

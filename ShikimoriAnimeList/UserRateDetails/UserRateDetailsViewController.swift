@@ -18,6 +18,7 @@ class UserRateDetailsViewController: UIViewController {
     @IBOutlet var onHoldButton: UIButton!
     @IBOutlet var droppedButton: UIButton!
     @IBOutlet var watchedEpisodesTextField: UITextField!
+    @IBOutlet var totalEpisodeslabel: UILabel!
     @IBOutlet var rewatchesTextField: UITextField!
 
     var viewModel: UserRateDetailsViewModelProtocol!
@@ -37,6 +38,7 @@ class UserRateDetailsViewController: UIViewController {
 
     private func setupUI() {
         animeNameLabel.text = viewModel.animeName
+        totalEpisodeslabel.text = viewModel.totalEpisodes
         rewatchesTextField.text = viewModel.rewatches
 
         let toolbar = UIToolbar()

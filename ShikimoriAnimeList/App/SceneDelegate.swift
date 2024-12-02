@@ -29,7 +29,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                     from: "https://shikimori.one/api/users/whoami"
                 ) { result in
                     switch result {
-                    case .success(_):
+                    case .success(let loadedUser):
+                        UserDefaults.standard.set(loadedUser.id, forKey: "userId")
                         AuthManager.shared.isLoggedIn = true
                     case .failure(_): break
                     }
