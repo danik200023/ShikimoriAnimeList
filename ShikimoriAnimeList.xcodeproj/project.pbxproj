@@ -28,6 +28,8 @@
 		836928532CA69FEC00EE7B2A /* OAuthAuthenticator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 836928522CA69FEC00EE7B2A /* OAuthAuthenticator.swift */; };
 		836928552CA6A10500EE7B2A /* OAuthToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 836928542CA6A10500EE7B2A /* OAuthToken.swift */; };
 		836AC5432CA6B0EE00F786A2 /* UserDefaults+OAuthToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 836AC5422CA6B0ED00F786A2 /* UserDefaults+OAuthToken.swift */; };
+		83B006482D0C335B006A499F /* LoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83B006472D0C335B006A499F /* LoadingViewController.swift */; };
+		83B0064C2D0C3568006A499F /* RootTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83B0064B2D0C3568006A499F /* RootTabBarController.swift */; };
 		83B76A462CD6302800F6639B /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83B76A432CD6302800F6639B /* ProfileViewController.swift */; };
 		83B76A472CD6302800F6639B /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83B76A442CD6302800F6639B /* ProfileViewModel.swift */; };
 		83B76A4D2CD6422100F6639B /* AuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83B76A4C2CD6422100F6639B /* AuthManager.swift */; };
@@ -75,6 +77,8 @@
 		836928522CA69FEC00EE7B2A /* OAuthAuthenticator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OAuthAuthenticator.swift; sourceTree = "<group>"; };
 		836928542CA6A10500EE7B2A /* OAuthToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OAuthToken.swift; sourceTree = "<group>"; };
 		836AC5422CA6B0ED00F786A2 /* UserDefaults+OAuthToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+OAuthToken.swift"; sourceTree = "<group>"; };
+		83B006472D0C335B006A499F /* LoadingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingViewController.swift; sourceTree = "<group>"; };
+		83B0064B2D0C3568006A499F /* RootTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootTabBarController.swift; sourceTree = "<group>"; };
 		83B76A432CD6302800F6639B /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		83B76A442CD6302800F6639B /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 		83B76A4C2CD6422100F6639B /* AuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthManager.swift; sourceTree = "<group>"; };
@@ -158,6 +162,8 @@
 				83F66ED62CC1B08600F2F4E3 /* AnimeDetails */,
 				8309DD132CC9300000195D14 /* AnimeCell */,
 				83B76A452CD6302800F6639B /* Profile */,
+				83B0064A2D0C34D4006A499F /* RootTabBar */,
+				83B006462D0C3336006A499F /* Loading */,
 				832398212C6B926500EC4833 /* Storyboards */,
 				832398222C6B929000EC4833 /* Models */,
 				832398252C6E3D2400EC4833 /* Services */,
@@ -220,6 +226,22 @@
 				8353B8062CDCE24C007CE683 /* UserRateDetailsViewModel.swift */,
 			);
 			path = UserRateDetails;
+			sourceTree = "<group>";
+		};
+		83B006462D0C3336006A499F /* Loading */ = {
+			isa = PBXGroup;
+			children = (
+				83B006472D0C335B006A499F /* LoadingViewController.swift */,
+			);
+			path = Loading;
+			sourceTree = "<group>";
+		};
+		83B0064A2D0C34D4006A499F /* RootTabBar */ = {
+			isa = PBXGroup;
+			children = (
+				83B0064B2D0C3568006A499F /* RootTabBarController.swift */,
+			);
+			path = RootTabBar;
 			sourceTree = "<group>";
 		};
 		83B76A452CD6302800F6639B /* Profile */ = {
@@ -360,12 +382,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				83B76A5A2CD6538A00F6639B /* UserRatesCellViewModel.swift in Sources */,
+				83B0064C2D0C3568006A499F /* RootTabBarController.swift in Sources */,
 				83F66ED52CC1AD8000F2F4E3 /* OngoingsViewModel.swift in Sources */,
 				83D3997C2CCA776000ADDB7A /* SearchCollectionViewController.swift in Sources */,
 				832398242C6B96E500EC4833 /* Anime.swift in Sources */,
 				83D399802CCBE0C400ADDB7A /* OngoingCalendar.swift in Sources */,
 				83F66ED82CC1B0E900F2F4E3 /* AnimeDetailsViewModel.swift in Sources */,
 				8309DD162CC9303100195D14 /* AnimeCellViewModel.swift in Sources */,
+				83B006482D0C335B006A499F /* LoadingViewController.swift in Sources */,
 				832398102C6B921C00EC4833 /* OngoingsCollectionViewController.swift in Sources */,
 				83D3997E2CCA807F00ADDB7A /* SearchViewModel.swift in Sources */,
 				8323982A2C6E569600EC4833 /* AnimeCell.swift in Sources */,

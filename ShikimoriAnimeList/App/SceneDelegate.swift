@@ -14,13 +14,13 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         
+        let window = UIWindow(windowScene: windowScene)
+        self.window = window
+        
         if let token = UserDefaults.standard.getOAuthToken() {
             if token.requiresRefresh {
-                let window = UIWindow(windowScene: windowScene)
-                self.window = window
                 
-                let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                let loadingVC = storyboard.instantiateViewController(withIdentifier: "LoadingViewController")
+                let loadingVC = LoadingViewController()
                 window.rootViewController = loadingVC
                 window.makeKeyAndVisible()
                 
@@ -35,14 +35,20 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                     case .failure(_): break
                     }
                     
-                    let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                    let tabBarVC = storyboard.instantiateViewController(withIdentifier: "MainTabBarController")
+                    let tabBarVC = RootTabBarController()
                     window.rootViewController = tabBarVC
+                    window.makeKeyAndVisible()
                 }
             } else {
                 AuthManager.shared.isLoggedIn = true
+                let tabBarVC = RootTabBarController()
+                window.rootViewController = tabBarVC
+                window.makeKeyAndVisible()
             }
         }
+        let tabBarVC = RootTabBarController()
+        window.rootViewController = tabBarVC
+        window.makeKeyAndVisible()
     }
 }
 

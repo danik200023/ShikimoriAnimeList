@@ -867,7 +867,7 @@
                                 </connections>
                             </button>
                             <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ahu-xP-0ns">
-                                <rect key="frame" x="138.66666666666666" y="82" width="124.66666666666666" height="125"/>
+                                <rect key="frame" x="140.66666666666666" y="82" width="120.66666666666666" height="120.66666666666669"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="ahu-xP-0ns" secondAttribute="height" multiplier="1:1" id="5im-Qp-lF0"/>
                                 </constraints>
@@ -878,7 +878,7 @@
                                 </userDefinedRuntimeAttributes>
                             </imageView>
                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="username: " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BMC-Pu-MpU">
-                                <rect key="frame" x="155.66666666666666" y="227" width="91" height="21"/>
+                                <rect key="frame" x="155.66666666666666" y="222.66666666666666" width="91" height="21"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -887,7 +887,7 @@
                         <viewLayoutGuide key="safeArea" id="fKb-ri-MVk"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="ahu-xP-0ns" firstAttribute="width" secondItem="0zR-QR-Ksb" secondAttribute="width" multiplier="0.310687" id="1a2-jX-8fK"/>
+                            <constraint firstItem="ahu-xP-0ns" firstAttribute="width" secondItem="0zR-QR-Ksb" secondAttribute="width" multiplier="0.3" id="1a2-jX-8fK"/>
                             <constraint firstItem="wtD-rm-xyY" firstAttribute="centerX" secondItem="0zR-QR-Ksb" secondAttribute="centerX" id="7QB-Mn-RAE"/>
                             <constraint firstItem="ahu-xP-0ns" firstAttribute="centerX" secondItem="fKb-ri-MVk" secondAttribute="centerX" id="QWc-DN-Ew8"/>
                             <constraint firstItem="BMC-Pu-MpU" firstAttribute="top" secondItem="ahu-xP-0ns" secondAttribute="bottom" constant="20" id="Ui3-2U-g8J"/>
@@ -946,7 +946,7 @@
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemRedColor">
-            <color red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
