@@ -6,9 +6,8 @@
 //
 
 import UIKit
-import SafariServices
 import Kingfisher
-import SwiftUI
+import Combine
 
 final class ProfileViewController: UIViewController {
     private let avatarImageView: UIImageView = {
@@ -26,11 +25,43 @@ final class ProfileViewController: UIViewController {
         return usernameLabel
     }()
     
-    private let loginButton: UIButton = {
-        let loginButton = UIButton(configuration: .plain())
-        loginButton.translatesAutoresizingMaskIntoConstraints = false
-        loginButton.setTitle("Login with Shikimori", for: .normal)
+    private let loginLabel: UILabel = {
+        let loginLabel = UILabel()
+        loginLabel.text = "Войдите, чтобы увидеть профиль"
+        loginLabel.numberOfLines = 0
+        return loginLabel
+    }()
+    
+    private let registerButton: UIButton = {
+        let registerButton = UIButton(configuration: .gray())
+        registerButton.setTitle("Создать аккаунт", for: .normal)
+        return registerButton
+    }()
+    
+    private lazy var loginButton: UIButton = {
+        let loginButton = UIButton(configuration: .filled())
+        loginButton.setTitle("Войти", for: .normal)
+        loginButton.addTarget(self, action: #selector(loginButtonAction), for: .touchUpInside)
         return loginButton
+    }()
+    
+    private lazy var buttonsStackView: UIStackView = {
+        let stackView = UIStackView(arrangedSubviews: [registerButton, loginButton])
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.axis = .horizontal
+        stackView.spacing = 30
+        stackView.distribution = .fillProportionally
+        return stackView
+    }()
+    
+    private lazy var loginStackView: UIStackView = {
+        let stackView = UIStackView(arrangedSubviews: [loginLabel, buttonsStackView])
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.axis = .vertical
+        stackView.alignment = .center
+        stackView.spacing = 30
+        stackView.distribution = .fillProportionally
+        return stackView
     }()
     
     var viewModel: ProfileViewModelProtocol! {
@@ -41,21 +72,27 @@ final class ProfileViewController: UIViewController {
         }
     }
     
-    var oAuthVC: SFSafariViewController!
+    private var cancellables = Set<AnyCancellable>()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         viewModel = ProfileViewModel()
+        
+        NotificationCenter.default.publisher(for: .authStatusChanged)
+            .sink { [unowned self] _ in
+                refreshUI()
+            }
+            .store(in: &cancellables)
+        
         configureAvatarImageView()
         configureUsernameLabel()
-        configureLoginButton()
+        configureLoginStackView()
         setupUI()
     }
     
     @objc
     func loginButtonAction() {
-        oAuthVC = SFSafariViewController(url: viewModel.url)
-        self.present(oAuthVC, animated: true)
+        viewModel.loginButtonAction()
     }
     
     func refreshUI() {
@@ -82,17 +119,16 @@ final class ProfileViewController: UIViewController {
         ])
     }
     
-    private func configureLoginButton() {
-        loginButton.addTarget(self, action: #selector(loginButtonAction), for: .touchUpInside)
-        view.addSubview(loginButton)
+    private func configureLoginStackView() {
+        view.addSubview(loginStackView)
         NSLayoutConstraint.activate([
-            loginButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            loginButton.centerYAnchor.constraint(equalTo: view.centerYAnchor)
+            loginStackView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            loginStackView.centerYAnchor.constraint(equalTo: view.centerYAnchor)
         ])
     }
     
     private func setupUI() {
-        loginButton.isHidden = viewModel.isLoggedIn
+        loginStackView.isHidden = viewModel.isLoggedIn
         usernameLabel.isHidden = !viewModel.isLoggedIn
         avatarImageView.isHidden = !viewModel.isLoggedIn
         
@@ -103,27 +139,3 @@ final class ProfileViewController: UIViewController {
         }
     }
 }
-
-// MARK: - Preview
-struct MyViewControllerPreview: PreviewProvider {
-    static var previews: some View {
-        UIViewControllerPreview {
-            ProfileViewController()
-        }
-    }
-}
-
-struct UIViewControllerPreview<ViewController: UIViewController>: UIViewControllerRepresentable {
-    let viewController: ViewController
-
-    init(_ builder: @escaping () -> ViewController) {
-        self.viewController = builder()
-    }
-
-    func makeUIViewController(context: Context) -> ViewController {
-        return viewController
-    }
-
-    func updateUIViewController(_ uiViewController: ViewController, context: Context) {}
-}
-

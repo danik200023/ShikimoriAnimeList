@@ -13,6 +13,7 @@ protocol ProfileViewModelProtocol {
     var avatarUrl: URL? { get }
     var isLoggedIn: Bool { get }
     
+    func loginButtonAction()
     func loadData(completion: @escaping () -> Void)
 }
 
@@ -61,6 +62,15 @@ final class ProfileViewModel: ProfileViewModelProtocol {
                 if error.responseCode == 400 {
                     print("error 400")
                 }
+            }
+        }
+    }
+    
+    func loginButtonAction() {
+        AuthManager.shared.startAuthentication { result in
+            switch result {
+            case .success(_): break
+            case .failure(_): break
             }
         }
     }

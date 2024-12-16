@@ -68,10 +68,6 @@ class UserRatesViewController: UIViewController {
             }
         }
     }
-    
-    deinit {
-        NotificationCenter.default.removeObserver(self, name: .authStatusChanged, object: nil)
-    }
 }
 
 //MARK: - UITableViewDelegate
