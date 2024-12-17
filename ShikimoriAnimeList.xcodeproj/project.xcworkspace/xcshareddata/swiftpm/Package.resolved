@@ -1,31 +1,31 @@
 {
-  "originHash" : "8d3693f56c6815724422f80a61b2510d2d19c61054ff800a57e92f72373f8d98",
+  "originHash" : "fb4fbdaa6063a68dbc68157d2650c12bdf5ded61122f3d63f9a34aa5f6cb446e",
   "pins" : [
     {
       "identity" : "alamofire",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/Alamofire/Alamofire.git",
+      "location" : "https://github.com/Alamofire/Alamofire",
       "state" : {
-        "revision" : "e16d3481f5ed35f0472cb93350085853d754913f",
-        "version" : "5.10.1"
+        "revision" : "513364f870f6bfc468f9d2ff0a95caccc10044c5",
+        "version" : "5.10.2"
       }
     },
     {
       "identity" : "apollo-ios",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/apollographql/apollo-ios.git",
+      "location" : "https://github.com/apollographql/apollo-ios",
       "state" : {
-        "revision" : "7122421c2ba9ce2d252943cef055c74ef56ea431",
-        "version" : "1.15.2"
+        "revision" : "c3f48d45ec1300bc95243bf19f67284f9dc0d14a",
+        "version" : "1.15.3"
       }
     },
     {
       "identity" : "kingfisher",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/onevcat/Kingfisher.git",
+      "location" : "https://github.com/onevcat/Kingfisher",
       "state" : {
-        "revision" : "c0940e241945e6378c01fbd45fd3815579d47ef5",
-        "version" : "8.1.0"
+        "revision" : "623e1595526a2034dc49eda264a4d174e90dac64",
+        "version" : "8.1.2"
       }
     },
     {

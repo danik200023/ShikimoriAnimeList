@@ -12,18 +12,21 @@ class RootTabBarController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let userRatesVC = UserRatesViewController()
-        let ongoingsVC = OngoingsCollectionViewController()
-        let searchVC = SearchCollectionViewController()
+        
+        let userRatesVC = UINavigationController(rootViewController: UserRatesViewController())
+        let ongoingsVC = UINavigationController(rootViewController: OngoingsCollectionViewController())
+        let searchVC = UINavigationController(rootViewController: SearchCollectionViewController())
         let profileVC = ProfileViewController()
         
-        let loadingVC = LoadingViewController()
-        
-        userRatesVC.tabBarItem.image = UIImage(systemName: "person.circle")
+        userRatesVC.tabBarItem.image = UIImage(systemName: "list.clipboard")
+        userRatesVC.tabBarItem.title = "Список"
         ongoingsVC.tabBarItem.image = UIImage(systemName: "clock")
+        ongoingsVC.tabBarItem.title = "Онгоинги"
         searchVC.tabBarItem.image = UIImage(systemName: "magnifyingglass")
+        searchVC.tabBarItem.title = "Поиск"
         profileVC.tabBarItem.image = UIImage(systemName: "person")
+        profileVC.tabBarItem.title = "Профиль"
         
-        viewControllers = [loadingVC, profileVC]
+        viewControllers = [userRatesVC, profileVC]
     }
 }

@@ -21,8 +21,6 @@
 		832398272C6E3D7900EC4833 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 832398262C6E3D7800EC4833 /* NetworkManager.swift */; };
 		8323982A2C6E569600EC4833 /* AnimeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 832398292C6E569600EC4833 /* AnimeCell.swift */; };
 		8326C30E2CCFEAC1008E9635 /* AnimePosters.graphql in Resources */ = {isa = PBXBuildFile; fileRef = 8326C30D2CCFEAB2008E9635 /* AnimePosters.graphql */; };
-		833418A62CD0295D007EDF63 /* Apollo in Frameworks */ = {isa = PBXBuildFile; productRef = 833418A52CD0295D007EDF63 /* Apollo */; };
-		833418A92CD029F4007EDF63 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 833418A82CD029F4007EDF63 /* Alamofire */; };
 		8353B8052CDCDCEB007CE683 /* UserRateDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8353B8042CDCDCEB007CE683 /* UserRateDetailsViewController.swift */; };
 		8353B8072CDCE257007CE683 /* UserRateDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8353B8062CDCE24C007CE683 /* UserRateDetailsViewModel.swift */; };
 		836928532CA69FEC00EE7B2A /* OAuthAuthenticator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 836928522CA69FEC00EE7B2A /* OAuthAuthenticator.swift */; };
@@ -40,14 +38,16 @@
 		83B76A5C2CD67B0400F6639B /* UserRates.graphql in Resources */ = {isa = PBXBuildFile; fileRef = 83B76A5B2CD67ADD00F6639B /* UserRates.graphql */; };
 		83BE51292C6F216F00CF0DB8 /* AnimeDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83BE51282C6F216F00CF0DB8 /* AnimeDetailsViewController.swift */; };
 		83C6A03F2CD2A10700BBBFF3 /* AnimeSearch.graphql in Resources */ = {isa = PBXBuildFile; fileRef = 83C6A03E2CD2A0FB00BBBFF3 /* AnimeSearch.graphql */; };
-		83C6A0422CD2A35C00BBBFF3 /* ShikimoriAPI in Frameworks */ = {isa = PBXBuildFile; productRef = 83C6A0412CD2A35C00BBBFF3 /* ShikimoriAPI */; };
 		83C6A04A2CD4017800BBBFF3 /* GraphQLAuthorizationInterceptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83C6A0492CD4017800BBBFF3 /* GraphQLAuthorizationInterceptor.swift */; };
+		83CB825C2D11568900DEC71F /* ShikimoriAPI in Frameworks */ = {isa = PBXBuildFile; productRef = 83CB825B2D11568900DEC71F /* ShikimoriAPI */; };
+		83CB825F2D11571700DEC71F /* Apollo in Frameworks */ = {isa = PBXBuildFile; productRef = 83CB825E2D11571700DEC71F /* Apollo */; };
+		83CB82622D11577200DEC71F /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 83CB82612D11577200DEC71F /* Alamofire */; };
+		83CB82652D1157D700DEC71F /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 83CB82642D1157D700DEC71F /* Kingfisher */; };
 		83D3997C2CCA776000ADDB7A /* SearchCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83D3997B2CCA776000ADDB7A /* SearchCollectionViewController.swift */; };
 		83D3997E2CCA807F00ADDB7A /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83D3997D2CCA807F00ADDB7A /* SearchViewModel.swift */; };
 		83D399802CCBE0C400ADDB7A /* OngoingCalendar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83D3997F2CCBE0C400ADDB7A /* OngoingCalendar.swift */; };
 		83D399822CCBF85600ADDB7A /* OngoingCellHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83D399812CCBF85600ADDB7A /* OngoingCellHeader.swift */; };
 		83D399842CCBFB0C00ADDB7A /* OngoingCellHeaderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83D399832CCBFB0C00ADDB7A /* OngoingCellHeaderViewModel.swift */; };
-		83EE3BDB2CD01AB30082B692 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 83EE3BDA2CD01AB30082B692 /* Kingfisher */; };
 		83F66ED52CC1AD8000F2F4E3 /* OngoingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83F66ED42CC1AD8000F2F4E3 /* OngoingsViewModel.swift */; };
 		83F66ED82CC1B0E900F2F4E3 /* AnimeDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83F66ED72CC1B0E900F2F4E3 /* AnimeDetailsViewModel.swift */; };
 		83F66EDA2CC2619100F2F4E3 /* AnimeDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83F66ED92CC2619100F2F4E3 /* AnimeDetails.swift */; };
@@ -107,10 +107,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				833418A92CD029F4007EDF63 /* Alamofire in Frameworks */,
-				83C6A0422CD2A35C00BBBFF3 /* ShikimoriAPI in Frameworks */,
-				83EE3BDB2CD01AB30082B692 /* Kingfisher in Frameworks */,
-				833418A62CD0295D007EDF63 /* Apollo in Frameworks */,
+				83CB82652D1157D700DEC71F /* Kingfisher in Frameworks */,
+				83CB82622D11577200DEC71F /* Alamofire in Frameworks */,
+				83CB825C2D11568900DEC71F /* ShikimoriAPI in Frameworks */,
+				83CB825F2D11571700DEC71F /* Apollo in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -140,6 +140,7 @@
 			isa = PBXGroup;
 			children = (
 				8323980A2C6B921C00EC4833 /* ShikimoriAnimeList */,
+				83CB825A2D11568900DEC71F /* Frameworks */,
 				832398092C6B921C00EC4833 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -264,6 +265,13 @@
 			path = UserRates;
 			sourceTree = "<group>";
 		};
+		83CB825A2D11568900DEC71F /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		83D3997A2CCA723400ADDB7A /* Search */ = {
 			isa = PBXGroup;
 			children = (
@@ -312,10 +320,10 @@
 			);
 			name = ShikimoriAnimeList;
 			packageProductDependencies = (
-				83EE3BDA2CD01AB30082B692 /* Kingfisher */,
-				833418A52CD0295D007EDF63 /* Apollo */,
-				833418A82CD029F4007EDF63 /* Alamofire */,
-				83C6A0412CD2A35C00BBBFF3 /* ShikimoriAPI */,
+				83CB825B2D11568900DEC71F /* ShikimoriAPI */,
+				83CB825E2D11571700DEC71F /* Apollo */,
+				83CB82612D11577200DEC71F /* Alamofire */,
+				83CB82642D1157D700DEC71F /* Kingfisher */,
 			);
 			productName = ShikimoriAnimeList;
 			productReference = 832398082C6B921C00EC4833 /* Shikimori.app */;
@@ -346,10 +354,10 @@
 			);
 			mainGroup = 832397FF2C6B921C00EC4833;
 			packageReferences = (
-				83EE3BD92CD01AB30082B692 /* XCRemoteSwiftPackageReference "Kingfisher" */,
-				833418A42CD0295D007EDF63 /* XCRemoteSwiftPackageReference "apollo-ios" */,
-				833418A72CD029F4007EDF63 /* XCRemoteSwiftPackageReference "Alamofire" */,
 				83C6A0402CD2A35C00BBBFF3 /* XCLocalSwiftPackageReference "ShikimoriAPI" */,
+				83CB825D2D11571700DEC71F /* XCRemoteSwiftPackageReference "apollo-ios" */,
+				83CB82602D11577200DEC71F /* XCRemoteSwiftPackageReference "Alamofire" */,
+				83CB82632D1157D700DEC71F /* XCRemoteSwiftPackageReference "Kingfisher" */,
 			);
 			productRefGroup = 832398092C6B921C00EC4833 /* Products */;
 			projectDirPath = "";
@@ -573,7 +581,6 @@
 				INFOPLIST_FILE = ShikimoriAnimeList/App/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
@@ -606,7 +613,6 @@
 				INFOPLIST_FILE = ShikimoriAnimeList/App/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
@@ -658,50 +664,51 @@
 /* End XCLocalSwiftPackageReference section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		833418A42CD0295D007EDF63 /* XCRemoteSwiftPackageReference "apollo-ios" */ = {
+		83CB825D2D11571700DEC71F /* XCRemoteSwiftPackageReference "apollo-ios" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/apollographql/apollo-ios.git";
+			repositoryURL = "https://github.com/apollographql/apollo-ios";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 1.15.2;
+				minimumVersion = 1.15.3;
 			};
 		};
-		833418A72CD029F4007EDF63 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+		83CB82602D11577200DEC71F /* XCRemoteSwiftPackageReference "Alamofire" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
+			repositoryURL = "https://github.com/Alamofire/Alamofire";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 5.10.1;
+				minimumVersion = 5.10.2;
 			};
 		};
-		83EE3BD92CD01AB30082B692 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+		83CB82632D1157D700DEC71F /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
+			repositoryURL = "https://github.com/onevcat/Kingfisher";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 8.1.0;
+				minimumVersion = 8.1.2;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		833418A52CD0295D007EDF63 /* Apollo */ = {
+		83CB825B2D11568900DEC71F /* ShikimoriAPI */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 833418A42CD0295D007EDF63 /* XCRemoteSwiftPackageReference "apollo-ios" */;
-			productName = Apollo;
-		};
-		833418A82CD029F4007EDF63 /* Alamofire */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 833418A72CD029F4007EDF63 /* XCRemoteSwiftPackageReference "Alamofire" */;
-			productName = Alamofire;
-		};
-		83C6A0412CD2A35C00BBBFF3 /* ShikimoriAPI */ = {
-			isa = XCSwiftPackageProductDependency;
+			package = 83C6A0402CD2A35C00BBBFF3 /* XCLocalSwiftPackageReference "ShikimoriAPI" */;
 			productName = ShikimoriAPI;
 		};
-		83EE3BDA2CD01AB30082B692 /* Kingfisher */ = {
+		83CB825E2D11571700DEC71F /* Apollo */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 83EE3BD92CD01AB30082B692 /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			package = 83CB825D2D11571700DEC71F /* XCRemoteSwiftPackageReference "apollo-ios" */;
+			productName = Apollo;
+		};
+		83CB82612D11577200DEC71F /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 83CB82602D11577200DEC71F /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
+		};
+		83CB82642D1157D700DEC71F /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 83CB82632D1157D700DEC71F /* XCRemoteSwiftPackageReference "Kingfisher" */;
 			productName = Kingfisher;
 		};
 /* End XCSwiftPackageProductDependency section */

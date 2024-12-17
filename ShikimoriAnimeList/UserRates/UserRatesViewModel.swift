@@ -30,7 +30,8 @@ final class UserRatesViewModel: UserRatesViewModelProtocol {
     }
     
     func numberOfRowsInSection(_ section: Int, andTab tab: Int) -> Int {
-        userRates[tab].count
+        print(userRates[tab].count)
+        return userRates[tab].count
     }
     
     func fetchUserRates(completion: @escaping () -> Void) {
@@ -65,7 +66,6 @@ final class UserRatesViewModel: UserRatesViewModelProtocol {
                     fetchUserRates(page: page + 1, completion: completion)
                 } else {
                     completion()
-                    dump(userRates)
                 }
             case .failure(let error):
                 print(error)

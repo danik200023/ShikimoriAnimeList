@@ -251,10 +251,10 @@
             </objects>
             <point key="canvasLocation" x="533" y="-1131"/>
         </scene>
-        <!--User Rates View Controller-->
+        <!--View Controller-->
         <scene sceneID="sYx-Lv-fXv">
             <objects>
-                <viewController id="BA0-BM-6N3" customClass="UserRatesViewController" customModule="Shikimori" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BA0-BM-6N3" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="aLg-Wv-Xdq">
                         <rect key="frame" x="0.0" y="0.0" width="402" height="874"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -309,9 +309,6 @@
                                                     <rect key="frame" x="340" y="123.66666666666667" width="46" height="34.333333333333329"/>
                                                     <state key="normal" title="Button"/>
                                                     <buttonConfiguration key="configuration" style="tinted" image="pencil" catalog="system"/>
-                                                    <connections>
-                                                        <action selector="editButtonAction" destination="2u9-KW-Eh2" eventType="touchUpInside" id="j3c-98-4RQ"/>
-                                                    </connections>
                                                 </button>
                                             </subviews>
                                             <constraints>
@@ -331,12 +328,6 @@
                                                 <constraint firstItem="I9l-4C-Ii6" firstAttribute="leading" secondItem="Ycp-h5-jfx" secondAttribute="trailing" constant="16" id="sNN-fv-G8P"/>
                                             </constraints>
                                         </tableViewCellContentView>
-                                        <connections>
-                                            <outlet property="animeImageView" destination="Ycp-h5-jfx" id="wnc-cQ-7Iw"/>
-                                            <outlet property="animeNameLabel" destination="cMY-Wg-Svt" id="8A9-Th-klA"/>
-                                            <outlet property="detailsLabel" destination="mN4-zo-mo7" id="262-22-Nlq"/>
-                                            <outlet property="watchedEpisodesLabel" destination="I9l-4C-Ii6" id="iJI-4j-l3a"/>
-                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                                 <sections/>
@@ -362,9 +353,6 @@
                                                 <rect key="frame" x="186.66666666666669" y="0.0" width="72.666666666666686" height="34.333333333333336"/>
                                                 <state key="normal" title="Button"/>
                                                 <buttonConfiguration key="configuration" style="filled" title="Войти"/>
-                                                <connections>
-                                                    <action selector="loginButtonAction" destination="BA0-BM-6N3" eventType="touchUpInside" id="VUk-L5-EAB"/>
-                                                </connections>
                                             </button>
                                         </subviews>
                                     </stackView>
@@ -392,15 +380,10 @@
                                 <segment title="Просмотрено"/>
                                 <segment title="Отложено"/>
                             </segments>
-                            <connections>
-                                <action selector="segmentChanged" destination="BA0-BM-6N3" eventType="valueChanged" id="Ogc-n8-89n"/>
-                            </connections>
                         </segmentedControl>
                     </navigationItem>
                     <connections>
                         <outlet property="animeListTableView" destination="XMH-KP-lHe" id="Rby-Ak-8pY"/>
-                        <outlet property="loginStackView" destination="dZG-Lz-wyu" id="xuV-nd-0zm"/>
-                        <outlet property="tableTabSegmentedControl" destination="HBL-2P-ikF" id="fUJ-cn-99h"/>
                         <segue destination="Apr-y3-rUO" kind="presentation" identifier="showRateDetails" id="Fdn-kb-NO8"/>
                     </connections>
                 </viewController>
