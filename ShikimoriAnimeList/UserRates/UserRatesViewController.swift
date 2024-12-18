@@ -95,20 +95,13 @@ class UserRatesViewController: UIViewController {
         setupUI()
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        guard let cell = sender as? UserRatesCell else { return }
-        if let detailsVC = segue.destination as? UserRateDetailsViewController {
-            detailsVC.viewModel = cell.viewModel.getUserRateDetailsViewModel()
-        }
-    }
-    
     @objc
-    func loginButtonAction() {
+    private func loginButtonAction() {
         viewModel.loginButtonAction()
     }
     
     @objc
-    func segmentChanged() {
+    private func segmentChanged() {
         animeListView.reloadData()
     }
     
@@ -140,6 +133,12 @@ class UserRatesViewController: UIViewController {
             animeListView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
         ])
     }
+    
+    private func showUserRateDetails(for cell: UserRatesCell) {
+        let detailsVC = UserRateDetailsViewController()
+        detailsVC.viewModel = cell.viewModel.getUserRateDetailsViewModel()
+        navigationController?.present(detailsVC, animated: true)
+    }
 }
 
 //MARK: - UITableViewDelegate
@@ -170,6 +169,6 @@ extension UserRatesViewController: UITableViewDataSource {
 
 extension UserRatesViewController: UserRatesCellDelegate {
     func editButtonButtonTapped(in cell: UserRatesCell) {
-        performSegue(withIdentifier: "showRateDetails", sender: cell)
+        showUserRateDetails(for: cell)
     }
 }

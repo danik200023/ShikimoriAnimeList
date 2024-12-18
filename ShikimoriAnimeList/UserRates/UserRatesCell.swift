@@ -29,7 +29,8 @@ final class UserRatesCell: UITableViewCell {
         let animeNameLabel = UILabel()
         animeNameLabel.translatesAutoresizingMaskIntoConstraints = false
         animeNameLabel.font = .systemFont(ofSize: 17, weight: .bold)
-        animeNameLabel.minimumScaleFactor = 0.8
+        animeNameLabel.adjustsFontSizeToFitWidth = true
+        animeNameLabel.minimumScaleFactor = 0.6
         animeNameLabel.numberOfLines = 0
         return animeNameLabel
     }()
@@ -38,7 +39,6 @@ final class UserRatesCell: UITableViewCell {
         let detailsLabel = UILabel()
         detailsLabel.translatesAutoresizingMaskIntoConstraints = false
         detailsLabel.font = .systemFont(ofSize: 17)
-        detailsLabel.minimumScaleFactor = 0.8
         return detailsLabel
     }()
     
@@ -46,7 +46,6 @@ final class UserRatesCell: UITableViewCell {
         let watchedEpisodesLabel = UILabel()
         watchedEpisodesLabel.translatesAutoresizingMaskIntoConstraints = false
         watchedEpisodesLabel.font = .systemFont(ofSize: 17)
-        watchedEpisodesLabel.minimumScaleFactor = 0.8
         return watchedEpisodesLabel
     }()
     
@@ -99,6 +98,7 @@ final class UserRatesCell: UITableViewCell {
             animeNameLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 16),
             animeNameLabel.leadingAnchor.constraint(equalTo: animeImageView.trailingAnchor, constant: 16),
             animeNameLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -6),
+            animeNameLabel.heightAnchor.constraint(lessThanOrEqualTo: contentView.heightAnchor, multiplier: 0.5)
         ])
     }
     
@@ -108,6 +108,7 @@ final class UserRatesCell: UITableViewCell {
             detailsLabel.topAnchor.constraint(equalTo: animeNameLabel.bottomAnchor, constant: 6),
             detailsLabel.leadingAnchor.constraint(equalTo: animeImageView.trailingAnchor, constant: 16),
             detailsLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -6),
+            detailsLabel.heightAnchor.constraint(equalToConstant: 21)
         ])
     }
     private func configureWatchedEpisodesLabel() {
@@ -115,6 +116,8 @@ final class UserRatesCell: UITableViewCell {
         NSLayoutConstraint.activate([
             watchedEpisodesLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -16),
             watchedEpisodesLabel.leadingAnchor.constraint(equalTo: animeImageView.trailingAnchor, constant: 16),
+            watchedEpisodesLabel.topAnchor.constraint(greaterThanOrEqualTo: detailsLabel.bottomAnchor, constant: 6),
+            watchedEpisodesLabel.heightAnchor.constraint(equalToConstant: 21)
         ])
     }
     
@@ -128,7 +131,7 @@ final class UserRatesCell: UITableViewCell {
     }
     
     @objc
-    func editButtonAction() {
+    private func editButtonAction() {
         delegate?.editButtonButtonTapped(in: self)
     }
 }

@@ -413,9 +413,6 @@
                                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                                         <state key="normal" image="eye" catalog="system"/>
                                                         <buttonConfiguration key="configuration" style="gray" image="eye" catalog="system"/>
-                                                        <connections>
-                                                            <action selector="statusButtonAction:" destination="Apr-y3-rUO" eventType="touchUpInside" id="ErY-IY-93p"/>
-                                                        </connections>
                                                     </button>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Смотрю" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="utt-je-ezI">
                                                         <rect key="frame" x="24.666666666666668" y="38.333333333333343" width="47.666666666666657" height="14.333333333333336"/>
@@ -432,9 +429,6 @@
                                                         <rect key="frame" x="19.666666666666668" y="0.0" width="57.666666666666657" height="34.333333333333336"/>
                                                         <state key="normal" title="Button"/>
                                                         <buttonConfiguration key="configuration" style="gray" image="checkmark.arrow.trianglehead.counterclockwise" catalog="system"/>
-                                                        <connections>
-                                                            <action selector="statusButtonAction:" destination="Apr-y3-rUO" eventType="touchUpInside" id="B5M-Sb-J6y"/>
-                                                        </connections>
                                                     </button>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Пересматриваю" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iuz-R4-sue">
                                                         <rect key="frame" x="0.0" y="38.333333333333343" width="96.666666666666671" height="14.333333333333336"/>
@@ -459,9 +453,6 @@
                                                         <rect key="frame" x="19.666666666666682" y="0.0" width="57.666666666666657" height="34.333333333333336"/>
                                                         <state key="normal" title="Button"/>
                                                         <buttonConfiguration key="configuration" style="gray" image="list.clipboard" catalog="system"/>
-                                                        <connections>
-                                                            <action selector="statusButtonAction:" destination="Apr-y3-rUO" eventType="touchUpInside" id="cd0-iB-D3j"/>
-                                                        </connections>
                                                     </button>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="В планах" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DbP-47-MUA">
                                                         <rect key="frame" x="21.999999999999996" y="38.333333333333343" width="52.666666666666657" height="14.333333333333336"/>
@@ -478,9 +469,6 @@
                                                         <rect key="frame" x="19.666666666666682" y="0.0" width="57.666666666666657" height="34.333333333333336"/>
                                                         <state key="normal" title="Button"/>
                                                         <buttonConfiguration key="configuration" style="gray" image="pause" catalog="system"/>
-                                                        <connections>
-                                                            <action selector="statusButtonAction:" destination="Apr-y3-rUO" eventType="touchUpInside" id="9Hh-3p-yJk"/>
-                                                        </connections>
                                                     </button>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Отложено" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KK0-Jp-arb">
                                                         <rect key="frame" x="18.666666666666682" y="38.333333333333343" width="59.666666666666657" height="14.333333333333336"/>
@@ -502,9 +490,6 @@
                                                         <rect key="frame" x="19.666666666666682" y="0.0" width="57.666666666666657" height="34.333333333333336"/>
                                                         <state key="normal" title="Button"/>
                                                         <buttonConfiguration key="configuration" style="gray" image="checkmark" catalog="system"/>
-                                                        <connections>
-                                                            <action selector="statusButtonAction:" destination="Apr-y3-rUO" eventType="touchUpInside" id="UaN-j3-vUI"/>
-                                                        </connections>
                                                     </button>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Просмотрено" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RuK-gd-9Qk">
                                                         <rect key="frame" x="7.6666666666666856" y="38.333333333333343" width="81.333333333333329" height="14.333333333333336"/>
@@ -521,9 +506,6 @@
                                                         <rect key="frame" x="19.666666666666682" y="0.0" width="57.666666666666657" height="34.333333333333336"/>
                                                         <state key="normal" title="Button"/>
                                                         <buttonConfiguration key="configuration" style="gray" image="nosign" catalog="system"/>
-                                                        <connections>
-                                                            <action selector="statusButtonAction:" destination="Apr-y3-rUO" eventType="touchUpInside" id="Zyg-I6-U34"/>
-                                                        </connections>
                                                     </button>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Брошено" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BfL-B2-38C">
                                                         <rect key="frame" x="21.666666666666682" y="38.333333333333343" width="53.666666666666657" height="14.333333333333336"/>
@@ -550,9 +532,6 @@
                                     <constraint firstAttribute="height" constant="32" id="Vsc-1G-tLB"/>
                                 </constraints>
                                 <buttonConfiguration key="configuration" style="plain"/>
-                                <connections>
-                                    <action selector="closeButtonAction" destination="Apr-y3-rUO" eventType="touchUpInside" id="Uhj-ea-vYd"/>
-                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Название" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f5v-an-pa5">
                                 <rect key="frame" x="16" y="14" width="296" height="15.666666666666664"/>
@@ -589,9 +568,6 @@
                                 <buttonConfiguration key="configuration" style="plain" image="trash" catalog="system">
                                     <color key="baseForegroundColor" systemColor="systemRedColor"/>
                                 </buttonConfiguration>
-                                <connections>
-                                    <action selector="deleteButtonAction" destination="Apr-y3-rUO" eventType="touchUpInside" id="bTe-Xx-brH"/>
-                                </connections>
                             </button>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="XNd-21-hLt">
                                 <rect key="frame" x="36" y="281.33333333333331" width="214" height="60"/>
@@ -617,17 +593,11 @@
                                                         <rect key="frame" x="0.0" y="0.0" width="47" height="34.333333333333336"/>
                                                         <state key="normal" title="Button"/>
                                                         <buttonConfiguration key="configuration" style="plain" image="minus" catalog="system"/>
-                                                        <connections>
-                                                            <action selector="decrementButtonAction" destination="Apr-y3-rUO" eventType="touchUpInside" id="oUh-ci-Ojg"/>
-                                                        </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cA5-hh-IFy">
                                                         <rect key="frame" x="37" y="0.0" width="47" height="34.333333333333336"/>
                                                         <state key="normal" title="Button"/>
                                                         <buttonConfiguration key="configuration" style="plain" image="plus" catalog="system"/>
-                                                        <connections>
-                                                            <action selector="incrementButtonAction" destination="Apr-y3-rUO" eventType="touchUpInside" id="f0L-92-kb1"/>
-                                                        </connections>
                                                     </button>
                                                 </subviews>
                                             </stackView>
@@ -662,18 +632,6 @@
                             <constraint firstItem="f1G-U8-XQI" firstAttribute="top" secondItem="uyf-Eq-AwN" secondAttribute="top" constant="10" id="oPE-68-eZT"/>
                         </constraints>
                     </view>
-                    <connections>
-                        <outlet property="animeNameLabel" destination="f5v-an-pa5" id="edT-l8-aul"/>
-                        <outlet property="completedButton" destination="oJA-mY-h7Z" id="u1J-BV-QgW"/>
-                        <outlet property="droppedButton" destination="zpR-jb-mQb" id="NIm-Au-Phf"/>
-                        <outlet property="onHoldButton" destination="tMe-Kb-qAq" id="HfI-MT-qkb"/>
-                        <outlet property="plannedButton" destination="ebz-L2-tuX" id="wub-WB-hqn"/>
-                        <outlet property="rewatchesTextField" destination="ysC-ds-0SU" id="GJV-Mc-6Z0"/>
-                        <outlet property="rewatchingButton" destination="3B1-gx-71p" id="gxE-ic-MmU"/>
-                        <outlet property="totalEpisodeslabel" destination="gZT-GQ-MzA" id="dRT-4x-PgR"/>
-                        <outlet property="watchedEpisodesTextField" destination="gBd-Sq-qat" id="JCN-bN-ckN"/>
-                        <outlet property="watchingButton" destination="Fif-xD-tFH" id="1Cg-LY-QOp"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="z1a-lo-5EG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

@@ -91,7 +91,7 @@ final class ProfileViewController: UIViewController {
     }
     
     @objc
-    func loginButtonAction() {
+    private func loginButtonAction() {
         viewModel.loginButtonAction()
     }
     
