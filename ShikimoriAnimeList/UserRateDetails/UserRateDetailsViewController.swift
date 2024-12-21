@@ -9,7 +9,23 @@ import Combine
 import UIKit
 
 class UserRateDetailsViewController: UIViewController {
-
+    private lazy var closeButton: UIButton = {
+        let closeButton = UIButton()
+        closeButton.translatesAutoresizingMaskIntoConstraints = false
+        closeButton.setImage(UIImage(systemName: "xmark"), for: .normal)
+        closeButton.addTarget(self, action: #selector(closeButtonAction), for: .touchUpInside)
+        return closeButton
+    }()
+    
+    private lazy var deleteButton: UIButton = {
+        let deleteButton = UIButton()
+        deleteButton.translatesAutoresizingMaskIntoConstraints = false
+        deleteButton.setImage(UIImage(systemName: "trash"), for: .normal)
+        deleteButton.tintColor = .systemRed
+        deleteButton.addTarget(self, action: #selector(deleteButtonAction), for: .touchUpInside)
+        return deleteButton
+    }()
+    
     private let animeNameLabel: UILabel = {
         let animeNameLabel = UILabel()
         animeNameLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -18,7 +34,7 @@ class UserRateDetailsViewController: UIViewController {
         animeNameLabel.minimumScaleFactor = 0.8
         return animeNameLabel
     }()
-//    @IBOutlet var animeNameLabel: UILabel!
+    
 //    @IBOutlet var watchingButton: UIButton!
 //    @IBOutlet var plannedButton: UIButton!
 //    @IBOutlet var completedButton: UIButton!
@@ -35,7 +51,10 @@ class UserRateDetailsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
+        configureCloseButton()
+        configureDeleteButton()
         configureAnimeNameLabel()
+        
         setupUI()
         setupBindings()
 //        updateButtonStyles()
@@ -46,11 +65,32 @@ class UserRateDetailsViewController: UIViewController {
         view.endEditing(true)
     }
 
+    private func configureCloseButton() {
+        view.addSubview(closeButton)
+        NSLayoutConstraint.activate([
+            closeButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 10),
+            closeButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10),
+            closeButton.widthAnchor.constraint(equalToConstant: 32),
+            closeButton.heightAnchor.constraint(equalTo: closeButton.widthAnchor)
+        ])
+    }
+    
+    private func configureDeleteButton() {
+        view.addSubview(deleteButton)
+        NSLayoutConstraint.activate([
+            deleteButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 10),
+            deleteButton.trailingAnchor.constraint(equalTo: closeButton.leadingAnchor, constant: -6),
+            deleteButton.widthAnchor.constraint(equalToConstant: 32),
+            deleteButton.heightAnchor.constraint(equalTo: closeButton.widthAnchor)
+        ])
+    }
+    
     private func configureAnimeNameLabel() {
         view.addSubview(animeNameLabel)
         NSLayoutConstraint.activate([
             animeNameLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 10),
-            animeNameLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10)
+            animeNameLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
+            animeNameLabel.trailingAnchor.constraint(equalTo: deleteButton.leadingAnchor, constant: -10)
         ])
     }
     
