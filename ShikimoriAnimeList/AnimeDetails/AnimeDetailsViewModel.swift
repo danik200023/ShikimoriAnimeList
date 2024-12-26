@@ -10,18 +10,29 @@ import Alamofire
 
 protocol AnimeDetailsViewModelProtocol {
     var posterUrl: URL { get }
+    var russianName: String { get }
+    var name: String { get }
     var type: String { get }
     var episodes: String { get }
     var episodeDuration: String { get }
+    var statusDetails: String { get }
     var status: String { get }
     var genres: String { get }
     var rating: String { get }
     
-    func fetchAnimeDetails(completion: @escaping() -> Void)
+     func fetchAnimeDetails(completion: @escaping() -> Void)
     init(animeId: Int, user: User?)
 }
 
 final class AnimeDetailsViewModel: AnimeDetailsViewModelProtocol {
+    var russianName: String {
+        anime.russian
+    }
+    
+    var name: String {
+        anime.name
+    }
+    
     var posterUrl: URL {
         URL(string: "https://desu.shikimori.one\(anime.image.original)")!
     }
@@ -38,13 +49,21 @@ final class AnimeDetailsViewModel: AnimeDetailsViewModelProtocol {
         "Длительность эпизода: \(anime.duration) мин."
     }
     
-    var status: String {
+    var statusDetails: String {
         if anime.status == "ongoing" {
-            return "Статус: \(anime.statusLocalized) c \(dateLocalized(from: anime.airedOn ?? ""))"
+            return "c \(dateLocalized(from: anime.airedOn ?? ""))"
         } else if anime.status == "released" {
-            return "Статус: \(anime.statusLocalized) c \(dateLocalized(from: anime.airedOn ?? "")) по \(dateLocalized(from: anime.releasedOn ?? ""))"
+            return "c \(dateLocalized(from: anime.airedOn ?? "")) по \(dateLocalized(from: anime.releasedOn ?? ""))"
         } else {
-            return "Статус: \(anime.statusLocalized)"
+            return "\(anime.statusLocalized)"
+        }
+    }
+    
+    var status: String {
+        if anime.status == "released" {
+            return "Даты выхода"
+        } else {
+            return "Статус"
         }
     }
     
@@ -84,10 +103,10 @@ final class AnimeDetailsViewModel: AnimeDetailsViewModelProtocol {
         fetchFunction(
             "https://shikimori.one/api/animes/\(animeId)",
             nil
-        ) { [unowned self] result in
+        ) { [weak self] result in
                 switch result {
                 case .success(let anime):
-                    self.anime = anime
+                    self?.anime = anime
                     completion()
                 case .failure(let error):
                     print(error)

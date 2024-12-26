@@ -45,19 +45,20 @@ final class UserRatesViewModel: UserRatesViewModelProtocol {
     }
     
     private func fetchUserRates(page: Int, completion: @escaping () -> Void) {
-        NetworkManager.shared.fetchUserRates(page: page) { [unowned self] result in
+        NetworkManager.shared.fetchUserRates(page: page) { [weak self] result in
+            guard let self else { return}
             switch result {
             case .success(let value):
                 value.data?.userRates.forEach({ userRate in
                     switch userRate.status.value {
                     case .watching, .rewatching:
-                        userRates[0].append(userRate)
+                        self.userRates[0].append(userRate)
                     case .planned:
-                        userRates[1].append(userRate)
+                        self.userRates[1].append(userRate)
                     case .completed:
-                        userRates[2].append(userRate)
+                        self.userRates[2].append(userRate)
                     case .onHold, .dropped:
-                        userRates[3].append(userRate)
+                        self.userRates[3].append(userRate)
                     case .none:
                         break
                     }

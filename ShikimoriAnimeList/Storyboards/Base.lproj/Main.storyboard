@@ -220,15 +220,6 @@
                     </view>
                     <navigationItem key="navigationItem" id="x5I-ov-4kb"/>
                     <size key="freeformSize" width="402" height="1450"/>
-                    <connections>
-                        <outlet property="episodeDurationLabel" destination="HyH-jy-O93" id="ODd-Yg-TJO"/>
-                        <outlet property="episodesLabel" destination="W7K-Na-Rqf" id="86n-Rs-tCP"/>
-                        <outlet property="genresLabel" destination="537-r7-ky9" id="OIs-WA-1qp"/>
-                        <outlet property="posterImageView" destination="UI0-fP-zA6" id="C82-gC-alk"/>
-                        <outlet property="ratingLabel" destination="IJu-eR-MdP" id="j9D-Cw-Deu"/>
-                        <outlet property="statusLabel" destination="u86-OZ-VDb" id="yNm-Et-R2D"/>
-                        <outlet property="typeLabel" destination="FJ2-UW-3oh" id="JRt-Kd-5RC"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="025-zV-4BM" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

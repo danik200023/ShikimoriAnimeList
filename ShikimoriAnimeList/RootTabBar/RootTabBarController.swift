@@ -18,6 +18,9 @@ class RootTabBarController: UITabBarController {
         let searchVC = UINavigationController(rootViewController: SearchCollectionViewController())
         let profileVC = ProfileViewController()
         
+        let detailsVC = AnimeDetailsViewController()
+//        detailsVC.viewModel = AnimeDetailsViewModel(animeId: 22)
+        
         userRatesVC.tabBarItem.image = UIImage(systemName: "list.clipboard")
         userRatesVC.tabBarItem.title = "Список"
         ongoingsVC.tabBarItem.image = UIImage(systemName: "clock")
@@ -27,6 +30,7 @@ class RootTabBarController: UITabBarController {
         profileVC.tabBarItem.image = UIImage(systemName: "person")
         profileVC.tabBarItem.title = "Профиль"
         
-        viewControllers = [userRatesVC, profileVC]
+//        viewControllers = [userRatesVC, detailsVC, profileVC]
+        viewControllers = [detailsVC, userRatesVC]
     }
 }
