@@ -27,6 +27,33 @@ final class AnimeDetailsViewController: UIViewController {
         return posterImageView
     }()
 
+    private lazy var editButton: UIButton = {
+        let editButton = UIButton()
+        editButton.configuration = .gray()
+        editButton.clipsToBounds = true
+        editButton.setImage(UIImage(systemName: "pencil"), for: .normal)
+//        editButton.addTarget(self, action: #selector(editButtonAction), for: .touchUpInside)
+        return editButton
+    }()
+    
+    private lazy var statusButton: UIButton = {
+        let statusButton = UIButton()
+        statusButton.configuration = .gray()
+        statusButton.clipsToBounds = true
+        statusButton.setImage(UIImage(systemName: "pencil"), for: .normal)
+//        statusButton.addTarget(self, action: #selector(editButtonAction), for: .touchUpInside)
+        return statusButton
+    }()
+    
+    private lazy var editButtonsStackView: UIStackView = {
+        let editButtonsStackView = UIStackView(arrangedSubviews: [editButton, statusButton])
+        editButtonsStackView.translatesAutoresizingMaskIntoConstraints = false
+        editButtonsStackView.axis = .vertical
+        editButtonsStackView.distribution = .fillEqually
+        return editButtonsStackView
+    }()
+    
+    
     private let russianNameLabel: UILabel = {
         let russianNameLabel = UILabel()
         russianNameLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -51,7 +78,6 @@ final class AnimeDetailsViewController: UIViewController {
         let propertiesScrollView = UIScrollView()
         propertiesScrollView.translatesAutoresizingMaskIntoConstraints = false
         propertiesScrollView.showsVerticalScrollIndicator = false
-        propertiesScrollView.backgroundColor = .systemBackground
         return propertiesScrollView
     }()
     
@@ -61,8 +87,23 @@ final class AnimeDetailsViewController: UIViewController {
         return propertiesContentView
     }()
     
+    private let topBorderView: UIView = {
+        let topBorderView = UIView()
+        topBorderView.translatesAutoresizingMaskIntoConstraints = false
+        topBorderView.backgroundColor = .systemGray
+        return topBorderView
+    }()
+    
+    private let bottomBorderView: UIView = {
+        let bottomBorderView = UIView()
+        bottomBorderView.translatesAutoresizingMaskIntoConstraints = false
+        bottomBorderView.backgroundColor = .systemGray
+        return bottomBorderView
+    }()
+    
     private let statusDetailsLabel: UILabel = {
         let statusDetailsLabel = UILabel()
+        statusDetailsLabel.font = .systemFont(ofSize: 14, weight: .medium)
         return statusDetailsLabel
     }()
     
@@ -75,33 +116,93 @@ final class AnimeDetailsViewController: UIViewController {
     private lazy var statusStackView: UIStackView = {
         let statusStackView = UIStackView(arrangedSubviews: [statusDetailsLabel, statuslabel])
         statusStackView.translatesAutoresizingMaskIntoConstraints = false
-//        statusStackView.isLayoutMarginsRelativeArrangement = true
-//        statusStackView.layoutMargins = UIEdgeInsets(top: 5, left: 10, bottom: 5, right: 10)
-//        statusStackView.clipsToBounds = true
-//        statusStackView.layer.cornerRadius = 10
-//        statusStackView.layer.borderWidth = 1
-//        statusStackView.layer.borderColor = UIColor.gray.cgColor
         statusStackView.axis = .vertical
         statusStackView.spacing = 5
         return statusStackView
     }()
     
+    private let typeDetailsLabel: UILabel = {
+        let typeDetailsLabel = UILabel()
+        typeDetailsLabel.font = .systemFont(ofSize: 14, weight: .medium)
+        typeDetailsLabel.text = "TV"
+        return typeDetailsLabel
+    }()
+    
+    private let typeLabel: UILabel = {
+        let typeLabel = UILabel()
+        typeLabel.font = .systemFont(ofSize: 11)
+        typeLabel.text = "Тип"
+        return typeLabel
+    }()
+    
+    private lazy var typeStackView: UIStackView = {
+        let typeStackView = UIStackView(arrangedSubviews: [typeDetailsLabel, typeLabel])
+        typeStackView.translatesAutoresizingMaskIntoConstraints = false
+        typeStackView.axis = .vertical
+        typeStackView.spacing = 5
+        return typeStackView
+    }()
+    
+    private let episodesDetailsLabel: UILabel = {
+        let episodesDetailsLabel = UILabel()
+        episodesDetailsLabel.font = .systemFont(ofSize: 14, weight: .medium)
+        episodesDetailsLabel.text = "12"
+        return episodesDetailsLabel
+    }()
+    
+    private let episodesLabel: UILabel = {
+        let episodesLabel = UILabel()
+        episodesLabel.font = .systemFont(ofSize: 11)
+        episodesLabel.text = "Эпизоды"
+        return episodesLabel
+    }()
+    
+    private lazy var episodesStackView: UIStackView = {
+        let episodesStackView = UIStackView(arrangedSubviews: [episodesDetailsLabel, episodesLabel])
+        episodesStackView.translatesAutoresizingMaskIntoConstraints = false
+        episodesStackView.axis = .vertical
+        episodesStackView.spacing = 5
+        return episodesStackView
+    }()
+    
+    private let episodeDurationDetailsLabel: UILabel = {
+        let episodeDurationDescriptionLabel = UILabel()
+        episodeDurationDescriptionLabel.font = .systemFont(ofSize: 14, weight: .medium)
+        episodeDurationDescriptionLabel.text = "23 мин"
+        return episodeDurationDescriptionLabel
+    }()
+    
+    private let episodesDurationLabel: UILabel = {
+        let episodesDurationLabel = UILabel()
+        episodesDurationLabel.font = .systemFont(ofSize: 11)
+        episodesDurationLabel.text = "Длительность эпизода"
+        return episodesDurationLabel
+    }()
+    
+    private lazy var episodesDurationStackView: UIStackView = {
+        let episodesDurationStackView = UIStackView(arrangedSubviews: [episodeDurationDetailsLabel, episodesDurationLabel])
+        episodesDurationStackView.translatesAutoresizingMaskIntoConstraints = false
+        episodesDurationStackView.axis = .vertical
+        episodesDurationStackView.spacing = 5
+        return episodesDurationStackView
+    }()
+    
     private let descriptionLabel: UILabel = {
         let descriptionLabel = UILabel()
         descriptionLabel.translatesAutoresizingMaskIntoConstraints = false
-        descriptionLabel.font = .systemFont(ofSize: 11)
-        descriptionLabel.textColor = .label
-        descriptionLabel.textAlignment = .center
-        descriptionLabel.numberOfLines = 0
+        descriptionLabel.text = "Описание"
+        descriptionLabel.font = .systemFont(ofSize: 17, weight: .medium)
         return descriptionLabel
     }()
     
-//    @IBOutlet private var typeLabel: UILabel!
-//    @IBOutlet private var episodesLabel: UILabel!
-//    @IBOutlet private var episodeDurationLabel: UILabel!
-//    @IBOutlet private var statusLabel: UILabel!
-//    @IBOutlet private var genresLabel: UILabel!
-//    @IBOutlet private var ratingLabel: UILabel!
+    private let descriptionDetailsLabel: UILabel = {
+        let descriptionDetailsLabel = UILabel()
+        descriptionDetailsLabel.translatesAutoresizingMaskIntoConstraints = false
+        descriptionDetailsLabel.font = .systemFont(ofSize: 14)
+        descriptionDetailsLabel.numberOfLines = 0
+        descriptionDetailsLabel.text = "«Это мой путь ниндзя!»\n\nВ день рождения Наруто Узумаки на деревню под названием Коноха напал легендарный демон, [character=7407]Девятихвостый лис[/character]. Четвёртый Хокагэ [波風ミナト] ценой своей жизни спас деревню, запечатав демона в новорождённом Наруто, неосознанно обрекая его на жизнь в ненависти односельчан.\nНесмотря на недостаток таланта во многих областях ниндзюцу, неусидчивость и задиристость, у Наруто есть мечта — стать [[Хокагэ]], сильнейшим ниндзя в деревне. Желая признания, которого не получал, он упорно работает и тренируется вместе со своими напарниками, Саскэ Учихой [うちは サスケ] и Сакурой Харуно [春野 サクラ], а также со своим наставником Какаши Хатакэ. Ему и его напарникам придётся пройти через многое по пути к своим заветным мечтам: сражения, любовь, дружба, предательство, жажда силы..."
+        return descriptionDetailsLabel
+    }()
     
     var viewModel: AnimeDetailsViewModelProtocol! {
         didSet {
@@ -111,17 +212,37 @@ final class AnimeDetailsViewController: UIViewController {
         }
     }
     
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        
+        editButtonsStackView.spacing = editButtonsStackView.frame.height / 3
+        
+        statusButton.layer.cornerRadius = statusButton.frame.height / 2
+        editButton.layer.cornerRadius = editButton.frame.width / 2
+        
+        print("Status Button Frame: \(statusButton.frame)")
+        print("Edit Button Frame: \(editButton.frame)")
+
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 //        viewModel = AnimeDetailsViewModel(animeId: 57635)
         viewModel = AnimeDetailsViewModel(animeId: 20)
         configureScrollView()
         configurePosterImageView()
+        configureEditButtonsStackView()
         configureRussianNameLabel()
         configureNameLabel()
         configurePropertiesScrollView()
         configurePropertiesContentView()
+        configureBorders()
         configureStatusStackView()
+        configureTypeStackView()
+        configureEpisodesStackView()
+        configureEpisodesDurationStackView()
+        configureDescriptionLabel()
+        configureDescriptionDetailsLabel()
     }
     
     private func configureScrollView() {
@@ -143,6 +264,17 @@ final class AnimeDetailsViewController: UIViewController {
             posterImageView.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor),
             posterImageView.widthAnchor.constraint(equalTo: scrollView.widthAnchor, multiplier: 0.4),
             posterImageView.heightAnchor.constraint(equalTo: posterImageView.widthAnchor, multiplier: 10/7)
+        ])
+    }
+    
+    private func configureEditButtonsStackView() {
+        scrollView.addSubview(editButtonsStackView)
+
+        NSLayoutConstraint.activate([
+            editButtonsStackView.centerYAnchor.constraint(equalTo: posterImageView.centerYAnchor),
+            editButtonsStackView.heightAnchor.constraint(equalTo:  posterImageView.heightAnchor, multiplier: 0.5),
+            editButtonsStackView.widthAnchor.constraint(equalTo: editButtonsStackView.heightAnchor, multiplier: 1/3),
+            editButtonsStackView.leadingAnchor.constraint(equalTo: posterImageView.trailingAnchor, constant: 10)
         ])
     }
     
@@ -171,9 +303,9 @@ final class AnimeDetailsViewController: UIViewController {
         
         NSLayoutConstraint.activate([
             propertiesScrollView.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 20),
-            propertiesScrollView.leadingAnchor.constraint(equalTo: scrollView.frameLayoutGuide.leadingAnchor, constant: 16),
-            propertiesScrollView.trailingAnchor.constraint(equalTo: scrollView.frameLayoutGuide.trailingAnchor, constant: -16),
-            propertiesScrollView.heightAnchor.constraint(equalToConstant: 100)
+            propertiesScrollView.leadingAnchor.constraint(equalTo: scrollView.frameLayoutGuide.leadingAnchor),
+            propertiesScrollView.trailingAnchor.constraint(equalTo: scrollView.frameLayoutGuide.trailingAnchor),
+            propertiesScrollView.heightAnchor.constraint(equalToConstant: 70)
         ])
     }
     
@@ -181,22 +313,89 @@ final class AnimeDetailsViewController: UIViewController {
         propertiesScrollView.addSubview(propertiesContentView)
         
         NSLayoutConstraint.activate([
-            propertiesContentView.topAnchor.constraint(equalTo: propertiesScrollView.topAnchor),
+//            propertiesContentView.topAnchor.constraint(equalTo: propertiesScrollView.topAnchor),
             propertiesContentView.leadingAnchor.constraint(equalTo: propertiesScrollView.leadingAnchor),
             propertiesContentView.trailingAnchor.constraint(equalTo: propertiesScrollView.trailingAnchor),
-            propertiesContentView.bottomAnchor.constraint(equalTo: propertiesScrollView.bottomAnchor)
+            propertiesContentView.centerYAnchor.constraint(equalTo: propertiesScrollView.centerYAnchor)
+//            propertiesContentView.bottomAnchor.constraint(equalTo: propertiesScrollView.bottomAnchor)
             
+        ])
+    }
+    
+    private func configureBorders() {
+        scrollView.addSubview(topBorderView)
+        scrollView.addSubview(bottomBorderView)
+        
+        NSLayoutConstraint.activate([
+            topBorderView.bottomAnchor.constraint(equalTo: propertiesScrollView.topAnchor, constant: -2),
+            topBorderView.leadingAnchor.constraint(equalTo: scrollView.frameLayoutGuide.leadingAnchor),
+            topBorderView.trailingAnchor.constraint(equalTo: scrollView.frameLayoutGuide.trailingAnchor),
+            topBorderView.heightAnchor.constraint(equalToConstant: 1),
+            bottomBorderView.topAnchor.constraint(equalTo: propertiesScrollView.bottomAnchor, constant: 2),
+            bottomBorderView.leadingAnchor.constraint(equalTo: scrollView.frameLayoutGuide.leadingAnchor),
+            bottomBorderView.trailingAnchor.constraint(equalTo: scrollView.frameLayoutGuide.trailingAnchor),
+            bottomBorderView.heightAnchor.constraint(equalToConstant: 1)
         ])
     }
     
     private func configureStatusStackView() {
         propertiesContentView.addSubview(statusStackView)
-        
         NSLayoutConstraint.activate([
             statusStackView.topAnchor.constraint(equalTo: propertiesContentView.topAnchor),
-            statusStackView.leadingAnchor.constraint(equalTo: propertiesContentView.leadingAnchor),
-            statusStackView.bottomAnchor.constraint(equalTo: propertiesContentView.bottomAnchor),
-            statusStackView.trailingAnchor.constraint(equalTo: propertiesContentView.trailingAnchor)
+            statusStackView.leadingAnchor.constraint(equalTo: propertiesContentView.leadingAnchor, constant: 16),
+            statusStackView.bottomAnchor.constraint(equalTo: propertiesContentView.bottomAnchor)
+        ])
+    }
+    
+    private func configureTypeStackView() {
+        propertiesContentView.addSubview(typeStackView)
+        
+        NSLayoutConstraint.activate([
+            typeStackView.topAnchor.constraint(equalTo: propertiesContentView.topAnchor),
+            typeStackView.leadingAnchor.constraint(equalTo: statusStackView.trailingAnchor, constant: 20),
+            typeStackView.bottomAnchor.constraint(equalTo: propertiesContentView.bottomAnchor)
+        ])
+    }
+    
+    private func configureEpisodesStackView() {
+        propertiesContentView.addSubview(episodesStackView)
+        
+        NSLayoutConstraint.activate([
+            episodesStackView.topAnchor.constraint(equalTo: propertiesContentView.topAnchor),
+            episodesStackView.leadingAnchor.constraint(equalTo: typeStackView.trailingAnchor, constant: 20),
+            episodesStackView.bottomAnchor.constraint(equalTo: propertiesContentView.bottomAnchor)
+        ])
+    }
+    
+    private func configureEpisodesDurationStackView() {
+        propertiesContentView.addSubview(episodesDurationStackView)
+        
+        NSLayoutConstraint.activate([
+            episodesDurationStackView.topAnchor.constraint(equalTo: propertiesContentView.topAnchor),
+            episodesDurationStackView.leadingAnchor.constraint(equalTo: episodesStackView.trailingAnchor, constant: 20),
+            episodesDurationStackView.bottomAnchor.constraint(equalTo: propertiesContentView.bottomAnchor),
+            episodesDurationStackView.trailingAnchor.constraint(equalTo: propertiesContentView.trailingAnchor, constant: -16)
+        ])
+    }
+    
+    private func configureDescriptionLabel() {
+        scrollView.addSubview(descriptionLabel)
+        
+        NSLayoutConstraint.activate([
+            descriptionLabel.topAnchor.constraint(equalTo: propertiesScrollView.bottomAnchor, constant: 10),
+            descriptionLabel.leadingAnchor.constraint(equalTo: scrollView.frameLayoutGuide.leadingAnchor, constant: 16),
+            descriptionLabel.trailingAnchor.constraint(equalTo: scrollView.frameLayoutGuide.trailingAnchor, constant: -16)
+        ])
+    }
+    
+    private func configureDescriptionDetailsLabel() {
+        scrollView.addSubview(descriptionDetailsLabel)
+        
+        NSLayoutConstraint.activate([
+            descriptionDetailsLabel.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: 10),
+            descriptionDetailsLabel.leadingAnchor.constraint(equalTo: scrollView.frameLayoutGuide.leadingAnchor, constant: 16),
+            descriptionDetailsLabel.trailingAnchor.constraint(equalTo: scrollView.frameLayoutGuide.trailingAnchor, constant: -16),
+            descriptionDetailsLabel.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor)
         ])
     }
     
