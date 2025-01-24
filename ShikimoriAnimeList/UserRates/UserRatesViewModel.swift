@@ -30,7 +30,6 @@ final class UserRatesViewModel: UserRatesViewModelProtocol {
     }
     
     func numberOfRowsInSection(_ section: Int, andTab tab: Int) -> Int {
-        print(userRates[tab].count)
         return userRates[tab].count
     }
     

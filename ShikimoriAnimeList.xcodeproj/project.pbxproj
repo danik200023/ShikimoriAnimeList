@@ -26,6 +26,9 @@
 		836928532CA69FEC00EE7B2A /* OAuthAuthenticator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 836928522CA69FEC00EE7B2A /* OAuthAuthenticator.swift */; };
 		836928552CA6A10500EE7B2A /* OAuthToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 836928542CA6A10500EE7B2A /* OAuthToken.swift */; };
 		836AC5432CA6B0EE00F786A2 /* UserDefaults+OAuthToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 836AC5422CA6B0ED00F786A2 /* UserDefaults+OAuthToken.swift */; };
+		8390097B2D43F71E005BCD0E /* AnimeDetails.graphql in Resources */ = {isa = PBXBuildFile; fileRef = 8390097A2D43F71E005BCD0E /* AnimeDetails.graphql */; };
+		8390097F2D43FF29005BCD0E /* ShikimoriAPI in Frameworks */ = {isa = PBXBuildFile; productRef = 8390097E2D43FF29005BCD0E /* ShikimoriAPI */; };
+		839009822D43FF3A005BCD0E /* ShikimoriAPI in Frameworks */ = {isa = PBXBuildFile; productRef = 839009812D43FF3A005BCD0E /* ShikimoriAPI */; };
 		83B006482D0C335B006A499F /* LoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83B006472D0C335B006A499F /* LoadingViewController.swift */; };
 		83B0064C2D0C3568006A499F /* RootTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83B0064B2D0C3568006A499F /* RootTabBarController.swift */; };
 		83B76A462CD6302800F6639B /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83B76A432CD6302800F6639B /* ProfileViewController.swift */; };
@@ -39,7 +42,6 @@
 		83BE51292C6F216F00CF0DB8 /* AnimeDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83BE51282C6F216F00CF0DB8 /* AnimeDetailsViewController.swift */; };
 		83C6A03F2CD2A10700BBBFF3 /* AnimeSearch.graphql in Resources */ = {isa = PBXBuildFile; fileRef = 83C6A03E2CD2A0FB00BBBFF3 /* AnimeSearch.graphql */; };
 		83C6A04A2CD4017800BBBFF3 /* GraphQLAuthorizationInterceptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83C6A0492CD4017800BBBFF3 /* GraphQLAuthorizationInterceptor.swift */; };
-		83CB825C2D11568900DEC71F /* ShikimoriAPI in Frameworks */ = {isa = PBXBuildFile; productRef = 83CB825B2D11568900DEC71F /* ShikimoriAPI */; };
 		83CB825F2D11571700DEC71F /* Apollo in Frameworks */ = {isa = PBXBuildFile; productRef = 83CB825E2D11571700DEC71F /* Apollo */; };
 		83CB82622D11577200DEC71F /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 83CB82612D11577200DEC71F /* Alamofire */; };
 		83CB82652D1157D700DEC71F /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 83CB82642D1157D700DEC71F /* Kingfisher */; };
@@ -77,6 +79,7 @@
 		836928522CA69FEC00EE7B2A /* OAuthAuthenticator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OAuthAuthenticator.swift; sourceTree = "<group>"; };
 		836928542CA6A10500EE7B2A /* OAuthToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OAuthToken.swift; sourceTree = "<group>"; };
 		836AC5422CA6B0ED00F786A2 /* UserDefaults+OAuthToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+OAuthToken.swift"; sourceTree = "<group>"; };
+		8390097A2D43F71E005BCD0E /* AnimeDetails.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = AnimeDetails.graphql; sourceTree = "<group>"; };
 		83B006472D0C335B006A499F /* LoadingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingViewController.swift; sourceTree = "<group>"; };
 		83B0064B2D0C3568006A499F /* RootTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootTabBarController.swift; sourceTree = "<group>"; };
 		83B76A432CD6302800F6639B /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
@@ -108,8 +111,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				83CB82652D1157D700DEC71F /* Kingfisher in Frameworks */,
+				8390097F2D43FF29005BCD0E /* ShikimoriAPI in Frameworks */,
+				839009822D43FF3A005BCD0E /* ShikimoriAPI in Frameworks */,
 				83CB82622D11577200DEC71F /* Alamofire in Frameworks */,
-				83CB825C2D11568900DEC71F /* ShikimoriAPI in Frameworks */,
 				83CB825F2D11571700DEC71F /* Apollo in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -131,6 +135,7 @@
 			children = (
 				83B76A5B2CD67ADD00F6639B /* UserRates.graphql */,
 				83C6A03E2CD2A0FB00BBBFF3 /* AnimeSearch.graphql */,
+				8390097A2D43F71E005BCD0E /* AnimeDetails.graphql */,
 				8326C30D2CCFEAB2008E9635 /* AnimePosters.graphql */,
 			);
 			path = GraphQL;
@@ -140,7 +145,6 @@
 			isa = PBXGroup;
 			children = (
 				8323980A2C6B921C00EC4833 /* ShikimoriAnimeList */,
-				83CB825A2D11568900DEC71F /* Frameworks */,
 				832398092C6B921C00EC4833 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -265,13 +269,6 @@
 			path = UserRates;
 			sourceTree = "<group>";
 		};
-		83CB825A2D11568900DEC71F /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
 		83D3997A2CCA723400ADDB7A /* Search */ = {
 			isa = PBXGroup;
 			children = (
@@ -320,10 +317,11 @@
 			);
 			name = ShikimoriAnimeList;
 			packageProductDependencies = (
-				83CB825B2D11568900DEC71F /* ShikimoriAPI */,
 				83CB825E2D11571700DEC71F /* Apollo */,
 				83CB82612D11577200DEC71F /* Alamofire */,
 				83CB82642D1157D700DEC71F /* Kingfisher */,
+				8390097E2D43FF29005BCD0E /* ShikimoriAPI */,
+				839009812D43FF3A005BCD0E /* ShikimoriAPI */,
 			);
 			productName = ShikimoriAnimeList;
 			productReference = 832398082C6B921C00EC4833 /* Shikimori.app */;
@@ -354,10 +352,10 @@
 			);
 			mainGroup = 832397FF2C6B921C00EC4833;
 			packageReferences = (
-				83C6A0402CD2A35C00BBBFF3 /* XCLocalSwiftPackageReference "ShikimoriAPI" */,
 				83CB825D2D11571700DEC71F /* XCRemoteSwiftPackageReference "apollo-ios" */,
 				83CB82602D11577200DEC71F /* XCRemoteSwiftPackageReference "Alamofire" */,
 				83CB82632D1157D700DEC71F /* XCRemoteSwiftPackageReference "Kingfisher" */,
+				839009802D43FF3A005BCD0E /* XCLocalSwiftPackageReference "ShikimoriAPI" */,
 			);
 			productRefGroup = 832398092C6B921C00EC4833 /* Products */;
 			projectDirPath = "";
@@ -376,6 +374,7 @@
 				83B76A5C2CD67B0400F6639B /* UserRates.graphql in Resources */,
 				8326C30E2CCFEAC1008E9635 /* AnimePosters.graphql in Resources */,
 				832398152C6B921E00EC4833 /* Assets.xcassets in Resources */,
+				8390097B2D43F71E005BCD0E /* AnimeDetails.graphql in Resources */,
 				83C6A03F2CD2A10700BBBFF3 /* AnimeSearch.graphql in Resources */,
 				832398182C6B921E00EC4833 /* Base in Resources */,
 				832398132C6B921C00EC4833 /* Base in Resources */,
@@ -657,7 +656,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCLocalSwiftPackageReference section */
-		83C6A0402CD2A35C00BBBFF3 /* XCLocalSwiftPackageReference "ShikimoriAPI" */ = {
+		839009802D43FF3A005BCD0E /* XCLocalSwiftPackageReference "ShikimoriAPI" */ = {
 			isa = XCLocalSwiftPackageReference;
 			relativePath = ShikimoriAPI;
 		};
@@ -691,9 +690,13 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		83CB825B2D11568900DEC71F /* ShikimoriAPI */ = {
+		8390097E2D43FF29005BCD0E /* ShikimoriAPI */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 83C6A0402CD2A35C00BBBFF3 /* XCLocalSwiftPackageReference "ShikimoriAPI" */;
+			package = 83CB82632D1157D700DEC71F /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = ShikimoriAPI;
+		};
+		839009812D43FF3A005BCD0E /* ShikimoriAPI */ = {
+			isa = XCSwiftPackageProductDependency;
 			productName = ShikimoriAPI;
 		};
 		83CB825E2D11571700DEC71F /* Apollo */ = {

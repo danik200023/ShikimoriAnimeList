@@ -128,6 +128,19 @@ final class NetworkManager {
             }
     }
     
+    func fetchAnimeDetails(animeId: Int, completion: @escaping (Result<GraphQLResult<AnimeDetailsQuery.Data>, any Error>) -> Void) {
+        let convertedId = String(animeId)
+        let query = AnimeDetailsQuery(ids: GraphQLNullable(stringLiteral: convertedId))
+        apollo.fetch(query: query) { result in
+            switch result {
+            case .success(let value):
+                completion(.success(value))
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
+    }
+    
     func fetchPosters(from ids: [Int], completion: @escaping (Result<GraphQLResult<AnimePostersQuery.Data>, any Error>) -> Void) {
         let convertedIds = ids.map { String($0) }.joined(separator: ", ")
         let query = AnimePostersQuery(ids: GraphQLNullable(stringLiteral: convertedIds))

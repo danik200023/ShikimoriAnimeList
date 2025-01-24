@@ -124,7 +124,6 @@ final class AnimeDetailsViewController: UIViewController {
     private let typeDetailsLabel: UILabel = {
         let typeDetailsLabel = UILabel()
         typeDetailsLabel.font = .systemFont(ofSize: 14, weight: .medium)
-        typeDetailsLabel.text = "TV"
         return typeDetailsLabel
     }()
     
@@ -146,7 +145,6 @@ final class AnimeDetailsViewController: UIViewController {
     private let episodesDetailsLabel: UILabel = {
         let episodesDetailsLabel = UILabel()
         episodesDetailsLabel.font = .systemFont(ofSize: 14, weight: .medium)
-        episodesDetailsLabel.text = "12"
         return episodesDetailsLabel
     }()
     
@@ -166,10 +164,9 @@ final class AnimeDetailsViewController: UIViewController {
     }()
     
     private let episodeDurationDetailsLabel: UILabel = {
-        let episodeDurationDescriptionLabel = UILabel()
-        episodeDurationDescriptionLabel.font = .systemFont(ofSize: 14, weight: .medium)
-        episodeDurationDescriptionLabel.text = "23 мин"
-        return episodeDurationDescriptionLabel
+        let episodeDurationDetailsLabel = UILabel()
+        episodeDurationDetailsLabel.font = .systemFont(ofSize: 14, weight: .medium)
+        return episodeDurationDetailsLabel
     }()
     
     private let episodesDurationLabel: UILabel = {
@@ -200,7 +197,6 @@ final class AnimeDetailsViewController: UIViewController {
         descriptionDetailsLabel.translatesAutoresizingMaskIntoConstraints = false
         descriptionDetailsLabel.font = .systemFont(ofSize: 14)
         descriptionDetailsLabel.numberOfLines = 0
-        descriptionDetailsLabel.text = "«Это мой путь ниндзя!»\n\nВ день рождения Наруто Узумаки на деревню под названием Коноха напал легендарный демон, [character=7407]Девятихвостый лис[/character]. Четвёртый Хокагэ [波風ミナト] ценой своей жизни спас деревню, запечатав демона в новорождённом Наруто, неосознанно обрекая его на жизнь в ненависти односельчан.\nНесмотря на недостаток таланта во многих областях ниндзюцу, неусидчивость и задиристость, у Наруто есть мечта — стать [[Хокагэ]], сильнейшим ниндзя в деревне. Желая признания, которого не получал, он упорно работает и тренируется вместе со своими напарниками, Саскэ Учихой [うちは サスケ] и Сакурой Харуно [春野 サクラ], а также со своим наставником Какаши Хатакэ. Ему и его напарникам придётся пройти через многое по пути к своим заветным мечтам: сражения, любовь, дружба, предательство, жажда силы..."
         return descriptionDetailsLabel
     }()
     
@@ -219,16 +215,12 @@ final class AnimeDetailsViewController: UIViewController {
         
         statusButton.layer.cornerRadius = statusButton.frame.height / 2
         editButton.layer.cornerRadius = editButton.frame.width / 2
-        
-        print("Status Button Frame: \(statusButton.frame)")
-        print("Edit Button Frame: \(editButton.frame)")
-
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        viewModel = AnimeDetailsViewModel(animeId: 57635)
-        viewModel = AnimeDetailsViewModel(animeId: 20)
+        viewModel = AnimeDetailsViewModel(animeId: 42203)
+//        viewModel = AnimeDetailsViewModel(animeId: 20)
         configureScrollView()
         configurePosterImageView()
         configureEditButtonsStackView()
@@ -404,12 +396,11 @@ final class AnimeDetailsViewController: UIViewController {
         posterImageView.kf.setImage(with: viewModel.posterUrl)
         russianNameLabel.text = viewModel.russianName
         nameLabel.text = viewModel.name
-//        typeLabel.text = viewModel.type
-//        episodesLabel.text = viewModel.episodes
-//        episodeDurationLabel.text = viewModel.episodeDuration
+        typeDetailsLabel.text = viewModel.type
+        episodesDetailsLabel.text = viewModel.episodes
+        episodeDurationDetailsLabel.text = viewModel.episodeDuration
+        descriptionDetailsLabel.text = viewModel.description
         statusDetailsLabel.text = viewModel.statusDetails
         statuslabel.text = viewModel.status
-//        genresLabel.text = viewModel.genres
-//        ratingLabel.text = viewModel.rating
     }
 }

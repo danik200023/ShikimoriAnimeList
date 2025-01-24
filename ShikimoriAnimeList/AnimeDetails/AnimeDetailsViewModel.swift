@@ -7,25 +7,27 @@
 
 import Foundation
 import Alamofire
+import ShikimoriAPI
 
 protocol AnimeDetailsViewModelProtocol {
     var posterUrl: URL { get }
-    var russianName: String { get }
+    var russianName: String? { get }
     var name: String { get }
     var type: String { get }
     var episodes: String { get }
     var episodeDuration: String { get }
-    var statusDetails: String { get }
+    var statusDetails: String? { get }
     var status: String { get }
     var genres: String { get }
     var rating: String { get }
+    var description: String { get }
     
      func fetchAnimeDetails(completion: @escaping() -> Void)
     init(animeId: Int, user: User?)
 }
 
 final class AnimeDetailsViewModel: AnimeDetailsViewModelProtocol {
-    var russianName: String {
+    var russianName: String? {
         anime.russian
     }
     
@@ -34,84 +36,114 @@ final class AnimeDetailsViewModel: AnimeDetailsViewModelProtocol {
     }
     
     var posterUrl: URL {
-        URL(string: "https://desu.shikimori.one\(anime.image.original)")!
+        URL(string: anime.poster?.mainUrl ?? "https://shikimori.one/assets/globals/missing/main@2x.png")!
     }
     
     var type: String {
-        "Тип: \(anime.kind ?? "")"
+        switch anime.kind?.value {
+        case .tv:
+            return "TV"
+        case .movie:
+            return "Фильм"
+        case .ova:
+            return "OVA"
+        case .ona:
+            return "ONA"
+        case .special:
+            return "Спецвыпуск"
+        case .tvSpecial:
+            return "TV спецвыпуск"
+        case .music:
+            return "Клип"
+        case .pv:
+            return "Проморолик"
+        case .cm:
+            return "Реклама"
+        case .none:
+            return ""
+        }
     }
     
     var episodes: String {
-        "Эпизоды: \(anime.episodesAired) из \(anime.episodes == 0 ? "?" : "\(anime.episodes)")"
+        switch anime.status?.value {
+        case .released:
+            return "\(anime.episodes)"
+        case .ongoing:
+            return "\(anime.episodesAired)/\(anime.episodes == 0 ? "-" : "\(anime.episodes)")"
+        default:
+            return ""
+        }
     }
 
     var episodeDuration: String {
-        "Длительность эпизода: \(anime.duration) мин."
+        "\(anime.duration ?? 0) мин."
     }
     
-    var statusDetails: String {
-        if anime.status == "ongoing" {
-            return "c \(dateLocalized(from: anime.airedOn ?? ""))"
-        } else if anime.status == "released" {
-            return "c \(dateLocalized(from: anime.airedOn ?? "")) по \(dateLocalized(from: anime.releasedOn ?? ""))"
-        } else {
-            return "\(anime.statusLocalized)"
+    var statusDetails: String? {
+        switch anime.status?.value {
+        case .ongoing:
+            return "Онгоинг c \(dateLocalized(from: anime.airedOn?.date ?? ""))"
+        case .released:
+            return "c \(dateLocalized(from: anime.airedOn?.date ?? "")) по \(dateLocalized(from: anime.releasedOn?.date ?? ""))"
+        default:
+            return "Анонс"
         }
     }
     
     var status: String {
-        if anime.status == "released" {
+        switch anime.status?.value {
+        case .released:
             return "Даты выхода"
-        } else {
+        default:
             return "Статус"
         }
     }
     
     var genres: String {
-        "Жанры: \(anime.genres.reduce("") { $0 + ", " + $1.russian })"
+        ""
     }
     
     var rating: String {
-        "Рейтинг: \(anime.rating)"
+        ""
     }
     
-    private var anime: AnimeDetails!
+    var description: String {
+        guard let input = anime.description else { return "" }
+        let pattern = "\\[(\\w+)(?:=[^\\]]+)?\\](.*?)\\[/\\1\\]"
+        let regex = try! NSRegularExpression(pattern: pattern, options: [])
+
+        var output = input
+        while let match = regex.firstMatch(in: output, options: [], range: NSRange(output.startIndex..<output.endIndex, in: output)) {
+            let range = match.range(at: 0)
+            let contentRange = match.range(at: 2)
+            
+            if let range = Range(range, in: output), let contentRange = Range(contentRange, in: output) {
+                let content = output[contentRange]
+                output.replaceSubrange(range, with: content)
+            }
+        }
+
+        return output
+    }
+    
+    private var anime: AnimeDetailsQuery.Data.Anime!
     private let user: User?
     private let animeId: Int
     
     private let networkManager = NetworkManager.shared
     
     func fetchAnimeDetails(completion: @escaping () -> Void) {
-        let fetchFunction: (URLConvertible, Parameters?, @escaping (Result<AnimeDetails, AFError>) -> Void) -> Void
-        fetchFunction = { url, parameters, completion in
-            if self.user != nil {
-                self.networkManager.fetchWithAuthorization(
-                    AnimeDetails.self,
-                    from: url,
-                    withParameters: parameters,
-                    completion: completion
-                )
-            } else {
-                self.networkManager.fetch(
-                    AnimeDetails.self,
-                    from: url,
-                    withParameters: parameters,
-                    completion: completion
-                )
+        networkManager.fetchAnimeDetails(animeId: animeId) { [weak self] result in
+            guard let self else { return }
+            switch result {
+            case .success(let value):
+                anime = value.data?.animes.first
+                completion()
+            case .failure(let error):
+                print(error)
+                completion()
             }
         }
-        fetchFunction(
-            "https://shikimori.one/api/animes/\(animeId)",
-            nil
-        ) { [weak self] result in
-                switch result {
-                case .success(let anime):
-                    self?.anime = anime
-                    completion()
-                case .failure(let error):
-                    print(error)
-                }
-            }
     }
     
     init(animeId: Int, user: User? = nil) {
