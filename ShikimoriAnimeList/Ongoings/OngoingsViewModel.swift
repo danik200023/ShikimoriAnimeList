@@ -136,7 +136,7 @@ final class OngoingsViewModel: OngoingsViewModelProtocol {
     }
     
     func getAnimeDetailsViewModel(at indexPath: IndexPath) -> AnimeDetailsViewModelProtocol {
-        AnimeDetailsViewModel(animeId: calendar[indexPath.section][indexPath.item].anime.id, user: user)
+        AnimeDetailsViewModel(animeId: String(calendar[indexPath.section][indexPath.item].anime.id), user: user)
     }
     
     func getAnimeCellViewModel(at indexPath: IndexPath) -> OngoingAnimeCellViewModelProtocol {

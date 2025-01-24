@@ -219,8 +219,7 @@ final class AnimeDetailsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        viewModel = AnimeDetailsViewModel(animeId: 42203)
-//        viewModel = AnimeDetailsViewModel(animeId: 20)
+        view.backgroundColor = .systemBackground
         configureScrollView()
         configurePosterImageView()
         configureEditButtonsStackView()

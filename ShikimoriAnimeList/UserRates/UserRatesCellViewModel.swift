@@ -15,6 +15,7 @@ protocol UserRatesCellViewModelProtocol {
     var posterUrl: URL { get }
     init(userRate: UserRatesQuery.Data.UserRate)
     func getUserRateDetailsViewModel() -> UserRateDetailsViewModelProtocol
+    func getAnimeDetailsViewModel() -> AnimeDetailsViewModelProtocol
 }
 
 final class UserRatesCellViewModel: UserRatesCellViewModelProtocol {
@@ -85,5 +86,9 @@ final class UserRatesCellViewModel: UserRatesCellViewModelProtocol {
     
     func getUserRateDetailsViewModel() -> UserRateDetailsViewModelProtocol {
         UserRateDetailsViewModel(userRate: userRate)
+    }
+    
+    func getAnimeDetailsViewModel() -> AnimeDetailsViewModelProtocol {
+        AnimeDetailsViewModel(animeId: userRate.anime?.id ?? "0")
     }
 }

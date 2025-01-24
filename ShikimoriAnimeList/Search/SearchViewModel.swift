@@ -100,7 +100,7 @@ final class SearchViewModel: SearchViewModelProtocol {
     }
     
     func getAnimeDetailsViewModel(at indexPath: IndexPath) -> AnimeDetailsViewModelProtocol {
-        AnimeDetailsViewModel(animeId: Int(animes[indexPath.item].id) ?? 0)
+        AnimeDetailsViewModel(animeId: animes[indexPath.item].id)
     }
     
     func getAnimeCellViewModel(at indexPath: IndexPath) -> AnimeCellViewModelProtocol {

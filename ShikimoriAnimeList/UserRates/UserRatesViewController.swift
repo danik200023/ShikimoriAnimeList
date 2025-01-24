@@ -145,6 +145,10 @@ class UserRatesViewController: UIViewController {
 extension UserRatesViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        let animeDetailsVC = AnimeDetailsViewController()
+        guard let cell = tableView.cellForRow(at: indexPath) as? UserRatesCell else { return }
+        animeDetailsVC.viewModel = cell.viewModel.getAnimeDetailsViewModel()
+        navigationController?.pushViewController(animeDetailsVC, animated: true)
     }
 }
 

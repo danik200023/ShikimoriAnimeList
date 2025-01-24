@@ -22,8 +22,8 @@ protocol AnimeDetailsViewModelProtocol {
     var rating: String { get }
     var description: String { get }
     
-     func fetchAnimeDetails(completion: @escaping() -> Void)
-    init(animeId: Int, user: User?)
+    func fetchAnimeDetails(completion: @escaping() -> Void)
+    init(animeId: String, user: User?)
 }
 
 final class AnimeDetailsViewModel: AnimeDetailsViewModelProtocol {
@@ -128,7 +128,7 @@ final class AnimeDetailsViewModel: AnimeDetailsViewModelProtocol {
     
     private var anime: AnimeDetailsQuery.Data.Anime!
     private let user: User?
-    private let animeId: Int
+    private let animeId: String
     
     private let networkManager = NetworkManager.shared
     
@@ -146,7 +146,7 @@ final class AnimeDetailsViewModel: AnimeDetailsViewModelProtocol {
         }
     }
     
-    init(animeId: Int, user: User? = nil) {
+    init(animeId: String, user: User? = nil) {
         self.animeId = animeId
         self.user = user
     }

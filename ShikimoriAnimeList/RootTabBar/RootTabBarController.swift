@@ -31,6 +31,6 @@ class RootTabBarController: UITabBarController {
         profileVC.tabBarItem.title = "Профиль"
         
 //        viewControllers = [userRatesVC, detailsVC, profileVC]
-        viewControllers = [detailsVC, userRatesVC]
+        viewControllers = [userRatesVC]
     }
 }
