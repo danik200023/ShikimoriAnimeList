@@ -213,7 +213,7 @@ final class AnimeDetailsViewController: UIViewController {
         
         editButtonsStackView.spacing = editButtonsStackView.frame.height / 3
         
-        statusButton.layer.cornerRadius = statusButton.frame.height / 2
+        statusButton.layer.cornerRadius = statusButton.frame.width / 2
         editButton.layer.cornerRadius = editButton.frame.width / 2
     }
     
@@ -398,6 +398,8 @@ final class AnimeDetailsViewController: UIViewController {
         typeDetailsLabel.text = viewModel.type
         episodesDetailsLabel.text = viewModel.episodes
         episodeDurationDetailsLabel.text = viewModel.episodeDuration
+        descriptionLabel.isHidden = viewModel.isDescriptionHidden
+        descriptionDetailsLabel.isHidden = viewModel.isDescriptionHidden
         descriptionDetailsLabel.text = viewModel.description
         statusDetailsLabel.text = viewModel.statusDetails
         statuslabel.text = viewModel.status

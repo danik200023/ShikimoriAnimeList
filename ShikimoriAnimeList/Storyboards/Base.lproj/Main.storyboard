@@ -114,116 +114,10 @@
                         </connections>
                     </collectionView>
                     <navigationItem key="navigationItem" title="Онгоинги" id="9kc-9C-cBs"/>
-                    <connections>
-                        <segue destination="OgQ-in-HPM" kind="show" identifier="showDetails" id="b6W-0u-HhA"/>
-                    </connections>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="T1S-Zi-tKn" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1435.8208955223879" y="-375.51487414187642"/>
-        </scene>
-        <!--Anime Details View Controller-->
-        <scene sceneID="u0p-7n-aqN">
-            <objects>
-                <viewController id="OgQ-in-HPM" customClass="AnimeDetailsViewController" customModule="Shikimori" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="Ypu-fE-g9q">
-                        <rect key="frame" x="0.0" y="0.0" width="402" height="1450"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xmU-Oq-UtD">
-                                <rect key="frame" x="0.0" y="158" width="402" height="1209"/>
-                                <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sxR-0Y-YtT" userLabel="Content View">
-                                        <rect key="frame" x="0.0" y="0.0" width="402" height="1200"/>
-                                        <subviews>
-                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="UI0-fP-zA6">
-                                                <rect key="frame" x="77" y="20" width="248" height="354.33333333333331"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" secondItem="UI0-fP-zA6" secondAttribute="height" multiplier="35:50" id="buc-70-V6u"/>
-                                                </constraints>
-                                                <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                        <integer key="value" value="15"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                </userDefinedRuntimeAttributes>
-                                            </imageView>
-                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" alignment="top" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="a4B-Ro-kof">
-                                                <rect key="frame" x="20" y="394.33333333333337" width="181.66666666666666" height="222"/>
-                                                <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Тип" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FJ2-UW-3oh">
-                                                        <rect key="frame" x="0.0" y="0.0" width="29" height="20.333333333333332"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                        <nil key="textColor"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Эпизоды" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W7K-Na-Rqf">
-                                                        <rect key="frame" x="0.0" y="40.333333333333258" width="72" height="20.333333333333329"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                        <nil key="textColor"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Длительность эпизода" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HyH-jy-O93">
-                                                        <rect key="frame" x="0.0" y="80.666666666666629" width="181.66666666666666" height="20.333333333333329"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                        <nil key="textColor"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Статус" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u86-OZ-VDb">
-                                                        <rect key="frame" x="0.0" y="120.99999999999999" width="55" height="20.333333333333329"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                        <nil key="textColor"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Жанры" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="537-r7-ky9">
-                                                        <rect key="frame" x="0.0" y="161.33333333333326" width="57.666666666666664" height="20.333333333333343"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                        <nil key="textColor"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Рейтинг" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IJu-eR-MdP">
-                                                        <rect key="frame" x="0.0" y="201.66666666666663" width="65" height="20.333333333333343"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                        <nil key="textColor"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
-                                                </subviews>
-                                            </stackView>
-                                        </subviews>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                        <constraints>
-                                            <constraint firstItem="UI0-fP-zA6" firstAttribute="top" secondItem="sxR-0Y-YtT" secondAttribute="top" constant="20" id="FpP-Lk-fTe"/>
-                                            <constraint firstItem="a4B-Ro-kof" firstAttribute="leading" secondItem="sxR-0Y-YtT" secondAttribute="leading" constant="20" id="TEp-J6-Rfb"/>
-                                            <constraint firstItem="UI0-fP-zA6" firstAttribute="centerX" secondItem="sxR-0Y-YtT" secondAttribute="centerX" id="aTd-Nh-ZS4"/>
-                                            <constraint firstItem="a4B-Ro-kof" firstAttribute="top" secondItem="UI0-fP-zA6" secondAttribute="bottom" constant="20" id="jMQ-xM-wsn"/>
-                                            <constraint firstItem="UI0-fP-zA6" firstAttribute="width" secondItem="sxR-0Y-YtT" secondAttribute="width" multiplier="0.616915" id="sWU-PF-KMD"/>
-                                            <constraint firstAttribute="height" constant="1200" id="yxE-qv-dpI"/>
-                                        </constraints>
-                                    </view>
-                                </subviews>
-                                <constraints>
-                                    <constraint firstItem="sxR-0Y-YtT" firstAttribute="top" secondItem="xmU-Oq-UtD" secondAttribute="top" id="1F9-zI-8TJ"/>
-                                    <constraint firstItem="sxR-0Y-YtT" firstAttribute="leading" secondItem="xmU-Oq-UtD" secondAttribute="leading" id="9oF-1z-ILw"/>
-                                    <constraint firstAttribute="trailing" secondItem="sxR-0Y-YtT" secondAttribute="trailing" id="Dfq-C0-qug"/>
-                                    <constraint firstAttribute="bottom" secondItem="sxR-0Y-YtT" secondAttribute="bottom" id="tTg-DJ-iWg"/>
-                                </constraints>
-                            </scrollView>
-                        </subviews>
-                        <viewLayoutGuide key="safeArea" id="luV-oK-RVW"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <constraints>
-                            <constraint firstItem="xmU-Oq-UtD" firstAttribute="top" secondItem="luV-oK-RVW" secondAttribute="top" id="XFT-De-Nyn"/>
-                            <constraint firstItem="xmU-Oq-UtD" firstAttribute="leading" secondItem="luV-oK-RVW" secondAttribute="leading" id="YMn-N2-mhf"/>
-                            <constraint firstItem="sxR-0Y-YtT" firstAttribute="width" secondItem="Ypu-fE-g9q" secondAttribute="width" id="hhZ-Lt-kQF"/>
-                            <constraint firstItem="xmU-Oq-UtD" firstAttribute="bottom" secondItem="luV-oK-RVW" secondAttribute="bottom" id="vE3-tr-tMl"/>
-                            <constraint firstItem="xmU-Oq-UtD" firstAttribute="trailing" secondItem="luV-oK-RVW" secondAttribute="trailing" id="zKW-FA-4U9"/>
-                        </constraints>
-                    </view>
-                    <navigationItem key="navigationItem" id="x5I-ov-4kb"/>
-                    <size key="freeformSize" width="402" height="1450"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="025-zV-4BM" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="3279.1044776119402" y="-375.51487414187642"/>
         </scene>
         <!--Список-->
         <scene sceneID="PDH-h1-zYI">
@@ -696,7 +590,7 @@
         <!--Поиск-->
         <scene sceneID="Tmk-Pr-bMu">
             <objects>
-                <collectionViewController id="ffN-uM-xVR" customClass="SearchCollectionViewController" customModule="Shikimori" customModuleProvider="target" sceneMemberID="viewController">
+                <collectionViewController id="ffN-uM-xVR" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="W8K-Ys-1De">
                         <rect key="frame" x="0.0" y="0.0" width="402" height="874"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -765,17 +659,8 @@
                                     <constraint firstAttribute="bottom" secondItem="DbH-Ux-UGZ" secondAttribute="bottom" id="vrw-OO-8t9"/>
                                 </constraints>
                                 <size key="customSize" width="140" height="200"/>
-                                <connections>
-                                    <outlet property="animeImageView" destination="92b-Dl-Zbi" id="9XJ-lX-7dn"/>
-                                    <outlet property="animeNameLabel" destination="jCV-LJ-Hs5" id="LoX-uh-9Og"/>
-                                    <outlet property="numberOfEpisodesLabel" destination="fTE-yp-ZXK" id="ZFl-PT-Kzb"/>
-                                </connections>
                             </collectionViewCell>
                         </cells>
-                        <connections>
-                            <outlet property="dataSource" destination="ffN-uM-xVR" id="10B-R6-57S"/>
-                            <outlet property="delegate" destination="ffN-uM-xVR" id="nrs-rL-3O5"/>
-                        </connections>
                     </collectionView>
                     <navigationItem key="navigationItem" title="Поиск" id="voR-ac-1PN"/>
                 </collectionViewController>
@@ -878,7 +763,7 @@
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemRedColor">
-            <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

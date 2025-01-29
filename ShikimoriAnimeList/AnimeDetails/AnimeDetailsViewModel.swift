@@ -21,6 +21,7 @@ protocol AnimeDetailsViewModelProtocol {
     var genres: String { get }
     var rating: String { get }
     var description: String { get }
+    var isDescriptionHidden: Bool { get }
     
     func fetchAnimeDetails(completion: @escaping() -> Void)
     init(animeId: String, user: User?)
@@ -84,7 +85,11 @@ final class AnimeDetailsViewModel: AnimeDetailsViewModelProtocol {
         case .ongoing:
             return "Онгоинг c \(dateLocalized(from: anime.airedOn?.date ?? ""))"
         case .released:
-            return "c \(dateLocalized(from: anime.airedOn?.date ?? "")) по \(dateLocalized(from: anime.releasedOn?.date ?? ""))"
+            if (anime.releasedOn?.date) != nil {
+                return "c \(dateLocalized(from: anime.airedOn?.date ?? "")) по \(dateLocalized(from: anime.releasedOn?.date ?? ""))"
+            } else {
+                return "\(dateLocalized(from: anime.airedOn?.date ?? ""))"
+            }
         default:
             return "Анонс"
         }
@@ -124,6 +129,10 @@ final class AnimeDetailsViewModel: AnimeDetailsViewModelProtocol {
         }
 
         return output
+    }
+    
+    var isDescriptionHidden: Bool {
+        description.isEmpty
     }
     
     private var anime: AnimeDetailsQuery.Data.Anime!

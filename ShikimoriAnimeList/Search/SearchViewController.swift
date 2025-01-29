@@ -1,32 +1,48 @@
 //
-//  SearchCollectionViewController.swift
+//  SearchViewController.swift
 //  ShikimoriAnimeList
 //
-//  Created by Данила Умнов on 24.10.2024.
+//  Created by Данила Умнов on 29.01.2025.
 //
 
 import UIKit
 
-final class SearchCollectionViewController: UICollectionViewController {
-//    private let activityIndicator = UIActivityIndicatorView(style: .large)
+class SearchViewController: UIViewController {
     private let loadingView: UIView = {
         let view = UIView()
-        view.backgroundColor = UIColor.black.withAlphaComponent(0.5)
+        view.backgroundColor = UIColor.systemBackground.withAlphaComponent(0.5)
         view.translatesAutoresizingMaskIntoConstraints = false
         view.isHidden = true
         return view
+    }()
+    
+    private lazy var searchCollectionView: UICollectionView = {
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .vertical
+        layout.minimumLineSpacing = 10
+        layout.minimumInteritemSpacing = 10
+        layout.sectionInset = .init(top: 0, left: 32, bottom: 0, right: 32)
+        
+        let searchCollectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        searchCollectionView.translatesAutoresizingMaskIntoConstraints = false
+        searchCollectionView.dataSource = self
+        searchCollectionView.delegate = self
+        searchCollectionView.register(AnimeCell.self, forCellWithReuseIdentifier: "searchCell")
+        return searchCollectionView
     }()
     
     var viewModel: SearchViewModelProtocol!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupSearchController()
-        setupLoadingView()
+        view.backgroundColor = .systemBackground
         viewModel = SearchViewModel()
+        configureSearchController()
+        configureSearchCollectionView()
+        configureLoadingView()
     }
     
-    private func setupSearchController() {
+    private func configureSearchController() {
         let searchController = UISearchController(searchResultsController: nil)
         searchController.searchResultsUpdater = self
         searchController.obscuresBackgroundDuringPresentation = false
@@ -35,11 +51,21 @@ final class SearchCollectionViewController: UICollectionViewController {
         definesPresentationContext = true
     }
     
-    private func setupLoadingView() {
+    private func configureSearchCollectionView() {
+        view.addSubview(searchCollectionView)
+        NSLayoutConstraint.activate([
+            searchCollectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            searchCollectionView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+            searchCollectionView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+            searchCollectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
+        ])
+    }
+    
+    private func configureLoadingView() {
         view.addSubview(loadingView)
         NSLayoutConstraint.activate([
-            loadingView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            loadingView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            loadingView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+            loadingView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
             loadingView.topAnchor.constraint(equalTo: view.topAnchor),
             loadingView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
@@ -56,15 +82,16 @@ final class SearchCollectionViewController: UICollectionViewController {
         
         activityIndicator.startAnimating()
     }
+
 }
 
 // MARK: UICollectionViewDataSource
-extension SearchCollectionViewController {
-    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+extension SearchViewController: UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         viewModel.numberOfItemsInSection
     }
     
-    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(
             withReuseIdentifier:"searchCell",
             for: indexPath
@@ -77,15 +104,17 @@ extension SearchCollectionViewController {
     }
 }
 
-//// MARK: UICollectionViewDelegate
-//extension SearchCollectionViewController {
-//    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-//        performSegue(withIdentifier: "showDetails", sender: viewModel.getAnimeDetailsViewModel(at: indexPath))
-//    }
-//}
+// MARK: UICollectionViewDelegate
+extension SearchViewController: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let animeDetailsVC = AnimeDetailsViewController()
+        animeDetailsVC.viewModel = viewModel.getAnimeDetailsViewModel(at: indexPath)
+        navigationController?.pushViewController(animeDetailsVC, animated: true)
+    }
+}
 
 // MARK: UICollectionViewDelegateFlowLayout
-extension SearchCollectionViewController: UICollectionViewDelegateFlowLayout {
+extension SearchViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(
         _ collectionView: UICollectionView,
         layout collectionViewLayout: UICollectionViewLayout,
@@ -101,7 +130,7 @@ extension SearchCollectionViewController: UICollectionViewDelegateFlowLayout {
 //        let offsetY = scrollView.contentOffset.y
 //        let contentHeight = scrollView.contentSize.height
 //        let height = scrollView.bounds.height
-//        
+//
 //        if offsetY > contentHeight - height - 200 {
 //            viewModel.fetchAnimes(name: "bb") { [unowned self] in
 //                collectionView.reloadData()
@@ -111,7 +140,7 @@ extension SearchCollectionViewController: UICollectionViewDelegateFlowLayout {
 //}
 
 //MARK: - UIContextMenuInteractionDelegate
-extension SearchCollectionViewController: UIContextMenuInteractionDelegate {
+extension SearchViewController: UIContextMenuInteractionDelegate {
     func contextMenuInteraction(_ interaction: UIContextMenuInteraction, configurationForMenuAtLocation location: CGPoint) -> UIContextMenuConfiguration? {
         guard let cell = interaction.view as? AnimeCell else { return nil }
         let animeId = cell.viewModel.animeId
@@ -133,15 +162,16 @@ extension SearchCollectionViewController: UIContextMenuInteractionDelegate {
 }
 
 //MARK: - UISearchResultUpdating
-extension SearchCollectionViewController: UISearchResultsUpdating {
+extension SearchViewController: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
         guard let query = searchController.searchBar.text else { return }
         if query != "" {
             loadingView.isHidden = false
             viewModel.fetchAnimes(name: query) { [unowned self] in
                 loadingView.isHidden = true
-                collectionView.reloadData()
+                searchCollectionView.reloadData()
             }
         }
     }
 }
+
