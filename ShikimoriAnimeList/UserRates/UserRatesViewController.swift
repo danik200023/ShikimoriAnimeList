@@ -136,8 +136,22 @@ class UserRatesViewController: UIViewController {
     
     private func showUserRateDetails(for cell: UserRatesCell) {
         let detailsVC = UserRateDetailsViewController()
+        if let sheet = detailsVC.sheetPresentationController {
+            if #available(iOS 16.0, *) {
+                sheet.detents = [.custom(resolver: { _ in
+                    return 300
+                })]
+            } else {
+                sheet.detents = [.medium()]
+            }
+            sheet.prefersScrollingExpandsWhenScrolledToEdge = false
+            sheet.prefersEdgeAttachedInCompactHeight = true
+            sheet.widthFollowsPreferredContentSizeWhenEdgeAttached = true
+            sheet.prefersGrabberVisible = true
+            sheet.preferredCornerRadius = 15
+        }
         detailsVC.viewModel = cell.viewModel.getUserRateDetailsViewModel()
-        navigationController?.present(detailsVC, animated: true)
+        present(detailsVC, animated: true)
     }
 }
 

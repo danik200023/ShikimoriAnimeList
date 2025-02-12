@@ -35,12 +35,187 @@ class UserRateDetailsViewController: UIViewController {
         return animeNameLabel
     }()
     
-//    @IBOutlet var watchingButton: UIButton!
-//    @IBOutlet var plannedButton: UIButton!
-//    @IBOutlet var completedButton: UIButton!
-//    @IBOutlet var rewatchingButton: UIButton!
-//    @IBOutlet var onHoldButton: UIButton!
-//    @IBOutlet var droppedButton: UIButton!
+    private lazy var watchingButton: UIButton = {
+        let watchingButton = UIButton(configuration: .gray())
+        watchingButton.setImage(UIImage(systemName: "eye"), for: .normal)
+        watchingButton.addTarget(self, action: #selector(statusButtonAction(_:)), for: .touchUpInside)
+        return watchingButton
+    }()
+    
+    private lazy var rewatchingButton: UIButton = {
+        let rewatchingButton = UIButton(configuration: .gray())
+        rewatchingButton.setImage(UIImage(systemName: "checkmark.arrow.trianglehead.counterclockwise"), for: .normal)
+        rewatchingButton.addTarget(self, action: #selector(statusButtonAction(_:)), for: .touchUpInside)
+        return rewatchingButton
+    }()
+    
+    private lazy var plannedButton: UIButton = {
+        let plannedButton = UIButton(configuration: .gray())
+        plannedButton.setImage(UIImage(systemName: "list.clipboard"), for: .normal)
+        plannedButton.addTarget(self, action: #selector(statusButtonAction(_:)), for: .touchUpInside)
+        return plannedButton
+    }()
+    
+    private lazy var onHoldButton: UIButton = {
+        let onHoldButton = UIButton(configuration: .gray())
+        onHoldButton.setImage(UIImage(systemName: "pause"), for: .normal)
+        onHoldButton.addTarget(self, action: #selector(statusButtonAction(_:)), for: .touchUpInside)
+        return onHoldButton
+    }()
+    
+    private lazy var completedButton: UIButton = {
+        let completedButton = UIButton(configuration: .gray())
+        completedButton.setImage(UIImage(systemName: "checkmark"), for: .normal)
+        completedButton.addTarget(self, action: #selector(statusButtonAction(_:)), for: .touchUpInside)
+        return completedButton
+    }()
+    
+    private lazy var droppedButton: UIButton = {
+        let droppedButton = UIButton(configuration: .gray())
+        droppedButton.setImage(UIImage(systemName: "nosign"), for: .normal)
+        droppedButton.addTarget(self, action: #selector(statusButtonAction(_:)), for: .touchUpInside)
+        return droppedButton
+    }()
+    
+    private let watchingLabel: UILabel = {
+        let watchingLabel = UILabel()
+        watchingLabel.font = .systemFont(ofSize: 12)
+        watchingLabel.textAlignment = .center
+        watchingLabel.text = "Смотрю"
+        return watchingLabel
+    }()
+    
+    private let rewatchingLabel: UILabel = {
+        let rewatchingLabel = UILabel()
+        rewatchingLabel.font = .systemFont(ofSize: 12)
+        rewatchingLabel.textAlignment = .center
+        rewatchingLabel.text = "Пересматриваю"
+        return rewatchingLabel
+    }()
+    
+    private let plannedLabel: UILabel = {
+        let plannedLabel = UILabel()
+        plannedLabel.font = .systemFont(ofSize: 12)
+        plannedLabel.textAlignment = .center
+        plannedLabel.text = "В планах"
+        return plannedLabel
+    }()
+    
+    private let onHoldLabel: UILabel = {
+        let onHoldLabel = UILabel()
+        onHoldLabel.font = .systemFont(ofSize: 12)
+        onHoldLabel.textAlignment = .center
+        onHoldLabel.text = "Отложено"
+        return onHoldLabel
+    }()
+    
+    private let completedLabel: UILabel = {
+        let completedLabel = UILabel()
+        completedLabel.font = .systemFont(ofSize: 12)
+        completedLabel.textAlignment = .center
+        completedLabel.text = "Просмотрено"
+        return completedLabel
+    }()
+    
+    private let droppedLabel: UILabel = {
+        let droppedLabel = UILabel()
+        droppedLabel.font = .systemFont(ofSize: 12)
+        droppedLabel.textAlignment = .center
+        droppedLabel.text = "Брошено"
+        return droppedLabel
+    }()
+    
+    private lazy var watchingStackView: UIStackView = {
+        let watchingStackView = UIStackView(arrangedSubviews: [watchingButton, watchingLabel])
+        watchingStackView.axis = .vertical
+        watchingStackView.alignment = .center
+        watchingStackView.distribution = .fill
+        watchingStackView.spacing = 4
+        return watchingStackView
+    }()
+    
+    private lazy var rewatchingStackView: UIStackView = {
+        let rewatchingStackView = UIStackView(arrangedSubviews: [rewatchingButton, rewatchingLabel])
+        rewatchingStackView.axis = .vertical
+        rewatchingStackView.alignment = .center
+        rewatchingStackView.distribution = .fill
+        rewatchingStackView.spacing = 4
+        return rewatchingStackView
+    }()
+    
+    private lazy var plannedStackView: UIStackView = {
+        let plannedStackView = UIStackView(arrangedSubviews: [plannedButton, plannedLabel])
+        plannedStackView.axis = .vertical
+        plannedStackView.alignment = .center
+        plannedStackView.distribution = .fill
+        plannedStackView.spacing = 4
+        return plannedStackView
+    }()
+    
+    private lazy var onHoldStackView: UIStackView = {
+        let onHoldStackView = UIStackView(arrangedSubviews: [onHoldButton, onHoldLabel])
+        onHoldStackView.axis = .vertical
+        onHoldStackView.alignment = .center
+        onHoldStackView.distribution = .fill
+        onHoldStackView.spacing = 4
+        return onHoldStackView
+    }()
+    
+    private lazy var completedStackView: UIStackView = {
+        let completedStackView = UIStackView(arrangedSubviews: [completedButton, completedLabel])
+        completedStackView.axis = .vertical
+        completedStackView.alignment = .center
+        completedStackView.distribution = .fill
+        completedStackView.spacing = 4
+        return completedStackView
+    }()
+    
+    private lazy var droppedStackView: UIStackView = {
+        let droppedStackView = UIStackView(arrangedSubviews: [droppedButton, droppedLabel])
+        droppedStackView.axis = .vertical
+        droppedStackView.alignment = .center
+        droppedStackView.distribution = .fill
+        droppedStackView.spacing = 4
+        return droppedStackView
+    }()
+    
+    private lazy var leftButtonsStackView: UIStackView = {
+        let leftButtonsStackView = UIStackView(arrangedSubviews: [watchingStackView, rewatchingStackView])
+        leftButtonsStackView.axis = .vertical
+        leftButtonsStackView.alignment = .fill
+        leftButtonsStackView.distribution = .fillEqually
+        leftButtonsStackView.spacing = 16
+        return leftButtonsStackView
+    }()
+    
+    private lazy var centerButtonsStackView: UIStackView = {
+        let centerButtonsStackView = UIStackView(arrangedSubviews: [plannedStackView, onHoldStackView])
+        centerButtonsStackView.axis = .vertical
+        centerButtonsStackView.alignment = .fill
+        centerButtonsStackView.distribution = .fillEqually
+        centerButtonsStackView.spacing = 16
+        return centerButtonsStackView
+    }()
+    
+    private lazy var rightButtonsStackView: UIStackView = {
+        let rightButtonsStackView = UIStackView(arrangedSubviews: [completedStackView, droppedStackView])
+        rightButtonsStackView.axis = .vertical
+        rightButtonsStackView.alignment = .fill
+        rightButtonsStackView.distribution = .fillEqually
+        rightButtonsStackView.spacing = 16
+        return rightButtonsStackView
+    }()
+    
+    private lazy var buttonsStackView: UIStackView = {
+        let buttonsStackView = UIStackView(arrangedSubviews: [leftButtonsStackView, centerButtonsStackView, rightButtonsStackView])
+        buttonsStackView.translatesAutoresizingMaskIntoConstraints = false
+        buttonsStackView.axis = .horizontal
+        buttonsStackView.alignment = .fill
+        buttonsStackView.distribution = .fillEqually
+        buttonsStackView.spacing = 20
+        return buttonsStackView
+    }()
+    
 //    @IBOutlet var watchedEpisodesTextField: UITextField!
 //    @IBOutlet var totalEpisodeslabel: UILabel!
 //    @IBOutlet var rewatchesTextField: UITextField!
@@ -54,10 +229,12 @@ class UserRateDetailsViewController: UIViewController {
         configureCloseButton()
         configureDeleteButton()
         configureAnimeNameLabel()
+        configureStatusButtons()
+        configureButtonsStackViews()
         
         setupUI()
         setupBindings()
-//        updateButtonStyles()
+        updateButtonStyles()
     }
 
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -88,9 +265,29 @@ class UserRateDetailsViewController: UIViewController {
     private func configureAnimeNameLabel() {
         view.addSubview(animeNameLabel)
         NSLayoutConstraint.activate([
-            animeNameLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 10),
-            animeNameLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
+            animeNameLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 15),
+            animeNameLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 15),
             animeNameLabel.trailingAnchor.constraint(equalTo: deleteButton.leadingAnchor, constant: -10)
+        ])
+    }
+    
+    private func configureStatusButtons() {
+        let buttons = [watchingButton, rewatchingButton, plannedButton, onHoldButton, completedButton, droppedButton]
+
+        let maxWidth = buttons.map { $0.intrinsicContentSize.width }.max() ?? 44
+
+        buttons.forEach { button in
+            button.widthAnchor.constraint(equalToConstant: maxWidth).isActive = true
+        }
+    }
+
+    
+    private func configureButtonsStackViews() {
+        view.addSubview(buttonsStackView)
+        
+        NSLayoutConstraint.activate([
+            buttonsStackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 100),
+            buttonsStackView.centerXAnchor.constraint(equalTo: view.centerXAnchor)
         ])
     }
     
@@ -127,7 +324,7 @@ class UserRateDetailsViewController: UIViewController {
         viewModel.statusPublisher
             .receive(on: RunLoop.main)
             .sink { [unowned self] _ in
-//                updateButtonStyles()
+                updateButtonStyles()
             }
             .store(in: &cancellables)
 
@@ -139,46 +336,46 @@ class UserRateDetailsViewController: UIViewController {
             .store(in: &cancellables)
     }
 
-//    private func updateButtonStyles() {
-//        let buttons = [
-//            watchingButton, plannedButton, completedButton, rewatchingButton,
-//            onHoldButton, droppedButton,
-//        ]
-//        buttons.forEach { button in
-//            var configuration = UIButton.Configuration.gray()
-//            configuration.image = button?.configuration?.image
-//            button?.configuration = configuration
-//            button?.isUserInteractionEnabled = true
-//        }
-//
-//        var configuration = UIButton.Configuration.filled()
-//        switch viewModel.status {
-//        case .planned:
-//            configuration.image = plannedButton.configuration?.image
-//            plannedButton.configuration = configuration
-//            plannedButton.isUserInteractionEnabled = false
-//        case .watching:
-//            configuration.image = watchingButton.configuration?.image
-//            watchingButton.configuration = configuration
-//            watchingButton.isUserInteractionEnabled = false
-//        case .rewatching:
-//            configuration.image = rewatchingButton.configuration?.image
-//            rewatchingButton.configuration = configuration
-//            rewatchingButton.isUserInteractionEnabled = false
-//        case .completed:
-//            configuration.image = completedButton.configuration?.image
-//            completedButton.configuration = configuration
-//            completedButton.isUserInteractionEnabled = false
-//        case .onHold:
-//            configuration.image = onHoldButton.configuration?.image
-//            onHoldButton.configuration = configuration
-//            onHoldButton.isUserInteractionEnabled = false
-//        case .dropped:
-//            configuration.image = droppedButton.configuration?.image
-//            droppedButton.configuration = configuration
-//            droppedButton.isUserInteractionEnabled = false
-//        }
-//    }
+    private func updateButtonStyles() {
+        let buttons = [
+            watchingButton, plannedButton, completedButton, rewatchingButton,
+            onHoldButton, droppedButton,
+        ]
+        buttons.forEach { button in
+            var configuration = UIButton.Configuration.gray()
+            configuration.image = button.configuration?.image
+            button.configuration = configuration
+            button.isUserInteractionEnabled = true
+        }
+
+        var configuration = UIButton.Configuration.filled()
+        switch viewModel.status {
+        case .planned:
+            configuration.image = plannedButton.configuration?.image
+            plannedButton.configuration = configuration
+            plannedButton.isUserInteractionEnabled = false
+        case .watching:
+            configuration.image = watchingButton.configuration?.image
+            watchingButton.configuration = configuration
+            watchingButton.isUserInteractionEnabled = false
+        case .rewatching:
+            configuration.image = rewatchingButton.configuration?.image
+            rewatchingButton.configuration = configuration
+            rewatchingButton.isUserInteractionEnabled = false
+        case .completed:
+            configuration.image = completedButton.configuration?.image
+            completedButton.configuration = configuration
+            completedButton.isUserInteractionEnabled = false
+        case .onHold:
+            configuration.image = onHoldButton.configuration?.image
+            onHoldButton.configuration = configuration
+            onHoldButton.isUserInteractionEnabled = false
+        case .dropped:
+            configuration.image = droppedButton.configuration?.image
+            droppedButton.configuration = configuration
+            droppedButton.isUserInteractionEnabled = false
+        }
+    }
 
     private func showAlert(
         withTitle title: String,
@@ -193,23 +390,23 @@ class UserRateDetailsViewController: UIViewController {
         present(alert, animated: true)
     }
 
-//    @objc
-//    private func statusButtonAction(_ sender: UIButton) {
-//        switch sender {
-//        case plannedButton:
-//            viewModel.setStatus(.planned)
-//        case watchingButton:
-//            viewModel.setStatus(.watching)
-//        case rewatchingButton:
-//            viewModel.setStatus(.rewatching)
-//        case completedButton:
-//            viewModel.setStatus(.completed)
-//        case onHoldButton:
-//            viewModel.setStatus(.onHold)
-//        default:
-//            viewModel.setStatus(.dropped)
-//        }
-//    }
+    @objc
+    private func statusButtonAction(_ sender: UIButton) {
+        switch sender {
+        case plannedButton:
+            viewModel.setStatus(.planned)
+        case watchingButton:
+            viewModel.setStatus(.watching)
+        case rewatchingButton:
+            viewModel.setStatus(.rewatching)
+        case completedButton:
+            viewModel.setStatus(.completed)
+        case onHoldButton:
+            viewModel.setStatus(.onHold)
+        default:
+            viewModel.setStatus(.dropped)
+        }
+    }
 
     @objc
     private func deleteButtonAction() {
