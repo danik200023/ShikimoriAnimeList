@@ -216,9 +216,95 @@ class UserRateDetailsViewController: UIViewController {
         return buttonsStackView
     }()
     
-//    @IBOutlet var watchedEpisodesTextField: UITextField!
-//    @IBOutlet var totalEpisodeslabel: UILabel!
-//    @IBOutlet var rewatchesTextField: UITextField!
+    private let watchedEpisodesTextField: UITextField = {
+        let watchedEpisodesTextField = UITextField()
+        watchedEpisodesTextField.textAlignment = .right
+        watchedEpisodesTextField.keyboardType = .numberPad
+        return watchedEpisodesTextField
+    }()
+    
+    private let totalEpisodesLabel = UILabel()
+    
+    private lazy var decrementButton: UIButton = {
+        let decrementButton = UIButton()
+        decrementButton.setImage(UIImage(systemName: "minus"), for: .normal)
+        decrementButton.addTarget(self, action: #selector(decrementButtonAction), for: .touchUpInside)
+        return decrementButton
+    }()
+    
+    private lazy var incrementButton: UIButton = {
+        let incrementButton = UIButton()
+        incrementButton.setImage(UIImage(systemName: "plus"), for: .normal)
+        incrementButton.addTarget(self, action: #selector(incrementButtonAction), for: .touchUpInside)
+        return incrementButton
+    }()
+    
+    private lazy var episodesButtonStackView: UIStackView = {
+        let episodesButtonStackView = UIStackView(arrangedSubviews: [decrementButton, incrementButton])
+        episodesButtonStackView.axis = .horizontal
+        episodesButtonStackView.alignment = .fill
+        episodesButtonStackView.distribution = .fill
+        episodesButtonStackView.spacing = 15
+        return episodesButtonStackView
+    }()
+    
+    private lazy var episodesTextStackView: UIStackView = {
+        let episodesTextStackView = UIStackView(arrangedSubviews: [watchedEpisodesTextField, totalEpisodesLabel])
+        episodesTextStackView.axis = .horizontal
+        episodesTextStackView.alignment = .leading
+        episodesTextStackView.distribution = .fill
+        return episodesTextStackView
+    }()
+    
+    private lazy var episodesTextFieldStackView: UIStackView = {
+        let episodesTextFieldStackView = UIStackView(arrangedSubviews: [episodesTextStackView, episodesButtonStackView])
+        episodesTextFieldStackView.axis = .horizontal
+        episodesTextFieldStackView.alignment = .fill
+        episodesTextFieldStackView.distribution = .equalCentering
+        episodesTextFieldStackView.spacing = 20
+        return episodesTextFieldStackView
+    }()
+    
+    private let watchedEpisodesLabel: UILabel = {
+        let watchedEpisodesLabel = UILabel()
+        watchedEpisodesLabel.font = .systemFont(ofSize: 13)
+        watchedEpisodesLabel.text = "Просмотрено серий"
+        return watchedEpisodesLabel
+    }()
+    
+    private lazy var episodesStackView: UIStackView = {
+        let episodesStackView = UIStackView(arrangedSubviews: [episodesTextFieldStackView, watchedEpisodesLabel])
+        episodesStackView.translatesAutoresizingMaskIntoConstraints = false
+        episodesStackView.axis = .vertical
+        episodesStackView.alignment = .leading
+        episodesStackView.distribution = .fill
+        episodesStackView.spacing = 10
+        return episodesStackView
+    }()
+    
+    private let rewatchesTextField: UITextField = {
+        let rewatchesTextField = UITextField()
+        rewatchesTextField.keyboardType = .numberPad
+        return rewatchesTextField
+    }()
+    
+    private let rewatchesLabel: UILabel = {
+        let rewatchesLabel = UILabel()
+        rewatchesLabel.font = .systemFont(ofSize: 13)
+        rewatchesLabel.numberOfLines = 2
+        rewatchesLabel.text = "Повторных просмотров"
+        return rewatchesLabel
+    }()
+    
+    private lazy var rewatchesStackView: UIStackView = {
+        let rewatchesStackView = UIStackView(arrangedSubviews: [rewatchesTextField, rewatchesLabel])
+        rewatchesStackView.translatesAutoresizingMaskIntoConstraints = false
+        rewatchesStackView.axis = .vertical
+        rewatchesStackView.alignment = .leading
+        rewatchesStackView.distribution = .fill
+        rewatchesStackView.spacing = 10
+        return rewatchesStackView
+    }()
 
     var viewModel: UserRateDetailsViewModelProtocol!
     private var cancellables = Set<AnyCancellable>()
@@ -231,6 +317,8 @@ class UserRateDetailsViewController: UIViewController {
         configureAnimeNameLabel()
         configureStatusButtons()
         configureButtonsStackViews()
+        configureEpisodesStackView()
+        configureRewatchesStackView()
         
         setupUI()
         setupBindings()
@@ -280,7 +368,6 @@ class UserRateDetailsViewController: UIViewController {
             button.widthAnchor.constraint(equalToConstant: maxWidth).isActive = true
         }
     }
-
     
     private func configureButtonsStackViews() {
         view.addSubview(buttonsStackView)
@@ -291,10 +378,30 @@ class UserRateDetailsViewController: UIViewController {
         ])
     }
     
+    private func configureEpisodesStackView() {
+        view.addSubview(episodesStackView)
+        
+        NSLayoutConstraint.activate([
+            episodesStackView.topAnchor.constraint(equalTo: buttonsStackView.bottomAnchor, constant: 60),
+            episodesStackView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 36)
+        ])
+    }
+    
+    private func configureRewatchesStackView() {
+        view.addSubview(rewatchesStackView)
+        
+        NSLayoutConstraint.activate([
+            rewatchesStackView.topAnchor.constraint(equalTo: buttonsStackView.bottomAnchor, constant: 60),
+            rewatchesStackView.leadingAnchor.constraint(equalTo: episodesStackView.trailingAnchor, constant: 36),
+            rewatchesStackView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16),
+            rewatchesStackView.widthAnchor.constraint(equalToConstant: 100)
+        ])
+    }
+    
     private func setupUI() {
         animeNameLabel.text = viewModel.animeName
-//        totalEpisodeslabel.text = viewModel.totalEpisodes
-//        rewatchesTextField.text = viewModel.rewatches
+        totalEpisodesLabel.text = viewModel.totalEpisodes
+        rewatchesTextField.text = viewModel.rewatches
 
         let toolbar = UIToolbar()
         toolbar.sizeToFit()
@@ -308,10 +415,10 @@ class UserRateDetailsViewController: UIViewController {
 
         toolbar.items = [.flexibleSpace(), doneButton]
 
-//        watchedEpisodesTextField.inputAccessoryView = toolbar
-//        watchedEpisodesTextField.delegate = self
-//        rewatchesTextField.inputAccessoryView = toolbar
-//        rewatchesTextField.delegate = self
+        watchedEpisodesTextField.inputAccessoryView = toolbar
+        watchedEpisodesTextField.delegate = self
+        rewatchesTextField.inputAccessoryView = toolbar
+        rewatchesTextField.delegate = self
 
     }
 
@@ -331,7 +438,7 @@ class UserRateDetailsViewController: UIViewController {
         viewModel.numberOfWatchedEpisodesPublisher
             .receive(on: RunLoop.main)
             .sink { [unowned self] numberOfWatchedEpisodes in
-//                watchedEpisodesTextField.text = numberOfWatchedEpisodes
+                watchedEpisodesTextField.text = numberOfWatchedEpisodes
             }
             .store(in: &cancellables)
     }
@@ -435,72 +542,74 @@ class UserRateDetailsViewController: UIViewController {
     @objc
     private func incrementButtonAction() {
         viewModel.incrementWatchedEpisodes()
+        updateButtonStyles()
     }
 
     @objc
     private func decrementButtonAction() {
         viewModel.decrementWatchedEpisodes()
+        updateButtonStyles()
     }
 }
 
-//extension UserRateDetailsViewController: UITextFieldDelegate {
-//    func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
-//        guard let text = textField.text, let intValue = Int(text) else {
-//            let alert = UIAlertController(
-//                title: "Ошибка",
-//                message: "Введите число",
-//                preferredStyle: .alert
-//            )
-//            let okAction = UIAlertAction(title: "OK", style: .default) { _ in
-//                textField.text = "1"
-//                textField.becomeFirstResponder()
-//            }
-//            alert.addAction(okAction)
-//            present(alert, animated: true)
-//            return false
-//        }
-//        switch textField {
-//        case watchedEpisodesTextField:
-//            if viewModel.isValidWatchedEpisodesCount(intValue) {
-//                return true
-//            } else {
-//                showAlert(
-//                    withTitle: "Ошибка",
-//                    andMessage: "Неправильное количество серий",
-//                    actions: [
-//                        UIAlertAction(title: "OK", style: .default) { _ in
-//                            textField.text = "1"
-//                            textField.becomeFirstResponder()
-//                        }
-//                    ])
-//                return false
-//            }
-//        default:
-//            if viewModel.isValidRewatchesCount(intValue) {
-//                return true
-//            } else {
-//                showAlert(
-//                    withTitle: "Ошибка",
-//                    andMessage: "Неправильное количество пересмотров",
-//                    actions: [
-//                        UIAlertAction(title: "OK", style: .default) { _ in
-//                            textField.text = "0"
-//                            textField.becomeFirstResponder()
-//                        }
-//                    ])
-//                return false
-//            }
-//        }
-//    }
-//
-//    func textFieldDidEndEditing(_ textField: UITextField) {
-//        switch textField {
-//        case watchedEpisodesTextField:
-//            guard let text = textField.text else { return }
-//            viewModel.setNumberOfWatchedEpisodes(Int(text) ?? 0)
-//        default:
-//            guard let text = textField.text else { return }
-//            viewModel.setNumberOfRewatches(Int(text) ?? 0)
-//        }
-//    }
-//}
+extension UserRateDetailsViewController: UITextFieldDelegate {
+    func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
+        guard let text = textField.text, let intValue = Int(text) else {
+            let alert = UIAlertController(
+                title: "Ошибка",
+                message: "Введите число",
+                preferredStyle: .alert
+            )
+            let okAction = UIAlertAction(title: "OK", style: .default) { _ in
+                textField.text = "1"
+                textField.becomeFirstResponder()
+            }
+            alert.addAction(okAction)
+            present(alert, animated: true)
+            return false
+        }
+        switch textField {
+        case watchedEpisodesTextField:
+            if viewModel.isValidWatchedEpisodesCount(intValue) {
+                return true
+            } else {
+                showAlert(
+                    withTitle: "Ошибка",
+                    andMessage: "Неправильное количество серий",
+                    actions: [
+                        UIAlertAction(title: "OK", style: .default) { _ in
+                            textField.text = "1"
+                            textField.becomeFirstResponder()
+                        }
+                    ])
+                return false
+            }
+        default:
+            if viewModel.isValidRewatchesCount(intValue) {
+                return true
+            } else {
+                showAlert(
+                    withTitle: "Ошибка",
+                    andMessage: "Неправильное количество пересмотров",
+                    actions: [
+                        UIAlertAction(title: "OK", style: .default) { _ in
+                            textField.text = "0"
+                            textField.becomeFirstResponder()
+                        }
+                    ])
+                return false
+            }
+        }
+    }
+
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        switch textField {
+        case watchedEpisodesTextField:
+            guard let text = textField.text else { return }
+            viewModel.setNumberOfWatchedEpisodes(Int(text) ?? 0)
+        default:
+            guard let text = textField.text else { return }
+            viewModel.setNumberOfRewatches(Int(text) ?? 0)
+        }
+    }
+}

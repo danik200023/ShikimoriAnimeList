@@ -139,7 +139,7 @@ class UserRatesViewController: UIViewController {
         if let sheet = detailsVC.sheetPresentationController {
             if #available(iOS 16.0, *) {
                 sheet.detents = [.custom(resolver: { _ in
-                    return 300
+                    return 400
                 })]
             } else {
                 sheet.detents = [.medium()]
