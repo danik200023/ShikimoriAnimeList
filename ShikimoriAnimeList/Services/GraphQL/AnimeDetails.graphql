@@ -1,22 +1,15 @@
 query AnimeDetails($ids: String) {
     animes(ids: $ids) {
-        createdAt
         description
-        descriptionSource
         duration
         english
         episodes
         episodesAired
-        franchise
         id
-        japanese
         kind
         licenseNameRu
-        licensors
-        malId
         name
         nextEpisodeAt
-        opengraphImageUrl
         rating
         russian
         score
@@ -24,67 +17,37 @@ query AnimeDetails($ids: String) {
         status
         airedOn {
             date
-            day
-            month
-            year
-        }
-        characterRoles {
-            id
-            rolesEn
-            rolesRu
-        }
-        genres {
-            entryType
-            id
-            kind
-            name
-            russian
-        }
-        personRoles {
-            id
-            rolesEn
-            rolesRu
         }
         poster {
-            id
-            main2xUrl
-            mainAlt2xUrl
-            mainAltUrl
             mainUrl
-            mini2xUrl
-            miniAlt2xUrl
-            miniAltUrl
-            miniUrl
-            originalUrl
-            preview2xUrl
-            previewAlt2xUrl
-            previewAltUrl
-            previewUrl
-        }
-        related {
-            id
-            relationEn
-            relationKind
-            relationRu
-            relationText
         }
         releasedOn {
             date
-            day
-            month
-            year
         }
         userRate {
-            chapters
-            createdAt
             episodes
             id
             rewatches
-            score
             status
-            text
-            updatedAt
-            volumes
+            anime {
+                english
+                episodesAired
+                episodes
+                id
+                russian
+                score
+                season
+                status
+                airedOn {
+                    year
+                }
+                kind
+                poster {
+                    mainUrl
+                }
+                name
+            }
+            score
         }
     }
 }

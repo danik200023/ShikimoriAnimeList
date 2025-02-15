@@ -24,6 +24,7 @@ protocol AnimeDetailsViewModelProtocol {
     var isDescriptionHidden: Bool { get }
     
     func fetchAnimeDetails(completion: @escaping() -> Void)
+    func getUserRateDetailsViewModel() -> UserRateDetailsViewModelProtocol?
     init(animeId: String, user: User?)
 }
 
@@ -153,6 +154,11 @@ final class AnimeDetailsViewModel: AnimeDetailsViewModelProtocol {
                 completion()
             }
         }
+    }
+    
+    func getUserRateDetailsViewModel() -> UserRateDetailsViewModelProtocol? {
+        guard let userRate = anime.userRate else { return nil }
+        return UserRateDetailsViewModel(userRate: UserRateGraphQL(from: userRate))
     }
     
     init(animeId: String, user: User? = nil) {

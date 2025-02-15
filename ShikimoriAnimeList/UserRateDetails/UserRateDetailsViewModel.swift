@@ -17,7 +17,7 @@ protocol UserRateDetailsViewModelProtocol {
     var status: UserRateStatusEnum { get }
     var statusPublisher: Published<UserRateStatusEnum>.Publisher { get }
     var numberOfWatchedEpisodesPublisher: Published<String>.Publisher { get }
-    init(userRate: UserRatesQuery.Data.UserRate)
+    init(userRate: UserRateGraphQL)
     func isValidWatchedEpisodesCount(_ episodes: Int) -> Bool
     func isValidRewatchesCount(_ rewatches: Int) -> Bool
     func setStatus(_ status: UserRateStatusEnum)
@@ -33,8 +33,8 @@ final class UserRateDetailsViewModel: UserRateDetailsViewModelProtocol {
     @Published private(set) var numberOfWatchedEpisodes: String
 
     var animeName: String? {
-        userRate.anime?.russian != ""
-            ? userRate.anime?.russian : userRate.anime?.name
+        userRate.animeData?.russian != ""
+            ? userRate.animeData?.russian : userRate.animeData?.name
     }
 
     var episodesWatched: String {
@@ -46,10 +46,10 @@ final class UserRateDetailsViewModel: UserRateDetailsViewModelProtocol {
     }
     
     var totalEpisodes: String {
-        if let episodesAired = userRate.anime?.episodesAired, episodesAired != 0 {
+        if let episodesAired = userRate.animeData?.episodesAired, episodesAired != 0 {
             return "/\(episodesAired)"
         } else {
-            return "/\(userRate.anime?.episodes ?? 0)"
+            return "/\(userRate.animeData?.episodes ?? 0)"
         }
     }
 
@@ -61,20 +61,20 @@ final class UserRateDetailsViewModel: UserRateDetailsViewModelProtocol {
         $numberOfWatchedEpisodes
     }
 
-    private let userRate: UserRatesQuery.Data.UserRate
+    private let userRate: UserRateGraphQL
 
-    init(userRate: UserRatesQuery.Data.UserRate) {
+    init(userRate: UserRateGraphQL) {
         self.userRate = userRate
         self.status = userRate.status.value ?? .planned
         self.numberOfWatchedEpisodes = userRate.episodes.formatted()
     }
 
     func isValidWatchedEpisodesCount(_ episodes: Int) -> Bool {
-        switch userRate.anime?.status?.value {
+        switch userRate.animeData?.status?.value {
         case .released:
-            return episodes <= userRate.anime?.episodes ?? 0
+            return episodes <= userRate.animeData?.episodes ?? 0
         case .ongoing:
-            return episodes <= userRate.anime?.episodesAired ?? 0
+            return episodes <= userRate.animeData?.episodesAired ?? 0
         case .anons:
             return episodes <= 0
         case .none:

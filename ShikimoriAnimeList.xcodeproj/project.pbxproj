@@ -46,6 +46,7 @@
 		83CB825F2D11571700DEC71F /* Apollo in Frameworks */ = {isa = PBXBuildFile; productRef = 83CB825E2D11571700DEC71F /* Apollo */; };
 		83CB82622D11577200DEC71F /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 83CB82612D11577200DEC71F /* Alamofire */; };
 		83CB82652D1157D700DEC71F /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 83CB82642D1157D700DEC71F /* Kingfisher */; };
+		83CBF6D12D60D4900031CF72 /* UserRateGraphQL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83CBF6D02D60D48F0031CF72 /* UserRateGraphQL.swift */; };
 		83D3997E2CCA807F00ADDB7A /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83D3997D2CCA807F00ADDB7A /* SearchViewModel.swift */; };
 		83D399802CCBE0C400ADDB7A /* OngoingCalendar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83D3997F2CCBE0C400ADDB7A /* OngoingCalendar.swift */; };
 		83D399822CCBF85600ADDB7A /* OngoingCellHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83D399812CCBF85600ADDB7A /* OngoingCellHeader.swift */; };
@@ -94,6 +95,7 @@
 		83BE51282C6F216F00CF0DB8 /* AnimeDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimeDetailsViewController.swift; sourceTree = "<group>"; };
 		83C6A03E2CD2A0FB00BBBFF3 /* AnimeSearch.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = AnimeSearch.graphql; sourceTree = "<group>"; };
 		83C6A0492CD4017800BBBFF3 /* GraphQLAuthorizationInterceptor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphQLAuthorizationInterceptor.swift; sourceTree = "<group>"; };
+		83CBF6D02D60D48F0031CF72 /* UserRateGraphQL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRateGraphQL.swift; sourceTree = "<group>"; };
 		83D3997D2CCA807F00ADDB7A /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
 		83D3997F2CCBE0C400ADDB7A /* OngoingCalendar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OngoingCalendar.swift; sourceTree = "<group>"; };
 		83D399812CCBF85600ADDB7A /* OngoingCellHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OngoingCellHeader.swift; sourceTree = "<group>"; };
@@ -208,6 +210,7 @@
 				836928542CA6A10500EE7B2A /* OAuthToken.swift */,
 				831C33722CA6C91200E0F332 /* UserRate.swift */,
 				83D3997F2CCBE0C400ADDB7A /* OngoingCalendar.swift */,
+				83CBF6D02D60D48F0031CF72 /* UserRateGraphQL.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -390,6 +393,7 @@
 			files = (
 				83B76A5A2CD6538A00F6639B /* UserRatesCellViewModel.swift in Sources */,
 				83B0064C2D0C3568006A499F /* RootTabBarController.swift in Sources */,
+				83CBF6D12D60D4900031CF72 /* UserRateGraphQL.swift in Sources */,
 				83F66ED52CC1AD8000F2F4E3 /* OngoingsViewModel.swift in Sources */,
 				832398242C6B96E500EC4833 /* Anime.swift in Sources */,
 				83D399802CCBE0C400ADDB7A /* OngoingCalendar.swift in Sources */,

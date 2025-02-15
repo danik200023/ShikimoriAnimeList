@@ -33,7 +33,7 @@ final class UserRatesCellViewModel: UserRatesCellViewModelProtocol {
     }
     
     var posterUrl: URL {
-        URL(string: userRate.anime?.poster?.mainUrl ?? "https://shikimori.one/assets/globals/missing/main@2x.png")!
+        URL(string: userRate.anime?.posterUrl ?? "https://shikimori.one/assets/globals/missing/main@2x.png")!
     }
     
     private var kind: String {
@@ -62,7 +62,7 @@ final class UserRatesCellViewModel: UserRatesCellViewModelProtocol {
     }
     
     private var yearOrStatus: String {
-        if let year = userRate.anime?.airedOn?.year {
+        if let year = userRate.anime?.airedOnYear {
             return "\(year)"
         } else {
             switch userRate.anime?.status?.value {
@@ -85,7 +85,7 @@ final class UserRatesCellViewModel: UserRatesCellViewModelProtocol {
     }
     
     func getUserRateDetailsViewModel() -> UserRateDetailsViewModelProtocol {
-        UserRateDetailsViewModel(userRate: userRate)
+        UserRateDetailsViewModel(userRate: UserRateGraphQL(from: userRate))
     }
     
     func getAnimeDetailsViewModel() -> AnimeDetailsViewModelProtocol {

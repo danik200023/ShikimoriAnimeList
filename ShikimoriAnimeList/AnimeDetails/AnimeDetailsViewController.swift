@@ -32,7 +32,7 @@ final class AnimeDetailsViewController: UIViewController {
         editButton.configuration = .gray()
         editButton.clipsToBounds = true
         editButton.setImage(UIImage(systemName: "pencil"), for: .normal)
-//        editButton.addTarget(self, action: #selector(editButtonAction), for: .touchUpInside)
+        editButton.addTarget(self, action: #selector(editButtonAction), for: .touchUpInside)
         return editButton
     }()
     
@@ -403,5 +403,26 @@ final class AnimeDetailsViewController: UIViewController {
         descriptionDetailsLabel.text = viewModel.description
         statusDetailsLabel.text = viewModel.statusDetails
         statuslabel.text = viewModel.status
+    }
+    
+    @objc
+    private func editButtonAction() {
+        let detailsVC = UserRateDetailsViewController()
+        if let sheet = detailsVC.sheetPresentationController {
+            if #available(iOS 16.0, *) {
+                sheet.detents = [.custom(resolver: { _ in
+                    return 400
+                })]
+            } else {
+                sheet.detents = [.medium()]
+            }
+            sheet.prefersScrollingExpandsWhenScrolledToEdge = false
+            sheet.prefersEdgeAttachedInCompactHeight = true
+            sheet.widthFollowsPreferredContentSizeWhenEdgeAttached = true
+            sheet.prefersGrabberVisible = true
+            sheet.preferredCornerRadius = 15
+        }
+        detailsVC.viewModel = viewModel.getUserRateDetailsViewModel()
+        present(detailsVC, animated: true)
     }
 }
