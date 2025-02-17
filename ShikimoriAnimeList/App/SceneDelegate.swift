@@ -36,8 +36,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                     }
                     
                     let tabBarVC = RootTabBarController()
-                    window.rootViewController = tabBarVC
-                    window.makeKeyAndVisible()
+                    UIView.transition(with: window, duration: 0.3) {
+                        window.rootViewController = tabBarVC
+                    }
                 }
             } else {
                 AuthManager.shared.isLoggedIn = true
@@ -45,10 +46,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                 window.rootViewController = tabBarVC
                 window.makeKeyAndVisible()
             }
+        } else {
+            let tabBarVC = RootTabBarController()
+            window.rootViewController = tabBarVC
+            window.makeKeyAndVisible()
         }
-        let tabBarVC = RootTabBarController()
-        window.rootViewController = tabBarVC
-        window.makeKeyAndVisible()
     }
 }
 

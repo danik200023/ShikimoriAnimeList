@@ -14,20 +14,21 @@ class RootTabBarController: UITabBarController {
 
         
         let userRatesVC = UINavigationController(rootViewController: UserRatesViewController())
-        let ongoingsVC = UINavigationController(rootViewController: OngoingsCollectionViewController())
+//        let ongoingsVC = UINavigationController(rootViewController: OngoingsCollectionViewController())
         let searchVC = UINavigationController(rootViewController: SearchViewController())
-        let profileVC = ProfileViewController()
+//        let profileVC = ProfileViewController()
         
         userRatesVC.tabBarItem.image = UIImage(systemName: "list.clipboard")
         userRatesVC.tabBarItem.title = "Список"
-        ongoingsVC.tabBarItem.image = UIImage(systemName: "clock")
-        ongoingsVC.tabBarItem.title = "Онгоинги"
+//        ongoingsVC.tabBarItem.image = UIImage(systemName: "clock")
+//        ongoingsVC.tabBarItem.title = "Онгоинги"
         searchVC.tabBarItem.image = UIImage(systemName: "magnifyingglass")
         searchVC.tabBarItem.title = "Поиск"
-        profileVC.tabBarItem.image = UIImage(systemName: "person")
-        profileVC.tabBarItem.title = "Профиль"
+//        profileVC.tabBarItem.image = UIImage(systemName: "person")
+//        profileVC.tabBarItem.title = "Профиль"
         
 //        viewControllers = [userRatesVC, detailsVC, profileVC]
         viewControllers = [userRatesVC, searchVC]
+//        viewControllers = [searchVC]
     }
 }
