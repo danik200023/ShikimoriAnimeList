@@ -130,7 +130,7 @@ final class NetworkManager {
     
     func fetchAnimeDetails(animeId: String, completion: @escaping (Result<GraphQLResult<AnimeDetailsQuery.Data>, any Error>) -> Void) {
         let query = AnimeDetailsQuery(ids: GraphQLNullable(stringLiteral: animeId))
-        apollo.fetch(query: query) { result in
+        apollo.fetch(query: query, cachePolicy: .returnCacheDataAndFetch) { result in
             switch result {
             case .success(let value):
                 completion(.success(value))

@@ -7,6 +7,7 @@
 
 import UIKit
 import Kingfisher
+import Combine
 
 final class AnimeDetailsViewController: UIViewController {
     private let scrollView: UIScrollView = {
@@ -217,9 +218,20 @@ final class AnimeDetailsViewController: UIViewController {
         editButton.layer.cornerRadius = editButton.frame.width / 2
     }
     
+    private var cancellables = Set<AnyCancellable>()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
+        
+        NotificationCenter.default.publisher(for: .userRateChanged)
+            .sink { [weak self] _ in
+                self?.viewModel.updateUserRate { [weak self] in
+                    self?.updateStatusButton()
+                }
+            }
+            .store(in: &cancellables)
+        
         configureScrollView()
         configurePosterImageView()
         configureEditButtonsStackView()
@@ -403,6 +415,28 @@ final class AnimeDetailsViewController: UIViewController {
         descriptionDetailsLabel.text = viewModel.description
         statusDetailsLabel.text = viewModel.statusDetails
         statuslabel.text = viewModel.status
+        updateStatusButton()
+    }
+    
+    private func updateStatusButton() {
+        let imageName: String
+        switch viewModel.userRateStatus {
+        case .planned:
+            imageName = "list.clipboard"
+        case .watching:
+            imageName = "eye"
+        case .rewatching:
+            imageName = "checkmark.arrow.trianglehead.counterclockwise"
+        case .completed:
+            imageName = "checkmark"
+        case .onHold:
+            imageName = "pause"
+        case .dropped:
+            imageName = "nosign"
+        case .none:
+            imageName = "plus"
+        }
+        statusButton.setImage(UIImage(systemName: imageName), for: .normal)
     }
     
     @objc

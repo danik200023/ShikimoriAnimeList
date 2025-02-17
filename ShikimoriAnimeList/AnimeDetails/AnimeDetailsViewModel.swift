@@ -18,11 +18,13 @@ protocol AnimeDetailsViewModelProtocol {
     var episodeDuration: String { get }
     var statusDetails: String? { get }
     var status: String { get }
+    var userRateStatus: UserRateStatusEnum? { get }
     var genres: String { get }
     var rating: String { get }
     var description: String { get }
     var isDescriptionHidden: Bool { get }
     
+    func updateUserRate(completion: @escaping() -> Void)
     func fetchAnimeDetails(completion: @escaping() -> Void)
     func getUserRateDetailsViewModel() -> UserRateDetailsViewModelProtocol?
     init(animeId: String, user: User?)
@@ -105,6 +107,10 @@ final class AnimeDetailsViewModel: AnimeDetailsViewModelProtocol {
         }
     }
     
+    var userRateStatus: UserRateStatusEnum? {
+        userRate?.status.value
+    }
+    
     var genres: String {
         ""
     }
@@ -137,10 +143,27 @@ final class AnimeDetailsViewModel: AnimeDetailsViewModelProtocol {
     }
     
     private var anime: AnimeDetailsQuery.Data.Anime!
+    private var userRate: UserRateGraphQL?
     private let user: User?
     private let animeId: String
     
     private let networkManager = NetworkManager.shared
+    
+    func updateUserRate(completion: @escaping () -> Void) {
+        networkManager.fetchAnimeDetails(animeId: animeId) { [weak self] result in
+            guard let self else { return }
+            switch result {
+            case .success(let value):
+                if let userRate = value.data?.animes.first?.userRate {
+                    self.userRate = UserRateGraphQL(from: userRate)
+                    completion()
+                }
+            case .failure(let error):
+                print(error)
+                completion()
+            }
+        }
+    }
     
     func fetchAnimeDetails(completion: @escaping () -> Void) {
         networkManager.fetchAnimeDetails(animeId: animeId) { [weak self] result in
@@ -148,6 +171,9 @@ final class AnimeDetailsViewModel: AnimeDetailsViewModelProtocol {
             switch result {
             case .success(let value):
                 anime = value.data?.animes.first
+                if let userRate = anime.userRate {
+                    self.userRate = UserRateGraphQL(from: userRate)
+                }
                 completion()
             case .failure(let error):
                 print(error)
@@ -157,7 +183,7 @@ final class AnimeDetailsViewModel: AnimeDetailsViewModelProtocol {
     }
     
     func getUserRateDetailsViewModel() -> UserRateDetailsViewModelProtocol? {
-        guard let userRate = anime.userRate else { return nil }
+        guard let userRate else { return nil }
         return UserRateDetailsViewModel(userRate: UserRateGraphQL(from: userRate))
     }
     
