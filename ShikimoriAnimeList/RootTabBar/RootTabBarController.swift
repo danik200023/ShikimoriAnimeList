@@ -16,19 +16,18 @@ class RootTabBarController: UITabBarController {
         let userRatesVC = UINavigationController(rootViewController: UserRatesViewController())
         let ongoingsVC = UINavigationController(rootViewController: OngoingsViewController())
         let searchVC = UINavigationController(rootViewController: SearchViewController())
-//        let profileVC = ProfileViewController()
+        let profileVC = ProfileViewController()
         
-        userRatesVC.tabBarItem.image = UIImage(systemName: "list.clipboard")
-        userRatesVC.tabBarItem.title = "Список"
-        ongoingsVC.tabBarItem.image = UIImage(systemName: "clock")
-        ongoingsVC.tabBarItem.title = "Онгоинги"
-        searchVC.tabBarItem.image = UIImage(systemName: "magnifyingglass")
-        searchVC.tabBarItem.title = "Поиск"
-//        profileVC.tabBarItem.image = UIImage(systemName: "person")
-//        profileVC.tabBarItem.title = "Профиль"
+        userRatesVC.tabBarItem = UITabBarItem(title: "Список", image: UIImage(systemName: "list.clipboard"), tag: 0)
+        ongoingsVC.tabBarItem = UITabBarItem(title: "Онгоинги", image: UIImage(systemName: "clock"), tag: 1)
+        searchVC.tabBarItem = UITabBarItem(title: "Поиск", image: UIImage(systemName: "magnifyingglass"), tag: 2)
+        profileVC.tabBarItem = UITabBarItem(title: "Профиль", image: UIImage(systemName: "person"), tag: 3)
         
-//        viewControllers = [userRatesVC, detailsVC, profileVC]
-        viewControllers = [userRatesVC, ongoingsVC, searchVC]
-//        viewControllers = [searchVC]
+        let controllers = [userRatesVC, ongoingsVC, searchVC, profileVC]
+        controllers.forEach {
+            $0.loadViewIfNeeded()
+        }
+        
+        viewControllers = controllers
     }
 }
