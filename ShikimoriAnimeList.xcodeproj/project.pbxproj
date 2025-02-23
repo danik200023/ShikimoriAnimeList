@@ -169,7 +169,6 @@
 				83B76A452CD6302800F6639B /* Profile */,
 				83B0064A2D0C34D4006A499F /* RootTabBar */,
 				83B006462D0C3336006A499F /* Loading */,
-				832398212C6B926500EC4833 /* Storyboards */,
 				832398222C6B929000EC4833 /* Models */,
 				832398252C6E3D2400EC4833 /* Services */,
 				8323981F2C6B924D00EC4833 /* App */,
@@ -189,13 +188,6 @@
 				832398162C6B921E00EC4833 /* LaunchScreen.storyboard */,
 			);
 			path = App;
-			sourceTree = "<group>";
-		};
-		832398212C6B926500EC4833 /* Storyboards */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Storyboards;
 			sourceTree = "<group>";
 		};
 		832398222C6B929000EC4833 /* Models */ = {

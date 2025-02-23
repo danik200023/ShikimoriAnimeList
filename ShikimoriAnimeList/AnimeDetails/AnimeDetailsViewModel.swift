@@ -23,9 +23,11 @@ protocol AnimeDetailsViewModelProtocol {
     var rating: String { get }
     var description: String { get }
     var isDescriptionHidden: Bool { get }
+    var isLoggedIn: Bool { get }
     
     func updateUserRate(completion: @escaping() -> Void)
     func fetchAnimeDetails(completion: @escaping() -> Void)
+    func addAnimeToList()
     func getUserRateDetailsViewModel() -> UserRateDetailsViewModelProtocol?
     init(animeId: String, user: User?)
 }
@@ -142,6 +144,10 @@ final class AnimeDetailsViewModel: AnimeDetailsViewModelProtocol {
         description.isEmpty
     }
     
+    var isLoggedIn: Bool {
+        AuthManager.shared.isLoggedIn
+    }
+    
     private var anime: AnimeDetailsQuery.Data.Anime!
     private var userRate: UserRateGraphQL?
     private let user: User?
@@ -156,8 +162,10 @@ final class AnimeDetailsViewModel: AnimeDetailsViewModelProtocol {
             case .success(let value):
                 if let userRate = value.data?.animes.first?.userRate {
                     self.userRate = UserRateGraphQL(from: userRate)
-                    completion()
+                } else {
+                    userRate = nil
                 }
+                completion()
             case .failure(let error):
                 print(error)
                 completion()
@@ -171,13 +179,37 @@ final class AnimeDetailsViewModel: AnimeDetailsViewModelProtocol {
             switch result {
             case .success(let value):
                 anime = value.data?.animes.first
-                if let userRate = anime.userRate {
+                if let userRate = anime?.userRate {
                     self.userRate = UserRateGraphQL(from: userRate)
                 }
                 completion()
             case .failure(let error):
                 print(error)
                 completion()
+            }
+        }
+    }
+    
+    func addAnimeToList() {
+        let userId = UserDefaults.standard.integer(forKey: "userId")
+        if userId != 0 && UserDefaults.standard.getOAuthToken() != nil {
+        networkManager.post(
+                UserRate.self,
+                to: "https://shikimori.one/api/v2/user_rates",
+                withParameters: [
+                    "user_rate" : [
+                        "user_id": userId,
+                        "target_id": animeId,
+                        "target_type": "Anime"
+                    ]
+                ]
+            ) { result in
+                switch result {
+                case .success(_):
+                    NotificationCenter.default.post(name: .userRateChanged, object: nil)
+                case .failure(let error):
+                    print(error)
+                }
             }
         }
     }

@@ -30,30 +30,13 @@ final class AnimeDetailsViewController: UIViewController {
 
     private lazy var editButton: UIButton = {
         let editButton = UIButton()
+        editButton.translatesAutoresizingMaskIntoConstraints = false
         editButton.configuration = .gray()
         editButton.clipsToBounds = true
         editButton.setImage(UIImage(systemName: "pencil"), for: .normal)
         editButton.addTarget(self, action: #selector(editButtonAction), for: .touchUpInside)
         return editButton
     }()
-    
-    private lazy var statusButton: UIButton = {
-        let statusButton = UIButton()
-        statusButton.configuration = .gray()
-        statusButton.clipsToBounds = true
-        statusButton.setImage(UIImage(systemName: "pencil"), for: .normal)
-//        statusButton.addTarget(self, action: #selector(editButtonAction), for: .touchUpInside)
-        return statusButton
-    }()
-    
-    private lazy var editButtonsStackView: UIStackView = {
-        let editButtonsStackView = UIStackView(arrangedSubviews: [editButton, statusButton])
-        editButtonsStackView.translatesAutoresizingMaskIntoConstraints = false
-        editButtonsStackView.axis = .vertical
-        editButtonsStackView.distribution = .fillEqually
-        return editButtonsStackView
-    }()
-    
     
     private let russianNameLabel: UILabel = {
         let russianNameLabel = UILabel()
@@ -212,9 +195,6 @@ final class AnimeDetailsViewController: UIViewController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         
-        editButtonsStackView.spacing = editButtonsStackView.frame.height / 3
-        
-        statusButton.layer.cornerRadius = statusButton.frame.width / 2
         editButton.layer.cornerRadius = editButton.frame.width / 2
     }
     
@@ -227,14 +207,14 @@ final class AnimeDetailsViewController: UIViewController {
         NotificationCenter.default.publisher(for: .userRateChanged)
             .sink { [weak self] _ in
                 self?.viewModel.updateUserRate { [weak self] in
-                    self?.updateStatusButton()
+                    self?.updateEditButtonImage()
                 }
             }
             .store(in: &cancellables)
         
         configureScrollView()
         configurePosterImageView()
-        configureEditButtonsStackView()
+        configureEditButton()
         configureRussianNameLabel()
         configureNameLabel()
         configurePropertiesScrollView()
@@ -270,14 +250,14 @@ final class AnimeDetailsViewController: UIViewController {
         ])
     }
     
-    private func configureEditButtonsStackView() {
-        scrollView.addSubview(editButtonsStackView)
+    private func configureEditButton() {
+        scrollView.addSubview(editButton)
 
         NSLayoutConstraint.activate([
-            editButtonsStackView.centerYAnchor.constraint(equalTo: posterImageView.centerYAnchor),
-            editButtonsStackView.heightAnchor.constraint(equalTo:  posterImageView.heightAnchor, multiplier: 0.5),
-            editButtonsStackView.widthAnchor.constraint(equalTo: editButtonsStackView.heightAnchor, multiplier: 1/3),
-            editButtonsStackView.leadingAnchor.constraint(equalTo: posterImageView.trailingAnchor, constant: 10)
+            editButton.centerYAnchor.constraint(equalTo: posterImageView.centerYAnchor),
+            editButton.heightAnchor.constraint(equalTo:  posterImageView.heightAnchor, multiplier: 0.15),
+            editButton.widthAnchor.constraint(equalTo: editButton.heightAnchor),
+            editButton.leadingAnchor.constraint(equalTo: posterImageView.trailingAnchor, constant: 10)
         ])
     }
     
@@ -316,11 +296,9 @@ final class AnimeDetailsViewController: UIViewController {
         propertiesScrollView.addSubview(propertiesContentView)
         
         NSLayoutConstraint.activate([
-//            propertiesContentView.topAnchor.constraint(equalTo: propertiesScrollView.topAnchor),
             propertiesContentView.leadingAnchor.constraint(equalTo: propertiesScrollView.leadingAnchor),
             propertiesContentView.trailingAnchor.constraint(equalTo: propertiesScrollView.trailingAnchor),
             propertiesContentView.centerYAnchor.constraint(equalTo: propertiesScrollView.centerYAnchor)
-//            propertiesContentView.bottomAnchor.constraint(equalTo: propertiesScrollView.bottomAnchor)
             
         ])
     }
@@ -415,10 +393,11 @@ final class AnimeDetailsViewController: UIViewController {
         descriptionDetailsLabel.text = viewModel.description
         statusDetailsLabel.text = viewModel.statusDetails
         statuslabel.text = viewModel.status
-        updateStatusButton()
+        editButton.isHidden = !viewModel.isLoggedIn
+        updateEditButtonImage()
     }
     
-    private func updateStatusButton() {
+    private func updateEditButtonImage() {
         let imageName: String
         switch viewModel.userRateStatus {
         case .planned:
@@ -436,7 +415,7 @@ final class AnimeDetailsViewController: UIViewController {
         case .none:
             imageName = "plus"
         }
-        statusButton.setImage(UIImage(systemName: imageName), for: .normal)
+        editButton.setImage(UIImage(systemName: imageName), for: .normal)
     }
     
     @objc
@@ -456,7 +435,11 @@ final class AnimeDetailsViewController: UIViewController {
             sheet.prefersGrabberVisible = true
             sheet.preferredCornerRadius = 15
         }
-        detailsVC.viewModel = viewModel.getUserRateDetailsViewModel()
-        present(detailsVC, animated: true)
+        if let viewModel = viewModel.getUserRateDetailsViewModel() {
+            detailsVC.viewModel = viewModel
+            present(detailsVC, animated: true)
+        } else {
+            viewModel.addAnimeToList()
+        }
     }
 }

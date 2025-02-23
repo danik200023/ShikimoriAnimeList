@@ -251,7 +251,7 @@ class UserRateDetailsViewController: UIViewController {
     private lazy var episodesTextStackView: UIStackView = {
         let episodesTextStackView = UIStackView(arrangedSubviews: [watchedEpisodesTextField, totalEpisodesLabel])
         episodesTextStackView.axis = .horizontal
-        episodesTextStackView.alignment = .leading
+        episodesTextStackView.alignment = .center
         episodesTextStackView.distribution = .fill
         return episodesTextStackView
     }()

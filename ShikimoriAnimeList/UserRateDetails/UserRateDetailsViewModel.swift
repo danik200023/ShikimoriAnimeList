@@ -153,8 +153,7 @@ final class UserRateDetailsViewModel: UserRateDetailsViewModelProtocol {
         ) { result in
             switch result {
             case .success(_):
-                NotificationCenter.default.post(
-                    name: .userRateChanged, object: nil)
+                NotificationCenter.default.post(name: .userRateChanged, object: nil)
                 completion()
             case .failure(let error):
                 print(error)
