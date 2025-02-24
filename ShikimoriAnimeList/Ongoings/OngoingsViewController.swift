@@ -36,6 +36,7 @@ final class OngoingsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationItem.title = "Онгоинги"
         view.backgroundColor = .systemBackground
         viewModel = OngoingsViewModel()
         configureSearchCollectionView()
