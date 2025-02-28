@@ -167,10 +167,11 @@
 				83F66ED62CC1B08600F2F4E3 /* AnimeDetails */,
 				8309DD132CC9300000195D14 /* AnimeCell */,
 				83B76A452CD6302800F6639B /* Profile */,
-				83B0064A2D0C34D4006A499F /* RootTabBar */,
+				83B0064A2D0C34D4006A499F /* Root */,
 				83B006462D0C3336006A499F /* Loading */,
 				832398222C6B929000EC4833 /* Models */,
 				832398252C6E3D2400EC4833 /* Services */,
+				839A08C12D7253EA00253609 /* Extensions */,
 				8323981F2C6B924D00EC4833 /* App */,
 				832398142C6B921E00EC4833 /* Assets.xcassets */,
 			);
@@ -182,8 +183,6 @@
 			children = (
 				8323980B2C6B921C00EC4833 /* AppDelegate.swift */,
 				8323980D2C6B921C00EC4833 /* SceneDelegate.swift */,
-				836AC5422CA6B0ED00F786A2 /* UserDefaults+OAuthToken.swift */,
-				830785982CE529AF0099CE4C /* NotificationCenter+Name.swift */,
 				832398192C6B921E00EC4833 /* Info.plist */,
 				832398162C6B921E00EC4833 /* LaunchScreen.storyboard */,
 			);
@@ -225,6 +224,15 @@
 			path = UserRateDetails;
 			sourceTree = "<group>";
 		};
+		839A08C12D7253EA00253609 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				836AC5422CA6B0ED00F786A2 /* UserDefaults+OAuthToken.swift */,
+				830785982CE529AF0099CE4C /* NotificationCenter+Name.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		83B006462D0C3336006A499F /* Loading */ = {
 			isa = PBXGroup;
 			children = (
@@ -233,12 +241,12 @@
 			path = Loading;
 			sourceTree = "<group>";
 		};
-		83B0064A2D0C34D4006A499F /* RootTabBar */ = {
+		83B0064A2D0C34D4006A499F /* Root */ = {
 			isa = PBXGroup;
 			children = (
 				83B0064B2D0C3568006A499F /* RootTabBarController.swift */,
 			);
-			path = RootTabBar;
+			path = Root;
 			sourceTree = "<group>";
 		};
 		83B76A452CD6302800F6639B /* Profile */ = {
